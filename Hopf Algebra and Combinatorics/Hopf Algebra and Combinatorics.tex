@@ -5,11 +5,14 @@
 
 \usepackage{natbib}
 
-\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage[all, cmtip, 2cell]{xy}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
 \usepackage{physics}
 \usepackage{tikz}
+\usepackage{cancel}
+\usepackage{mathtools}
 
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
@@ -47,6 +50,10 @@
 \DeclareMathOperator{\Mat}{Mat}
 \newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\id}{id}
+
 \setlength{\parindent}{0pt}
 
 \begin{document}
@@ -59,7 +66,7 @@
 
 \renewcommand{\abstractname}{Context}
 \begin{abstract}
-These are notes created based on the lectures from San Francisco State University under Prof. Federico Ardila. Hopf algebras seem to be a difficult topic to introduce as a simple definition. They apparently have applications in quantum field theory, pertinent to Feynman diagrams.
+These are notes created based on the lectures by Prof. Federico Ardila at San Francisco State University. Hopf algebras seem to be a difficult topic to introduce as a simple definition. They apparently have applications in quantum field theory, pertinent to Feynman diagrams.
 \end{abstract}
 
 \begingroup
@@ -71,7 +78,7 @@ These are notes created based on the lectures from San Francisco State Universit
 \medskip
 
 \section{Introduction}\label{sec:Intro}
-A Hopf algebra is a complicated mathematical structure with a definition involving lots of properties and scary commutative diagrams. It fundamentally invokes the tensor product, and it is difficult to construct as a complete definition in one sitting, so we must do it in pieces.
+A Hopf algebra is a complicated mathematical structure with a definition involving lots of properties and scary commutative diagrams. It fundamentally invokes the tensor product, and it is difficult to construct as a complete definition in one sitting, so we must start with smaller definitions and build up the structure progressively.
 
 \begin{Definition}[Hopf algebra]\label{def:HopfAlg}
 A \emph{Hopf algebra} $H$ is a $\mathbb{K}$-vector space with five operations:
@@ -117,39 +124,39 @@ Let $ V = \mathbb{R}[x]$ and $ W = \Mat_{2\times 2}(\mathbb{R})$. A formal expre
 
 \begin{Example*}[Dirac matrices]
 The following anticommutation relations have a corresponding matrix representation called the Pauli matrices:
-\begin{gather}
+\begin{gather*}
 	\sigma_i^2 = I_2, \;\; \sigma_i \sigma_j + \sigma_j\sigma_i = 0, \; i \neq j \\
 	\sigma_1 = \mqty[0 & 1 \\ 1 & 0],\; \sigma_2 = \mqty[0 & -i \\ i & 0],\; \sigma_3 = \mqty[1 & 0 \\ 0 & -1]
-\end{gather}
+\end{gather*}
 To develop the relativistic theory of the electron, Dirac constructed $4 \times 4$ matrices $\gamma^\mu,\; \mu = 0,1,2,3$, out of the Pauli matrices using tensor products. The details are not relevant, so we will just display the results:
-\begin{gather}
-	\gamma \equiv \mqty[0 & 1 \\ -1 & 0] \\
+\begin{gather*}
+	\gamma \coloneqq \mqty[0 & 1 \\ -1 & 0] \\
 	\gamma^{0} = \sigma_3 \otimes \mathbf 1_2 = \mqty[I_2 & 0 \\ 0 & -I_2] = \mqty[1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -1] \\
 	\gamma^{i} = \gamma \otimes \sigma_i = \mqty[0 & \sigma_i \\ -\sigma_i & 0],\;\; i = 1,2,3
-\end{gather}
-The Pauli and Dirac matrices form Clifford algebras respectively, which I don't know anything about.
+\end{gather*}
+The Pauli and Dirac matrices form Clifford algebras respectively, which I don't want to talk about, Mark.
 \end{Example*}
 
 \subsection{Motivating Examples for Hopf Algebras}
 
 \begin{Example}[Groups]
 Let $G$ be a \emph{finite group} and $\mathbb{K}$ a \emph{field}. To allow multiplication of scalars into the group, define the group ring:
-\begin{gather}
+\begin{gather*}
 	H = \mathbb KG = \qty{\, \sum_{i = 1}^n\lambda_i g_i \biggm| n \in \mathbb N,\; \forall\,\lambda_i \in \mathbb K,\; \forall\,g_i \in G \,}	
-\end{gather}
+\end{gather*}
 
 \begin{Multiplication*}
 $m(g \otimes h) = gh$. Extending this linearly:
-\begin{gather}
-	m(g \otimes h) = \pqty{\sum_{i = 1}^{n}\lambda_i g_i}\pqty{\sum_{j = 1}^{n}\mu_j h_j} = \sum_{i,j}^{n,n} \lambda_i \mu_j(g_i h_j)
-\end{gather}
+\begin{gather*}
+	m\pqty{\sum_{i = 1}^{n}\lambda_i g_i \otimes \sum_{j = 1}^{n}\mu_j h_j} = \pqty{\sum_{i = 1}^{n}\lambda_i g_i}\pqty{\sum_{j = 1}^{n}\mu_j h_j} = \sum_{i,j}^{n,n} \lambda_i \mu_j(g_i h_j)
+\end{gather*}
 \end{Multiplication*}
 
 \begin{Comultiplication*}
 $ \Delta(g) = g \otimes g $. Extending this linearly:
-\begin{gather}
+\begin{gather*}
 	\Delta\pqty{\sum_{i = 1}^n \lambda_ig_i} = \sum_{i = 1}^n \lambda_i(g_i \otimes g_i)
-\end{gather}
+\end{gather*}
 These definitions do give a Hopf algebra according to the lecturer. 	
 \end{Comultiplication*}
 
@@ -160,14 +167,14 @@ The comultiplication $ \Delta(g) = 1 \otimes g + g \otimes 1 + g \otimes g$ shou
 \end{Example}
 
 
-\begin{Example}[Polynomial Rings]
+\begin{Example}[Polynomial rings]
 Let $H = \mathbb{K}[X]$, the \emph{polynomial ring}.
 
 \begin{Multiplication*}
 $m\pqty{X^i \otimes X^j} = X^{i+j}$. Extending this linearly:
-\begin{gather}
+\begin{gather*}
 	m\pqty{\sum_i^k \alpha_i X^i \otimes \sum_j^l \beta_j X^j} = \sum_{i,j}^{k,l} \alpha_i \beta_j X^{i+j},\;\; \forall\,\alpha_i,\beta_j \in \mathbb K,\; \forall\,	k,l \in \mathbb N
-\end{gather}
+\end{gather*}
 \end{Multiplication*}
 
 \begin{Remark*}
@@ -176,9 +183,9 @@ This is a commutative multiplication because the ring forms a commutative algebr
 
 \begin{Comultiplication*}
 Extending the logic from groups:
-\begin{gather}
+\begin{gather*}
 	\Delta\pqty{X} = \pqty{1 \otimes X} + \pqty{X \otimes 1}
-\end{gather}
+\end{gather*}
 \end{Comultiplication*}
 
 \begin{Remark*}
@@ -186,26 +193,26 @@ The combination $\pqty{X \otimes X}$ is not included here probably because the a
 \end{Remark*}
 
 This ring already has a multiplicative structure, which the coproduct should obey naturally:
-\begin{gather}
+\begin{gather*}
 	\Delta\pqty{X^2} = \bqty{1 \otimes X + X \otimes 1} \cdot \bqty{1 \otimes X + X \otimes 1} \\
 	= 1 \otimes X^2 + 2\pqty{X\otimes X} + X^2 \otimes 1 
-\end{gather}
+\end{gather*}
 This suggests the following extension:
-\begin{gather}
+\begin{gather*}
 	\Delta\pqty{X^{n}} = \sum_{i}^{n} \binom{n}{i}\pqty{X^{i} \otimes X^{n-i}} 
-\end{gather}
+\end{gather*}
 Notice the following, which shows the information about the coefficient of a comultiplication:
-\begin{gather}
-	m\pqty{\Delta\pqty{X^n}} = \sum_{i}^{n} \binom{n}{i}X^n =  2^nX^n
-\end{gather}
+\begin{gather*}
+	m\pqty{\Delta\pqty{X^n}} = \sum_{i=1}^{n} \binom{n}{i}X^n =  2^nX^n
+\end{gather*}
 
 \end{Example}
 
 \begin{Example}[Graphs]
 Let $[G]$ be the \emph{isomorphism class of the graph} $G = (V,E)$. The class of all isomorphic graphs is denoted by $L = \qty{\, [G] \mid \; G \in \cal G \,}$, where $\cal G$ is the class of all graphs. Let the vector space $H = \mathbb KL$, in which the elements are linear combinations of graphs:
-\begin{gather}
+\begin{gather*}
 	H = \qty{\, \sum_i k_i[G_i]\,\bigg|\;k \in \mathbb K,\; G \in \cal G\,}	
-\end{gather}
+\end{gather*}
 
 \begin{Multiplication*}
 Defined most naturally as a disjoint union of the arguments as components of the graph, which is commutative:
@@ -254,11 +261,11 @@ Defined most naturally as a disjoint union of the arguments as components of the
 \begin{Comultiplication*}
 Not entirely obvious, but a satisfactory definition can be deduced from the previous examples and observations. The comultiplication structure of an element is essentially a decomposition of the components by taking complementary combinations of the subelements of the algebraic structure (FIX THIS). \\
 This idea can be implemented in this vector space as well by selecting a subset $S$ of the vertex set of the graph $V(G)$, constructing the graph based on the existence of edges between the vertices of $S$, and taking a tensor product with its complement. This is shown by (dropping the isomorphism class notation for brevity):
-\begin{gather}
+\begin{gather*}
 	\Delta(G) = \sum_{S \in V(G)} G\big|_S \otimes G\big|_{V(G) - S}
-\end{gather}
+\end{gather*}
 This is illustrated using the following example:
-\begin{gather}
+\begin{gather*}
 	\Delta
 	\mqty(\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
 	{
@@ -318,15 +325,15 @@ This is illustrated using the following example:
 	  	\draw (\from) -- (\to);
 	}}) +
 	\ldots
-\end{gather}
+\end{gather*}
 The number of tensor products is easily countable as the number of subsets of $V(G)$, which is $2^n$, where $n$ is the number of vertices of the graph $G$. For the above example, there are 5 vertices, so there are 32 tensor products to be summed over.
 \end{Comultiplication*}
 
 \begin{Remark*}
 The product of the coproduct of a graph is:
-\begin{gather}
+\begin{gather*}
 	m\pqty{\Delta(G)} \neq G
-\end{gather}
+\end{gather*}
 This indicates that the product of the coproduct of a graph does not bring back the original argument, so $m$ and $\Delta$ are not inverse operations. (Note: This is also evident from the group and the polynomial ring examples.)
 \end{Remark*}
 
@@ -334,42 +341,42 @@ This indicates that the product of the coproduct of a graph does not bring back 
 
 \begin{Example}[Permutations]
 Let $P_n$ denote the set of \emph{all permutations of the subsets} of $\mathbb N\Mod n$, where $n$ is finite. To clarify with an example, take the set $\mathbb N\Mod 5 = \qty{\, 1,2,3,4,5 \,}$. Here are two permutations of $P_5$:
-\begin{gather}
+\begin{gather*}
 	p = \mqty(1 & 2 & 3 & 4 & 5 \\ 2 & 1 & 3 & 4 & 5), \;\; q = \mqty(1 & 2 \\ 2 & 1) 
-\end{gather}
+\end{gather*}
 
 \begin{Remark*}
 Although they might have the `same' action, they are fundamentally different elements (of $S_5$ and $S_2$, respectively in the above example) by definition. The set $P_n$ consists of elements of the permutation groups $S_1$ to $S_n$. (CHECK)
 \end{Remark*}
 
 The vector space is defined as:
-\begin{gather}
+\begin{gather*}
 	H = \mathbb KP_n = \qty{\, \sum_{i}^n k_iP_i \;\bigg|\; \forall\, k_i \in \mathbb K,\;\forall\, P_i \in P_n,\;\forall\,n \in \mathbb N\,}
-\end{gather}
+\end{gather*}
 Note that the coefficients do not imply the number of times of application of their corresponding permutations; they just depict a formal linear extension for the vector space.
 
 \begin{Multiplication*}
 An example is $(1 \, 2) \otimes (1 \, 2 \,3)$ using one-line notation:
-\begin{gather}
+\begin{gather*}
 	m((1 \, 2) \otimes (3 \, 2 \, 1)) = 12543 + 15243 + 15423 + 15432 + 51243 + 51423 + \ldots 
-\end{gather}
+\end{gather*}
 Which shows that it respects the order of the arguments while shuffling and generates only \emph{some} permutations of $S_5$ as a result. This might be represented by using $U_i$ to denote the $i$th entry of the permutation $U$:
-\begin{gather}
+\begin{gather*}
 	m\pqty{U \otimes V} = m\pqty{\pqty{U_1\ldots U_j} \otimes \pqty{V_1\ldots V_k}} \\
 	= \sum p(U_1\ldots V_{j + 1} \ldots U_j\ldots V_{j + k}),\;\; n(U_j) < n(U_{j+1}), \; n(V_{i + j}) < n(V_{i + j + 1}) 
-\end{gather}
+\end{gather*}
 Where $p(U_1\ldots V_{i + 1} \ldots U_i\ldots V_{i + j})$ stands for the permutations of the resultant set with the values of $V_i$ right-shifted by $j$, under the rule that the partial order of the elements is not lost, using $n(U_i)$ to denote placement. (NEEDS IMPROVEMENT)
 \end{Multiplication*}
 
 \begin{Comultiplication*}
 Similar to graphs, the coproduct of permutations is obtained by cutting a line between the numbers (in one-line notation, e.g. $(1 \, 2 \mid 3\, 4\, 5)$), and writing the outer product with each piece as a component, then summing over all complementary combinations. 
-\begin{gather}
+\begin{gather*}
 	\Delta\pqty{U_1 U_2 \ldots U_n} = \sum_{i=0}^n \pqty{U_1\ldots U_i} \otimes \pqty{U_{i+1}\ldots U_n}
-\end{gather}
+\end{gather*}
 An example using a permutation of $S_5$:
-\begin{gather}
+\begin{gather*}
 	\Delta\pqty{4 \, 2 \, 5 \, 3 \, 1} = \pqty{\phi \otimes 42531} + \pqty{1 \otimes 2431} + \pqty{21 \otimes 321} + \ldots
-\end{gather}
+\end{gather*}
 \emph{Note}: Substrings like $(4 \, 5 \, 3)$ are just elements of $S_3$, so they can be rewritten as $(2 \, 3 \, 1)$, and so on for substrings of varying lengths with their corresponding symmetric groups. 
 \end{Comultiplication*}
 
@@ -378,5 +385,112 @@ Nothing so far.
 \end{Remark*}
 \end{Example}
 
-\section{Algebras Over a Field}
+\section{Algebras Over a Field/Ring}
+
+An \emph{algebra over a field} is a structure that is simultaneously a \emph{vector space} and a \emph{ring}. The setup will be a field $\mathbb K$ and a ring $A$ with a multiplicative identity $1$, called a $\mathbb K$-algebra.
+Three definitions are introduced that will be shown to be equivalent progressively.
+
+\begin{Definition}[$\mathbb K$-algebra]
+$A$ forms a $\mathbb K$\emph{-algebra} if $\mathbb K \subset Z(A)$ and $1_{\mathbb K} = 1_A$, where $Z(A)$ is the centre of the ring.
+\end{Definition}
+
+\begin{Example*}[Polynomial rings]
+Let $A = \mathbb K[x]$. This forms a $\mathbb K$-algebra because the ring is commutative and the elements of the field in the ring are the constant polynomials, and $1_{\mathbb K}$ is the same as $1_A$. This directly generalises to the multivariate polynomial ring $B = \mathbb K[x_1,\ldots,x_n],\, n \in \mathbb N$, where $n$ is finite.
+\end{Example*}
+
+An example of a ring that is a vector space, but does not form a $\mathbb K$-algebra is $A = \Mat_{n\times n}(\mathbb K)$. This is because $\mathbb K\,\cancel{\subset}\,A$. However, copies of $\mathbb K$ exist as matrices in the form $\mathbb K I_{n\times n}$, where $I$ is the identity matrix of corresponding dimensions. This structure should form a $\mathbb K$-algebra, which motivates the second definition:
+
+\begin{Definition}[$\mathbb K$-algebra]
+$A$ is a $\mathbb K$\emph{-algebra} if there is an embedding $u: \mathbb K \to A$ such that $u(\mathbb K) \subseteq Z(A)$ and $u\pqty{1_{\mathbb K}} = 1_A $.
+\end{Definition}
+
+\begin{Remark*}
+This allows $A = \Mat_{n\times n}(\mathbb K)$ to form a $\mathbb K$-algebra because $u(\lambda) = \lambda I,\, \lambda \in \mathbb K$. An observation is that any $A$ now forms a $\mathbb K$-vector space because scalar multiplication is implemented as $\lambda \cdot a \coloneqq u(\lambda)a,\, \lambda \in \mathbb K,\, a \in A$. The polynomial ring $\mathbb K[x]$'s construction as a $\mathbb K$-algebra also follows directly from this definition.
+\end{Remark*}
+
+An \emph{algebra over a ring}, by analogy, is a module and a ring with a multiplicative identity defined similarly:
+
+\begin{Definition}[$R$-algebra]
+$M$ is an $R$\emph{-algebra} if there is a ring homomorphism $u: R \to M$ such that $u(R) \subseteq Z(A)$ and $u\pqty{1_{R}} = 1_A $ with a left or right multiplication specified.
+\end{Definition}
+
+\begin{Example*}[$\mathbb Z$-algebra]
+Let $Q$ be the set of quaternions, which forms a $\mathbb Z$-algebra because its center consists of all real quaternions, which contains a copy of $\mathbb Z$ as a subring.
+\end{Example*}
+
+\subsection{Algebra Homomorphism}
+
+\begin{Definition}
+Let $A_1, A_2$ be $\mathbb K$-algebras. An \emph{algebra homomorphism} is $\phi\colon A_1 \to A_2$ which is a ring homomorphism and linear map simultaneously. 
+\end{Definition}
+
+\begin{Remark*}
+Observations:
+\begin{itemize}
+	\item $ B \subseteq A $ is a subalgebra if $B$ is both a subspace and subring. 
+	\item A structure that quotients the algebra must quotient the vector space and the ring simultaneously. A subspace quotients the vector space, and an ideal quotients the ring. All ideals form subspaces, therefore ideals quotient the algebra. 
+	\item If $\phi \colon A \to B $ is a $\mathbb K$-algebra homomorphism, then $\Im \phi \cong A/\ker \phi$, where $\ker\phi$ forms an ideal $I$. This is analogous to the first isomorphism theorem from groups, rings, vector spaces, etc.
+	\item The direct product of two $\mathbb K$-algebras is also a $\mathbb K$-algebra, as the vector space and ring structures are independently inherited. The tensor product also forms a $\mathbb K$-algebra.
+\end{itemize}
+\end{Remark*}
+
+\begin{Definition}[$\mathbb K$-algebra]
+A $\mathbb K$-algebra is a vector space $A$ over a field $\mathbb K$ equipped with linear maps $ m\colon A \otimes A \to A,\; u\colon \mathbb K \to A $ such that the following diagrams commute:
+\begin{equation*}
+\xymatrix{
+A \otimes A \otimes A \ar[d]_{\id \otimes m} \ar[r]^-{m \otimes \id} & A \otimes A \ar[d]^{m} \\
+A \otimes A \ar[r]_{m} & A
+} \;\;\;\;\;\;
+\xymatrix{
+\mathbb K \otimes A \ar[r]^{u \otimes \id} \ar[dr]_{f} & A \otimes A \ar[d]_{m} & A \otimes \mathbb K \ar[l]_{\id \otimes u} \ar[dl]^{g} \\
+	& A &	
+}
+\end{equation*}
+\end{Definition}
+
+\begin{Remark*}
+For the first diagram: $(m \otimes \id)(f \otimes g \otimes h) = fg \otimes h,\; m(fg \otimes h) = fgh $ and $(\id \otimes m)(f \otimes g \otimes h) = f \otimes g h,\; m(f \otimes gh) = fgh $, which shows that the tensor product is \emph{associative}:
+\begin{gather*}
+	m(m(f \otimes g) \otimes h) = m(f \otimes m(g \otimes h))
+\end{gather*}
+
+For the second diagram: $f(k \otimes v) = f(1 \otimes kv) = kv$ and $u(1) = 1_A, \;(u \otimes \id)(1 \otimes kv) = 1_A \otimes kv, \; m(1_A \otimes kv) = k_Av$. This implies $u(k) = k_A$, implying copies of the field exist in the vector space as an embedding. Following a similar procedure for the other half, we find that the tensor product is \emph{unitary}, so there is a multiplicative identity on the left and right under the multiplication $m$:
+\begin{gather*}
+	m(1_A \otimes v) = m(v \otimes 1_A) = v
+\end{gather*}
+
+This definition is equivalent to the previous one, which can be verified by checking if the structure shares the remaining property of a ring, \emph{distributivity}, which is satisfied because of the linearity of $m$:
+\begin{gather*}
+	m(u \otimes (v + w)) = m(u \otimes v) + m(u \otimes w) = uv + uw
+\end{gather*}
+\end{Remark*}
+
+\begin{Remark*}
+To show that the previous definition implies the current one, the only non-trivial construction required is $m$, which is defined as a multiplication under the previous definition: $m\colon A \otimes A \rightarrow A$ such that $ m(a \otimes b) \coloneqq ab $, this remark is a little troubling because we do not have a clear definition of the tensor product and its relations with other algebraic structures, which will be investigated now.
+\end{Remark*}
+
+\section{Tensor Products}
+
+\begin{Definition}[Free vector space]
+Let $F(V \times W) = \mathbb K-\mathrm{span}\qty{(v, w) \mid v \in V,\, w \in W}$, called the \emph{free vector space} on $V \times W$.
+\end{Definition}
+
+\begin{Definition}[Tensor product]
+The tensor product space is the quotient:
+\begin{gather*}
+	V \otimes W = F(V \times W)/I
+\end{gather*}
+where $I$ is generated by linear relations:
+\begin{gather*}
+	(v_1 + v_2, w) \sim (v_1, w) + (v_2, w) \\
+	(v, w_1 + w_2) \sim (v, w_1) + (v, w_2) \\
+	(cv, w) \sim (v, cw) \sim c(v, w)
+\end{gather*}
+\end{Definition}
+
+\begin{Remark*}
+The tensor $a \otimes b = \overline{(a,b)}$, an equivalence class, and $a' \otimes b'$ can be equal to $a \otimes b,\, a' \neq a, \, b' \neq b$.
+\end{Remark*}
+
+To define a linear $m\colon V \otimes W \to W$, we would have to define an $n\colon F(V \times W) \to W$ such that $n(I) = 0$, which implies that $n$ is a bilinear map. 
 \end{document}
