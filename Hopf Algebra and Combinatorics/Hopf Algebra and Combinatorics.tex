@@ -15,8 +15,13 @@
 \usepackage{xspace}
 
 \usepackage[english]{babel}
-\usepackage{tgtermes}
+% \usepackage{tgtermes}
+\usepackage{charter}
 \usepackage[T1]{fontenc}
+
+\usepackage{color}
+\definecolor{mygrey}{gray}{0.1}
+\color{mygrey}
 
 \usepackage{url}
 
@@ -57,6 +62,7 @@
 \renewcommand{\th}{\textsuperscript{th}\xspace}
 
 \setlength{\parindent}{0pt}
+
 
 \begin{document}
 	
@@ -339,7 +345,7 @@
 	\end{Example}
 	
 	\begin{Example}[Permutations]
-		Let $P_n$ denote the set of all permutations of the set $\mathbb N\Mod n := \qty{1, 2, \ldots, n}$, for a given non-negative integer $n$. Let $P$ denote the set of all permutations of $\mathbb N \Mod n$, for all non-negative integers $n$ --- i.e., $P := \bigcup\limits_{n = 0}^\infty P_n$. Here are two permutations in $P$:
+		Let $P_n$ denote the set of all permutations of $\mathbb N\Mod n \coloneqq \qty{1, 2, \ldots, n}$, for a given non-negative integer $n$. Let $P$ denote the set of all permutations of $\mathbb N \Mod n$, for all non-negative integers $n$ --- i.e., $P \coloneqq \bigcup\limits_{n = 0}^\infty P_n$. Here are two permutations in $P$:
 		\begin{gather*}
 		p = \mqty(1 & 2 & 3 & 4 & 5 \\ 2 & 1 & 3 & 4 & 5), \;\; q = \mqty(1 & 2 \\ 2 & 1) 
 		\end{gather*}
@@ -350,7 +356,7 @@
 		
 		The vector space is defined as:
 		\begin{gather*}
-		H = \mathbb KP = \qty{\, \sum_{i = 1}^n k_i p_i \;\bigg|\; k_i \in \mathbb K,\; p_i \in P,\; n \in \mathbb N_0\,}
+		H = \mathbb KP \coloneqq \qty{\, \sum_{i = 1}^n k_i p_i \;\bigg|\; k_i \in \mathbb K,\; p_i \in P,\; n \in \mathbb N_0\,}
 		\end{gather*}
 		Note that the coefficients do \emph{not} denote the number of times of application of their corresponding permutations; they just depict a formal linear extension in the vector space.
 		
@@ -423,7 +429,7 @@
 	\begin{Example*}[$\mathbb Z$-algebra]
 		A quaternion $a + bi + cj + dk$ is a \emph{Hurwitz quaternion} if $a$, $b$, $c$, and $d$ are either all integers, or all half-integers --- i.e., halves of odd integers. Let
 		\begin{gather*}
-		H := \qty{\, a + bi + cj + dk \,\bigg|\, a, b, c, d \in \mathbb Z\ \text{or}\ a, b, c, d \in \mathbb Z + \frac 1 2 \,}
+		H \coloneqq \qty{\, a + bi + cj + dk \,\bigg|\, a, b, c, d \in \mathbb Z\ \text{or}\ a, b, c, d \in \mathbb Z + \frac 1 2 \,}
 		\end{gather*}
 		be the set of all Hurwitz quaternions. Then $H$ is a $\mathbb Z$-algebra, since its centre consists of all Hurwitz quaternions with imaginary parts zero, which contains a copy of $\mathbb Z$ as a subring.
 	\end{Example*}
@@ -465,7 +471,7 @@
 		m(m(x \otimes y) \otimes z) = m(x \otimes m(y \otimes z))
 		\end{gather*}
 		
-		For the second diagram: $(u \otimes \id) (\lambda \otimes x) = u(\lambda) \otimes x$, and $m(u(\lambda) \otimes x) = u(\lambda) x$; also, $f(\lambda \otimes x) = \lambda x$. Since the diagram commutes, $u(\lambda) x = \lambda x$. This shows that left-multiplying a vector $x$ by the vector $u(\lambda)$ is equivalent to multiplying it by the scalar $\lambda$. The same holds for right multiplication. If $1_A := u(1_{\mathbb K})$, then $1_A x = 1_{\mathbb K} x = x$ and $x 1_A = x 1_{\mathbb K} = x$, which shows that the multiplication $m$ is \emph{unitary}, with unity $1_A$.
+		For the second diagram: $(u \otimes \id) (\lambda \otimes x) = u(\lambda) \otimes x$, and $m(u(\lambda) \otimes x) = u(\lambda) x$; also, $f(\lambda \otimes x) = \lambda x$. Since the diagram commutes, $u(\lambda) x = \lambda x$. This shows that left-multiplying a vector $x$ by the vector $u(\lambda)$ is equivalent to multiplying it by the scalar $\lambda$. The same holds for right multiplication. If $1_A \coloneqq u(1_{\mathbb K})$, then $1_A x = 1_{\mathbb K} x = x$ and $x 1_A = x 1_{\mathbb K} = x$, which shows that the multiplication $m$ is \emph{unitary}, with unity $1_A$.
 		
 		This definition is equivalent to the previous one, which can be verified by checking if the structure shares the remaining property of a ring, \emph{distributivity}, which is satisfied because of the linearity of $m$:
 		\begin{gather*}
@@ -474,7 +480,7 @@
 	\end{Remark*}
 	
 	\begin{Remark*}
-		To show that the previous definition implies the current one, the only non-trivial construction required is $m$, which is defined as a multiplication under the previous definition: $m\colon A \otimes A \rightarrow A$ such that $ m(a \otimes b) \coloneqq ab $, this remark is a little troubling because we do not have a clear definition of the tensor product and its relations with other algebraic structures, which will be investigated now.
+		To show that the previous definition implies the current one, the only non-trivial construction required is $m$, which is defined as a multiplication under the previous definition: $m\colon A \otimes A \rightarrow A$ such that $ m(a \otimes b) \coloneqq ab $; this remark is a little troubling because we do not have a clear definition of the tensor product and its relations with other algebraic structures, which will be investigated now.
 	\end{Remark*}
 	
 	\section{Tensor Products}
@@ -488,7 +494,7 @@
 		\begin{gather*}
 		V \otimes W = F(V \times W)/I
 		\end{gather*}
-		where $I$ is generated by linear relations:
+		where $I$ is generated by linear relations of $v$ and $w$:
 		\begin{gather*}
 		(v_1 + v_2, w) \sim (v_1, w) + (v_2, w) \\
 		(v, w_1 + w_2) \sim (v, w_1) + (v, w_2) \\
@@ -501,4 +507,33 @@
 	\end{Remark*}
 	
 	To define a linear $m\colon V \otimes W \to W$, we would have to define an $n\colon F(V \times W) \to W$ such that $n(I) = 0$, which implies that $n$ is a bilinear map. 
+
+	\subsection{Universal Property}
+	\begin{Theorem}[Universal property of tensor products]
+		Let $\phi \colon V \times W \to V \otimes W$ be a bilinear map. If $f \colon V \times W \to L$ is a bilinear map, then there exists a unique linear map $\tilde f \colon V \otimes W \to L$ such that $f = \tilde f \cdot \phi $, which satisfied the commutative diagram:
+		\begin{gather*}
+		\xymatrix{
+		V \times W \ar[r]^{\phi} \ar[rd]_{f} & V \otimes W \ar[d]^{\tilde f} \\
+		& L
+		}
+		\end{gather*}
+	\end{Theorem}
+
+	\begin{proof}
+		Let $\phi(v,w) \coloneqq {(v,w) + I} = {v \otimes w}$. The following are evident from their respective properties:
+		\begin{align*}
+			f(\lambda v, w) = \lambda f(v,w) & \hfill (\text{bilinearity}) \\
+			\phi(\lambda v, w) = \phi(v,\lambda w) = \lambda(v, w) + I = \lambda(v \otimes w) & \hfill (\text{bilinearity}) \\
+			\tilde f(\lambda (v\otimes w)) = \lambda\tilde f(v\otimes w) \coloneqq \lambda f(v,w) & \hfill (\text{linearity})
+		\end{align*}
+		Extending $\tilde f$ linearly:
+		\begin{gather*}
+			\tilde f\pqty{\sum_{i=1}^m \lambda_i v_i \otimes w_i } \coloneqq \sum_{i = 1}^n \lambda_i f\pqty{v_i, w_i}
+		\end{gather*}
+		If $\sum_{i=1}^m \lambda_i (v_i,w_i) = \sum_{j=1}^n \mu_j (x_j,y_j)$, then for the map to be well-defined, we must have:
+		\begin{gather*}
+			f\pqty{\sum_{i=1}^m \lambda_i (v_i,w_i)} = f\pqty{\sum_{j=1}^n \mu_j (x_j,y_j)} 
+		\end{gather*}
+		Because $\sum_{i=1}^m \lambda_i (v_i,w_i) - \sum_{j=1}^n \mu_j (x_j,y_j) \in I$.
+	\end{proof}
 \end{document}
