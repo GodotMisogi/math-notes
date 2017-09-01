@@ -1,7 +1,7 @@
 % Hopf Algebras and Combinatorics
 
 \documentclass{article}
-\usepackage[paperwidth=5.9in, paperheight=9in, top = 20mm, bottom = 15mm, left=8mm, right = 8mm]{geometry}
+\usepackage[paperwidth=6in, paperheight=8in, top = 20mm, bottom = 18mm, left=10mm, right = 10mm]{geometry}
 
 \usepackage{natbib}
 
@@ -13,10 +13,16 @@
 \usepackage{tikz}
 \usepackage{mathtools}
 \usepackage{xspace}
+\usepackage{enumitem}
 
 \usepackage[english]{babel}
-\usepackage{tgtermes}
+% \usepackage{tgtermes}
+\usepackage{charter}
 \usepackage[T1]{fontenc}
+
+% \usepackage{color}
+% \definecolor{mygrey}{gray}{0.1}
+% \color{mygrey}
 
 \usepackage{url}
 
@@ -28,9 +34,11 @@
 \newtheorem*{Definition*}{Definition}
 \newtheorem{Example}{Example}
 \newtheorem*{Example*}{Example}
+\newtheorem{Exercise}{Exercise}
 
 \theoremstyle{remark}
 \newtheorem*{Remark*}{Remark}
+\newtheorem*{Solution*}{Solution}
 
 \newtheoremstyle{underline}% name
 {}        % Space above, empty = `usual value'
@@ -49,6 +57,7 @@
 \newtheorem*{Comultiplication*}{Comultiplication}
 
 \DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Hilb}{Hilb}
 \newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
 
 \let\Im\relax
@@ -57,6 +66,7 @@
 \renewcommand{\th}{\textsuperscript{th}\xspace}
 
 \setlength{\parindent}{0pt}
+
 
 \begin{document}
 	
@@ -68,7 +78,7 @@
 	
 	\renewcommand{\abstractname}{Context}
 	\begin{abstract}
-		These are notes created based on the lectures by Prof. Federico Ardila at San Francisco State University. Hopf algebras seem to be a difficult topic to introduce as a simple definition. They apparently have applications in quantum field theory, pertinent to Feynman diagrams.
+		These are notes created based on the lectures by Prof. Federico Ardila at San Francisco State University. Hopf algebras seem to be a difficult topic to introduce as a simple definition. They apparently have applications in quantum field theory, pertinent to Feynman diagrams and renormalisation.
 	\end{abstract}
 	
 	\begingroup
@@ -76,11 +86,10 @@
 	\tableofcontents
 	\endgroup
 	
-	\medskip
-	\medskip
+	\newpage
 	
 	\section{Introduction}\label{sec:Intro}
-	A Hopf algebra is a complicated mathematical structure with a definition involving lots of properties and scary commutative diagrams. It fundamentally invokes the tensor product, and it is difficult to construct as a complete definition in one sitting, so we must start with smaller definitions and build up the structure progressively.
+	A Hopf algebra is a complicated mathematical structure with a definition involving lots of properties and scary commutative diagrams. It fundamentally invokes the tensor product and develops coalgebras with their respective properties, which merits thorough investigation. Some interesting examples allow for good practice in combinatorics as well so far. It is difficult to construct as a complete definition in one sitting, so we must start with smaller definitions and build up the structure progressively.
 	
 	\begin{Definition}[Hopf algebra]\label{def:HopfAlg}
 		A \emph{Hopf algebra} $H$ is a $\mathbb{K}$-vector space with five operations:
@@ -107,8 +116,8 @@
 	
 	The combination of these is a property called \emph{bilinearity}. Note that this vector space is much larger than the product space $V \times W$:
 	\begin{align*}
-	\dim U \times V & = \dim U + \dim V\\
-	\dim U \otimes V & = \dim U \dim V
+		\dim U \times V & = \dim U + \dim V\\
+		\dim U \otimes V & = \dim U \dim V
 	\end{align*}
 	This is intuitively obvious because the tensor product defines an \emph{actual} product between elements of $V$ and $W$, instead of a restricted component structure induced by a Cartesian product, which constrains manipulations to $V$ and $W$ independently.
 	
@@ -148,13 +157,13 @@
 		\end{gather*}
 		with the ring multiplication	$g \cdot h= gh$, the group multiplication. Extending this linearly:
 			\begin{gather*}
-			\pqty{\sum_{i = 1}^{n}\lambda_i g_i}\pqty{\sum_{j = 1}^{p}\mu_j h_j} = \sum_{i = 1}^n \sum_{j = 1}^p \lambda_i \mu_j(g_i h_j)
+			\pqty{\sum_{i = 1}^{m}\lambda_i g_i}\pqty{\sum_{j = 1}^{n}\mu_j h_j} = \sum_{i = 1}^m \sum_{j = 1}^n \lambda_i \mu_j(g_i h_j)
 			\end{gather*}
 		
 		\begin{Comultiplication*}
 			$ \Delta(g) = g \otimes g $. Extending this linearly:
 			\begin{gather*}
-			\Delta\pqty{\sum_{i = 1}^n \lambda_ig_i} = \sum_{i = 1}^n \lambda_i(g_i \otimes g_i)
+				\Delta\pqty{\sum_{i = 1}^n \lambda_ig_i} = \sum_{i = 1}^n \lambda_i(g_i \otimes g_i)
 			\end{gather*}
 			These definitions do give a Hopf algebra according to the lecturer. 	
 		\end{Comultiplication*}
@@ -198,7 +207,7 @@
 		\end{gather*}
 		This suggests the following extension:
 		\begin{gather*}
-		\Delta\pqty{X^{n}} = \sum_{i}^{n} \binom{n}{i}\pqty{X^{i} \otimes X^{n-i}} 
+		\Delta\pqty{X^{n}} = \sum_{i=1}^{n} \binom{n}{i}\pqty{X^{i} \otimes X^{n-i}} 
 		\end{gather*}
 		Notice the following, which shows the information about the coefficient of a comultiplication:
 		\begin{gather*}
@@ -339,7 +348,7 @@
 	\end{Example}
 	
 	\begin{Example}[Permutations]
-		Let $P_n$ denote the set of all permutations of the set $\mathbb N\Mod n := \qty{1, 2, \ldots, n}$, for a given non-negative integer $n$. Let $P$ denote the set of all permutations of $\mathbb N \Mod n$, for all non-negative integers $n$ --- i.e., $P := \bigcup\limits_{n = 0}^\infty P_n$. Here are two permutations in $P$:
+		Let $P_n$ denote the set of all permutations of $\mathbb N\Mod n \coloneqq \qty{1, 2, \ldots, n}$, for a given non-negative integer $n$. Let $P$ denote the set of all permutations of $\mathbb N \Mod n$, for all non-negative integers $n$ --- i.e., $P \coloneqq \bigcup\limits_{n = 0}^\infty P_n$. Here are two permutations in $P$:
 		\begin{gather*}
 		p = \mqty(1 & 2 & 3 & 4 & 5 \\ 2 & 1 & 3 & 4 & 5), \;\; q = \mqty(1 & 2 \\ 2 & 1) 
 		\end{gather*}
@@ -350,7 +359,7 @@
 		
 		The vector space is defined as:
 		\begin{gather*}
-		H = \mathbb KP = \qty{\, \sum_{i = 1}^n k_i p_i \;\bigg|\; k_i \in \mathbb K,\; p_i \in P,\; n \in \mathbb N_0\,}
+		H = \mathbb KP \coloneqq \qty{\, \sum_{i = 1}^n k_i p_i \;\bigg|\; k_i \in \mathbb K,\; p_i \in P,\; n \in \mathbb N_0\,}
 		\end{gather*}
 		Note that the coefficients do \emph{not} denote the number of times of application of their corresponding permutations; they just depict a formal linear extension in the vector space.
 		
@@ -423,7 +432,7 @@
 	\begin{Example*}[$\mathbb Z$-algebra]
 		A quaternion $a + bi + cj + dk$ is a \emph{Hurwitz quaternion} if $a$, $b$, $c$, and $d$ are either all integers, or all half-integers --- i.e., halves of odd integers. Let
 		\begin{gather*}
-		H := \qty{\, a + bi + cj + dk \,\bigg|\, a, b, c, d \in \mathbb Z\ \text{or}\ a, b, c, d \in \mathbb Z + \frac 1 2 \,}
+		H \coloneqq \qty{\, a + bi + cj + dk \,\bigg|\, a, b, c, d \in \mathbb Z\ \text{or}\ a, b, c, d \in \mathbb Z + \frac 1 2 \,}
 		\end{gather*}
 		be the set of all Hurwitz quaternions. Then $H$ is a $\mathbb Z$-algebra, since its centre consists of all Hurwitz quaternions with imaginary parts zero, which contains a copy of $\mathbb Z$ as a subring.
 	\end{Example*}
@@ -465,7 +474,7 @@
 		m(m(x \otimes y) \otimes z) = m(x \otimes m(y \otimes z))
 		\end{gather*}
 		
-		For the second diagram: $(u \otimes \id) (\lambda \otimes x) = u(\lambda) \otimes x$, and $m(u(\lambda) \otimes x) = u(\lambda) x$; also, $f(\lambda \otimes x) = \lambda x$. Since the diagram commutes, $u(\lambda) x = \lambda x$. This shows that left-multiplying a vector $x$ by the vector $u(\lambda)$ is equivalent to multiplying it by the scalar $\lambda$. The same holds for right multiplication. If $1_A := u(1_{\mathbb K})$, then $1_A x = 1_{\mathbb K} x = x$ and $x 1_A = x 1_{\mathbb K} = x$, which shows that the multiplication $m$ is \emph{unitary}, with unity $1_A$.
+		For the second diagram: $(u \otimes \id) (\lambda \otimes x) = u(\lambda) \otimes x$, and $m(u(\lambda) \otimes x) = u(\lambda) x$; also, $f(\lambda \otimes x) = \lambda x$. Since the diagram commutes, $u(\lambda) x = \lambda x$. This shows that left-multiplying a vector $x$ by the vector $u(\lambda)$ is equivalent to multiplying it by the scalar $\lambda$. The same holds for right multiplication. If $1_A \coloneqq u(1_{\mathbb K})$, then $1_A x = 1_{\mathbb K} x = x$ and $x 1_A = x 1_{\mathbb K} = x$, which shows that the multiplication $m$ is \emph{unitary}, with unity $1_A$.
 		
 		This definition is equivalent to the previous one, which can be verified by checking if the structure shares the remaining property of a ring, \emph{distributivity}, which is satisfied because of the linearity of $m$:
 		\begin{gather*}
@@ -474,7 +483,7 @@
 	\end{Remark*}
 	
 	\begin{Remark*}
-		To show that the previous definition implies the current one, the only non-trivial construction required is $m$, which is defined as a multiplication under the previous definition: $m\colon A \otimes A \rightarrow A$ such that $ m(a \otimes b) \coloneqq ab $, this remark is a little troubling because we do not have a clear definition of the tensor product and its relations with other algebraic structures, which will be investigated now.
+		To show that the previous definition implies the current one, the only non-trivial construction required is $m$, which is defined as a multiplication under the previous definition: $m\colon A \otimes A \rightarrow A$ such that $ m(a \otimes b) \coloneqq ab $; this remark is a little troubling because we do not have a clear definition of the tensor product and its relations with other algebraic structures, which will be investigated now.
 	\end{Remark*}
 	
 	\section{Tensor Products}
@@ -488,7 +497,7 @@
 		\begin{gather*}
 		V \otimes W = F(V \times W)/I
 		\end{gather*}
-		where $I$ is generated by linear relations:
+		where $I$ is generated by linear relations of $v$ and $w$:
 		\begin{gather*}
 		(v_1 + v_2, w) \sim (v_1, w) + (v_2, w) \\
 		(v, w_1 + w_2) \sim (v, w_1) + (v, w_2) \\
@@ -501,4 +510,244 @@
 	\end{Remark*}
 	
 	To define a linear $m\colon V \otimes W \to W$, we would have to define an $n\colon F(V \times W) \to W$ such that $n(I) = 0$, which implies that $n$ is a bilinear map. 
+
+	\subsection{Universal Property}
+
+	\begin{Theorem}[Universal property of tensor products]
+		Let $\phi \colon V \times W \to V \otimes W$ be a bilinear map. If $f \colon V \times W \to L$ is a bilinear map, then there exists a unique linear map $\tilde f \colon V \otimes W \to L$ such that $f = \tilde f \cdot \phi $, which satisfied the commutative diagram:
+		\begin{gather*}
+		\xymatrix{
+		V \times W \ar[r]^{\phi} \ar[rd]_{f} & V \otimes W \ar[d]^{\tilde f} \\
+		& L
+		}
+		\end{gather*}
+	\end{Theorem}
+
+	\begin{proof}
+		Let $\phi(v,w) \coloneqq {(v,w) + I} = {v \otimes w}$. The following are evident from their respective properties:
+		\begin{align*}
+	    	f(\lambda v, w) & = \lambda f(v,w) & (\text{bilinearity}) \\
+	  		\phi(\lambda v, w) & = \phi(v,\lambda w) = \lambda(v, w) + I = \lambda(v \otimes w) & (\text{bilinearity}) \\
+	    	\tilde f(\lambda (v\otimes w)) & = \lambda\tilde f(v\otimes w) \coloneqq \lambda f(v,w) & (\text{linearity})
+	    \end{align*}
+		Extending $\tilde f$ linearly:
+		\begin{gather*}
+			\tilde f\pqty{\sum_{i=1}^m \lambda_i v_i \otimes w_i } \coloneqq \sum_{i = 1}^n \lambda_i f\pqty{v_i, w_i}
+		\end{gather*}
+		If $\sum_{i=1}^m \lambda_i (v_i,w_i) = \sum_{j=1}^n \mu_j (x_j,y_j)$, then for the map to be well-defined, we must have:
+		\begin{gather*}
+			f\pqty{\sum_{i=1}^m \lambda_i (v_i,w_i)} = f\pqty{\sum_{j=1}^n \mu_j (x_j,y_j)} 
+		\end{gather*}
+		Because $\sum_{i=1}^m \lambda_i (v_i,w_i) - \sum_{j=1}^n \mu_j (x_j,y_j) \in I$.
+	\end{proof}
+
+	\subsection{Useful Examples}
+
+	\begin{Example*}[$A$-ring]
+		The problem of the tensor product on the $A$-ring can be solved now using the universal property. Since $A \times A$ filters through $A \otimes A$, the multiplication $m(a \otimes b) = ab$ directly.
+	\end{Example*}
+
+	Therefore definitions 4 and 7 are equivalent.
+	
+	\begin{Example*}[Isomorphisms of $\mathbb K$-algebras]
+		Let $A$ be a $\mathbb K$-algebra, then $\mathbb K \otimes A \cong A$ as $\mathbb K$-algebras. From the universal property, we construct a bilinear map $f \colon \mathbb K \times A \to A$; the most natural definition for this is $f(\lambda, a) = \lambda a$. Note that this is a valid algebra homomorphism. $\Im f = \Im \tilde f$ and $\ker \tilde f$ is trivial from the bilinearity of $\phi$. This can be observed by taking a sum of tensor products:
+		\begin{gather*}
+			\sum_i^n \lambda_i \otimes a_i = \sum_i^n 1_{\mathbb K} \otimes \lambda_i a_i	
+		\end{gather*}
+		which is zero when either $\lambda_i$ or $a_i$ is zero. Another way is by constructing the inverse map $g \colon A \to \mathbb K \otimes A $, which should be $g(a) = 1_{\mathbb K} \otimes a$. This is clearly an inverse since $g(\lambda a) = 1_{\mathbb K} \otimes \lambda a = \lambda \otimes a$ from bilinearity of the tensor product.
+	\end{Example*}
+
+	\begin{Example*}[Tensor product of two $\mathbb R$-algebras]
+		Let $\mathbb C$ be the complex vector space over $\mathbb R$, which forms a ring as well, and is therefore an $\mathbb R$-algebra. Then $\mathbb C \otimes \mathbb R[x] \cong \mathbb C[x]$, which is also an $\mathbb R$-algebra. Note that only reals can be transferred over the tensor product.
+		Using the universal property, construct the bilinear map $f(z, p(x)) = zp(x),\, z \in \mathbb C,\, p(x) \in \mathbb R[x]$, then $\tilde f(z \otimes p(x)) = zp(x)$. This is a valid algebra homomorphism as the multiplication is preserved. To show that the kernel is trivial, take the sum of tensor products:
+		\begin{gather*}
+			\sum_i^n z_i \otimes p_i(x)
+		\end{gather*}
+		One requires bases of $\mathbb C$ and $\mathbb R[x]$ to decompose the terms into sums of their respective components, each summing to zero. Surjectivity is immediate, as every $zp(x)$ comes from $\tilde f(z \otimes p(x))$.
+	\end{Example*}
+
+	\begin{Example*}
+		Does there exist a natural (linear!) map between vector spaces $V \otimes W \to V$? Try the map $f\colon V \times W \to V$, where $(v, w) \mapsto v$; however, this map is not bilinear. Try the mapping $(v,w) \mapsto [\alpha^*(w)]v$, where $\alpha^*$ is any linear functional that lives in the dual space $W^*$. The motivation for this selection is preservation of	bilinearity while deleting information of $w$. This is indeed bilinear by observing:
+		\begin{gather*}
+			f(v, w_1 + w_2) = \bqty{\alpha^*(w_1) + \alpha^*(w_2)}v
+		\end{gather*}
+		Using the universal property, take the sum of tensor products:
+		\begin{gather*}
+			\tilde f\pqty{\sum_{i} v_i \otimes w_i} = \sum_i \bqty{\alpha^*(w_i)}v_i
+		\end{gather*}
+		As an example, one can select $\alpha^*$ as projections of a basis $\qty{w_i \colon i \in I}$.
+	\end{Example*}
+	\begin{Lemma}\label{lem:tensProdBasis}
+		If $\qty{w_j \mid j \in J}$ is a basis for $W$, and $ \sum\limits_{i=1}^n v_i \otimes w_{j_i} = 0 $	then $v_i = 0, \forall\,i \in I$.
+	\end{Lemma}
+	\begin{proof}
+		Let $\tilde f \colon V \otimes W \to W$, using the linear map the previous example with the following linear functional:
+		\begin{gather*}
+			\alpha^*(w_j) \equiv \begin{cases}
+        1, \; j = j_k \\
+        0, \; j \neq j_k 
+        \end{cases}
+		\end{gather*}
+		for any $k = 1, \ldots, n$. Therefore:
+		\begin{gather*}
+			\tilde f \pqty{\sum_{i=1}^n v_i \otimes w_{j_i}} = 0\\
+			\sum_{i=1}^n \tilde f\pqty{v_i \otimes w_{j_i}} = 0 \\
+			\sum_{i=1}^n \alpha^*\pqty{w_{j_i}} v_i = v_k = 0.
+		\end{gather*}
+	\end{proof}
+
+	\section{Homework One}
+	
+	\begin{Exercise}
+		Let $V$ and $W$ be $\mathbb{F}$-vector spaces. If $\qty{v_i \mid i \in I}$ is a basis for $V$ and $\qty{w_j \mid j \
+		\in J}$ is a basis for $W$, prove that $\qty{v_i \otimes w_j \mid i \in I, j \in J}$ is a basis for $V \otimes W$. Conclude that, if $\dim V$ and $\dim W$ are finite, then $\dim V \otimes W = \dim V \dim W$.
+	\end{Exercise}
+	\begin{Solution*}
+		Suppose that
+		\begin{gather*}
+			\sum_{i,j} \lambda_{ij} v_i \otimes w_j = 0.
+		\end{gather*}
+		Rewriting this,
+		\begin{gather*}
+			\sum_j v'_j \otimes w_j = 0,
+		\end{gather*}
+		where $v'_j = \sum_i \lambda_{ij} v_i$. Then, since the $w_j$ form a basis of $W$, each $v'_j = 0$ by Lemma~\ref{lem:tensProdBasis}. That is, $\sum\limits_i \lambda_{ij} v_i = 0$ for each $j$. Since the $v_i$ form a basis of $V$, this implies that each $\lambda_{ij} = 0$. Therefore $\qty{v_i \otimes w_j \mid i \in I, j \in J}$ is linearly independent.
+		
+		To see that the set is spanning, every element of $V \otimes W$ can be written as:
+		\begin{align*}
+			\sum_{k} v'_k \otimes w'_k & = \sum_k \pqty{\sum_i \alpha_{ki} v_i} \otimes \pqty{\sum_j \beta_{kj} w_j} \\
+				& = \sum_{i,j} \lambda_{ij} \pqty{v_i \otimes w_j}, \quad \lambda_{ij} = \sum_k \alpha_{ki} \beta_{kj}
+		\end{align*}
+		The dimension of $V \otimes W$ is $\abs{\qty{\, v_i \otimes w_j \mid i \in I, j \in J \,}} = \abs{\qty{\, v_i \mid i \in I \,} } \cdot \abs{\qty{\, w_j \mid j \in J \,}} = \dim V \dim W$.
+	\end{Solution*}
+	
+	\begin{Exercise}
+		\begin{enumerate}[label=(\alph*)]
+			\item Prove that $\mathbb{F}[x] \otimes \mathbb{F}[x] \cong \mathbb{F}[x,y]$ as $\mathbb{F}$-algebras.
+			\item  If $A$ is an $\mathbb{F}$-algebra, let $M_{n \times n}(A)$ be the $\mathbb{F}$-algebra of $n \times n$ matrices with entries in $A$. Explain briefly why $M_{n\times n}(A)$ is an $\mathbb{F}$-algebra. Prove that $M_{n \times n}(A) \cong M_{n \times n}(\mathbb F) \otimes A$ as $\mathbb{F}$-algebras.
+			\item  Prove that $M_{n\times n}(\mathbb F) \otimes M_{n\times n}(\mathbb F) \cong M_{mn \times mn}(\mathbb F)$ as $\mathbb F$-algebras.
+		\end{enumerate}
+	\end{Exercise}
+	\begin{Solution*}
+		\begin{enumerate}[label=(\alph*)]
+			\item Since $\mathbb F[x] \otimes \mathbb F[x]$ has basis $\qty{\, x^i \otimes x^j \mid i, j \in \mathbb N_0 \,}$, and $\mathbb F[x, y]$ has basis $\qty{\, x^i y^j \mid i, j \in \mathbb N_0 \,}$, the mapping $x^i \otimes x^j \mapsto x^i y^j$ defines a linear transformation (by linear extension). This transformation is an algebra homomorphism, for
+			\begin{gather*}
+			(x^i \otimes x^j) (x^k \otimes x^l) = x^{i + k} \otimes x^{j + l} \mapsto x^{i + k} y^{j + l} = (x^i y^j) (x^k y^l).
+			\end{gather*}
+			The map $x^i y^j \mapsto x^i \otimes x^j$ (linearly extended) is clearly the inverse of the above homomorphism, which shows that $\mathbb F[x] \otimes \mathbb F[x] \cong \mathbb F[x, y]$.
+			\item Matrices form a vector space, the multiplication is given by matrix multiplication, and the identity matrix is the $1$ of the ring, so the copy of the field is the set of scalar multiples of the identity matrix.
+			
+			Define a map $M_{n \times n} (\mathbb F) \otimes A \to M_{n \times n}(A)$, $\sum\limits_k \Lambda_k \otimes a_k \mapsto \sum\limits_k \Lambda_k a_k$, where $\Lambda_k = \bqty{\lambda^{(k)}_{ij}}$ is a matrix in $M_{n \times n}(\mathbb F)$ and $a_k \in A$ for each $k$. This map is obviously a linear transformation, and since $\pqty{\sum\limits_k \Lambda_k \otimes a_k}\pqty{\sum\limits_l \Gamma_l \otimes b_l} = \sum\limits_{k, l} \Lambda_k \Gamma_l \otimes a_k b_l \mapsto \sum\limits_{k, l} \Lambda_k \Gamma_l a_k b_l$, it is an algebra homomorphism as well. If the kernel is trivial, then this is an isomorphism. Therefore, consider $\sum\limits_k \Lambda_k \otimes a_k \mapsto \sum\limits_k \Lambda_k a_k = 0$. Then, for each $i$, $j$, we have $\sum\limits_k \lambda^{(k)}_{ij} a_k = 0$. Let $E_{ij}$ be the $n \times n$ $\mathbb F$-matrix with $(i,j)$-entry $1$ and all other entries $0$. Then,
+			\begin{align*}
+				\sum_k \Lambda_k \otimes a_k & = \sum_k \pqty{\sum_{i,j} \lambda^{(k)}_{ij} E_{ij}} \otimes a_k\\
+					& = \sum_{i,j} E_{ij} \otimes \pqty{\sum_k \lambda^{(k)}_{ij} a_k}\\
+					& = \sum_{i, j} E_{ij} \otimes 0\\
+					& = 0.
+			\end{align*}
+			Thus, the kernel is trivial and the mapping is an isomorphism of algebras.
+			\item Since each one forms an $\mathbb F$-algebra, the previous definition can be used.
+		\end{enumerate}
+	\end{Solution*}
+
+	\begin{Exercise}
+		In a coalgebra, we say the element $x$ is grouplike if $\Delta(x) = x \otimes x$. Prove that in the group ring $\mathbb F[G]$, $x$ is grouplike if and only if $x \in G$.
+	\end{Exercise}
+	\begin{Solution*}
+		Let $x = \sum\limits_{i = 1}^n \lambda_i g_i \in \mathbb F[G]$ be grouplike. Then:
+		\begin{align*}
+			\Delta(x) & = x \otimes x \\
+			\Delta\pqty{\sum_{i=1}^n \lambda_i g_i} & = \pqty{\sum_{i=1}^n \lambda_i g_i} \otimes \pqty{\sum_{i=1}^n \lambda_i g_i}
+		\end{align*}
+		Using linearity of the coproduct and bilinearity of the tensor product:
+		\begin{align*}
+			\sum_{i=1}^n \lambda_i \pqty{g_i \otimes g_i} = \pqty{\sum_{i=1}^n \lambda_i g_i} \otimes \pqty{\sum_{j=1}^n \lambda_j g_j}\\
+			\sum_{i=1}^n \pqty{g_i \otimes \lambda_i g_i} = \sum_{i=1}^n \pqty{g_i \otimes \lambda_i \sum_{j=1}^n \lambda_j g_j}\\
+			\sum_{i=1}^n  \pqty{ g_i \otimes \lambda_i g_i} - \sum_{i=1}^n  \pqty{ g_i \otimes \lambda_i \sum_{j=1}^n \lambda_j g_j} = 0 \\
+			\sum_{i=1}^n  \bqty{g_i \otimes \lambda_i\pqty{g_i - \sum_{j=1}^n \lambda_j g_j}} = 0
+		\end{align*}
+		Since $g_i$ form the basis of the group ring, Lemma~\ref{lem:tensProdBasis} implies that for each $i$, the second argument of the tensor product is zero. Thus, for each $i = 1, \ldots, n$:
+		\begin{gather*}
+			\lambda_i = 0 \quad \text{or} \quad \sum_{j=1}^n \lambda_j g_j = g_i
+		\end{gather*}
+		This implies that if $\lambda_i \ne 0$ for some $i$, then, since $g_i$ are basis elements, $\lambda_j = 0$ for all $j \ne i$ and $\lambda_i = 1$. That is, $\lambda_i$ is non-zero for at most one $i$, in which case $\lambda_i = 1$. Thus, $x = \sum_{i = 1}^n \lambda_i g_i = g_i$ or $x = 0$.
+	\end{Solution*}
+
+	\begin{Exercise}
+		Consider the $\mathbb F$-algebra $H_4$ generated by indeterminates $g$ and $x$ subject to the relations $g^2 = 1, x^2 = 0$ and $xg = -gx$.
+		\begin{enumerate}[label=(\alph*)]
+			\item Show that $1, g, x$ and $gx$ form a basis for $H_4$.
+			\item Express the product $(a_1 + b_1 g + c_1 x + d_1 gx)(a_2 + b_2 g + c_2 x + d_2 gx)$ in terms of this basis, where $a_i, b_i, c_i, d_i \in \mathbb F, \forall i$.
+			\item Show that the coproduct $\Delta g = g \otimes g$ and $\Delta x = x \otimes 1 + g \otimes x$ and the counit given by $\epsilon(g) = 1$ and $\epsilon(x) = 0$ turn $H_4$ into a bialgebra.
+			\item Express the coproduct $\Delta(a + bg + cx + dgx)$ in terms of this basis.
+		\end{enumerate}
+	\end{Exercise}
+	\begin{Solution*}
+		\begin{enumerate}[label=(\alph*)]
+			\item Any expression $g^m$ reduces to either $g$ or $1$ depending on $m$ is odd or even. Any expression $x^m$ reduces to zero for $m > 1$. Therefore, any expression containing more than one $x$ will reduce to zero using the anticommutation relation between $g$ and $x$. Thus, any non-zero expression is of the form $g^m x g^n$, which reduces to an expression of the form $\pm gx$ or $\pm x$. Therefore, these four elements form a basis for the algebra.
+
+			\item The product is $\pqty{a_1 a_2 + b_1 b_2} + \pqty{a_1 b_2 + a_2 b_1 + b_1 d_2 + b_2 d_1}g + \pqty{a_1 c_2 + a_2 c_1}x + \pqty{a_1 d_2 + a_2 d_1 + b_1 c_2 + b_2 c_1}gx $.
+
+			\item The coproduct of $1$ is defined as: $\Delta 1 = 1 \otimes 1$. Coassociativity holds:
+			\begin{gather*}
+			 	(\id \otimes \Delta) \Delta g = g \otimes g \otimes g = (\Delta \otimes \id) \Delta g \\
+			 	(\id \otimes \Delta) \Delta x = (\id \otimes \Delta) \bqty{x \otimes 1 + g \otimes x} = x \otimes 1 \otimes 1 + \pqty{g \otimes x \otimes 1 + g \otimes g \otimes x} \\
+			 	(\Delta \otimes \id) \Delta x = (\Delta \otimes \id)\bqty{x \otimes 1 + g \otimes x} =  \pqty{x \otimes 1 \otimes 1 + g \otimes x \otimes 1} + g \otimes g \otimes x 
+			\end{gather*}
+			Since $\Delta$ is an algebra homomorphism:
+			\begin{gather*}
+				\Delta(gx) = \Delta g \Delta x = \pqty{g \otimes g}\pqty{x \otimes 1 + g \otimes x} = gx \otimes g + 1 \otimes gx \\
+				(\id \otimes \Delta)\Delta (gx) = (\id \otimes \Delta)\pqty{gx \otimes g + 1 \otimes gx} \\
+				= gx \otimes g \otimes g + \pqty{1 \otimes gx \otimes g + 1 \otimes 1 \otimes gx} \\
+				(\Delta \otimes \id)\Delta (gx) = (\Delta \otimes \id)\pqty{gx \otimes g + 1 \otimes gx} \\
+				= \pqty{gx \otimes g \otimes g + 1 \otimes gx \otimes g} + 1 \otimes 1 \otimes gx
+			\end{gather*}
+
+			\item $\Delta(a + bg + cx + dgx) = a \otimes 1 + b(g \otimes g) + c(x \otimes 1 + g \otimes x) + d(gx \otimes g + 1 \otimes gx)$ 
+		\end{enumerate}
+	\end{Solution*}
+
+	\begin{Exercise}
+		Let $V$ be a given $d$-dimensional $\mathbb F$-vector space for some $d \in \mathbb N$ and let $V^{\otimes k} = V \otimes \dots \otimes V$ (where there are $k$ copies of $V$) be the \emph{$k$\th tensor power of $V$}.
+		\begin{enumerate}[label=(\alph*)]
+			\item Define the \emph{tensor algebra}:
+			\begin{gather*}
+				T(V) = \bigoplus_{k=0}^{\infty} V^{\otimes k} = F \oplus V \oplus V^{\otimes 2} \oplus V^{\otimes 3} \oplus \cdots
+			\end{gather*}
+			Find its \emph{Hilbert series}:
+			\begin{gather*}
+			 	\Hilb(T(V); q) = \sum_{k=0}^{\infty} \dim\pqty{V^{\otimes k}} q^k
+			\end{gather*}
+
+			\item Find the Hilbert series of the \emph{symmetric algebra} of $V$, defined as:
+			\begin{gather*}
+			 	S(V) = T(V)/\langle u \otimes v - v \otimes u \mid u,v \in V \rangle
+			 \end{gather*} 
+
+			\item Find the Hilbert series of the \emph{exterior algebra} of $V$, defined as:
+			\begin{gather*}
+				E(V) = T(V)/\langle v \otimes v \mid u,v \in V \rangle
+			\end{gather*}
+		\end{enumerate}
+	\end{Exercise}
+
+	\begin{Solution*}
+		\begin{enumerate}[label=(\alph*)]
+			\item The dimension of $V^{\otimes k}$ is $d^k$, so the Hilbert series is:
+			\begin{gather*}
+				\Hilb(T(V);q) = \sum_{k=0}^{\infty}d^k q^k = \frac{1}{1-dq}
+			\end{gather*}
+			
+			\item The quotient introduces commutativity of the tensor product as another condition into the free vector space. Extending this using the associativity of the tensor product, the cross terms are reduced by their symmetries in the $k$\th dimension. This analysis is done most easily by borrowing index notation of tensors, which is extensively used in general relativity.
+
+			Let a tensor $T$ of $k$\th dimension be denoted by using $k$ indices: $T_{\alpha\beta\gamma\dots}$, where $\alpha,\beta,\gamma \dots$ each range from $1$ to $d$, so the dimension of the tensor is $d^k$ when there are no symmetries. Symmetry between indices is denoted as equality upon interchange of the relative index placements. For example, $T_{\alpha\beta\gamma\mu} = T_{\alpha\mu\gamma\beta}$ denotes symmetry of the tensor in $\beta$ and $\mu$. Take a tensor with $k$ indices that is symmetric in all of them. The symmetric part is completely specified by the multisets of length $k$ with the entries ranging from $1$ to $d$. So the problem reduces to partitioning $k$ objects into $d$ sets ignoring the relative positioning. Since there are $d-1$ spaces and $k$ dividers, the number of ways of choosing $k$ places for the objects is $\binom{k+d-1}{k}$. These are the number of independent components of the symmetric tensor $T \in V^{\otimes k}$, and hence its dimension. Therefore, the Hilbert series is:
+			\begin{gather*}
+				\Hilb(S(V);q) = \sum_{k=0}^{\infty} \binom{k+d-1}{k} q^k = \dfrac 1 {(1 - q)^d}
+			\end{gather*}
+
+			\item In the quotient algebra, $v \otimes v = 0$. This also implies that $u \otimes v = - v \otimes u$, which is easily seen by using bilinearity to expand $(u + v) \otimes (u + v) = 0$ and rearranging the non-zero terms. Therefore, in the quotient of the $k$\th tensor power $V^{\otimes k}$, any product $v_1 \otimes v_2 \otimes \cdots \otimes v_k$ is zero if any two of its terms are equal ($v_i = v_j$, $i \ne j$). Two products $u_1 \otimes \cdots \otimes u_k$ and $v_1 \otimes \cdots \otimes v_k$ are equal up to a difference in sign if one is obtained from the other by any permutation of terms. Thus, if $\qty{v_1, v_2, \cdots, v_d}$ is a basis of $V$, then a basis for $V^{\otimes k}$ consists of elements of the form $v'_1 \otimes v'_2 \otimes \cdots \otimes v'_k$, where each $v'_i$ is some basis vector $v_j$, and all the $v'_i$ are distinct, with no two elements being equivalent under rearrangement of terms. In other words, every basis element of $V^{\otimes k}$ corresponds to a selection of $d$ distinct basis vectors from the $k$ basis vectors of $V$. Thus, the dimension is $\binom d k$. Therefore, the Hilbert series is:
+			\begin{gather*}
+				\Hilb(E(V);q) = \sum_{k=0}^{\infty} \binom d k q^k = (1 + q)^d
+			\end{gather*}
+ 		\end{enumerate}
+	\end{Solution*}
 \end{document}
