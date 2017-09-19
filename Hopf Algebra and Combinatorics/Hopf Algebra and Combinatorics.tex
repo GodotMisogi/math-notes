@@ -20,6 +20,11 @@
 \usepackage{charter}
 \usepackage[T1]{fontenc}
 
+%MF mode dpdfezzz is for 8000dpi
+\pdfpkmode{dpdfezzz}
+\pdfpkresolution=8000
+
+
 % \usepackage{color}
 % \definecolor{mygrey}{gray}{0.1}
 % \color{mygrey}
@@ -39,6 +44,8 @@
 \theoremstyle{remark}
 \newtheorem*{Remark*}{Remark}
 \newtheorem*{Solution*}{Solution}
+\newtheorem*{Note*}{Note}
+
 
 \newtheoremstyle{underline}% name
 {}        % Space above, empty = `usual value'
@@ -63,6 +70,7 @@
 \let\Im\relax
 \DeclareMathOperator{\Im}{Im}
 \newcommand{\id}{\mathrm{id}}
+\newcommand{\Hom}{\mathrm{Hom}}
 \renewcommand{\th}{\textsuperscript{th}\xspace}
 
 \setlength{\parindent}{0pt}
@@ -226,7 +234,7 @@
 			Defined most naturally as a disjoint union of the arguments as components of the graph, which is commutative:
 			\begin{equation}
 			m\mqty(\;
-			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
 					\node (n1) at (1,0)	{};
 					\node (n2) at (1.5,1)	{};
@@ -235,9 +243,9 @@
 					\draw (\from) -- (\to);
 			}}\,
 			\otimes\,
-			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
-					[scale=1,auto=left,every node/.style={circle,fill=gray}]
+					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n4) at (5,1)	{};
 					\node (n5) at (5,0)	{};
 					\node (n6) at (6,1)	{};
@@ -245,7 +253,7 @@
 					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n6, n5/n7, n6/n7}
 					\draw (\from) -- (\to);
 			}}\;)
-			= \mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			= \mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
 					\node (n1) at (1,0)	{};
 					\node (n2) at (1.5,1)	{};
@@ -253,7 +261,7 @@
 					\foreach \from/\to in {n3/n2, n2/n1}
 					\draw (\from) -- (\to);
 				}&
-				\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+				\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
 					[scale=1,auto=left,every node/.style={circle,fill=gray}]
 					\node (n4) at (5,1)	{};
@@ -454,14 +462,20 @@
 	\end{Remark*}
 	
 	\begin{Definition}[$\mathbb K$-algebra]
-		A $\mathbb K$-algebra is a vector space $A$ over a field $\mathbb K$ equipped with linear maps $ m\colon A \otimes A \to A,\; u\colon \mathbb K \to A $ such that the following diagrams commute:
+		A $\mathbb K$-algebra is a vector space $A$ over a field $\mathbb K$ equipped with linear maps 
+		\begin{center}
+			\begin{tabular}{rl}
+		 		Multiplication: & $m\colon C \otimes C \rightarrow C$ \\
+		 		Unit: & $ u \colon C \rightarrow \mathbb K$ 
+			\end{tabular}
+		\end{center} such that the following diagrams commute:
 		\begin{equation*}
 		\xymatrix{
-			A \otimes A \otimes A \ar[d]_{\id \otimes m} \ar[r]^-{m \otimes \id} & A \otimes A \ar[d]^{m} \\
-			A \otimes A \ar[r]_{m} & A
+			A \otimes A \otimes A \ar[d]_-{\id \otimes m} \ar[r]^-{m \otimes \id} & A \otimes A \ar[d]^-{m} \\
+			A \otimes A \ar[r]_-{m} & A
 		} \;\;\;\;\;\;
 		\xymatrix{
-			\mathbb K \otimes A \ar[r]^{u \otimes \id} \ar[dr]_{f} & A \otimes A \ar[d]_{m} & A \otimes \mathbb K \ar[l]_{\id \otimes u} \ar[dl]^{g} \\
+			\mathbb K \otimes A \ar[r]^-{u \otimes \id} \ar[dr]_-{f} & A \otimes A \ar[d]_-{m} & A \otimes \mathbb K \ar[l]_-{\id \otimes u} \ar[dl]^-{g} \\
 			& A &	
 		}
 		\end{equation*}
@@ -541,6 +555,8 @@
 		Because $\sum_{i=1}^m \lambda_i (v_i,w_i) - \sum_{j=1}^n \mu_j (x_j,y_j) \in I$.
 	\end{proof}
 
+	So the definitions $f$ and $\tilde f$ determine each other. We can choose bases $\qty{v_i \mid i \in I}$ and $\qty{v_j \mid j \in J}$ of $U, V$. The procedure is defining the mappings of the basis elements and extending bilinearly.  
+
 	\subsection{Useful Examples}
 
 	\begin{Example*}[$A$-ring]
@@ -577,7 +593,8 @@
 		\end{gather*}
 		As an example, one can select $\alpha^*$ as projections of a basis $\qty{w_i \colon i \in I}$.
 	\end{Example*}
-	\begin{Lemma}\label{lem:tensProdBasis}
+
+		\begin{Lemma}\label{lem:tensProdBasis}
 		If $\qty{w_j \mid j \in J}$ is a basis for $W$, and $ \sum\limits_{i=1}^n v_i \otimes w_{j_i} = 0 $	then $v_i = 0, \forall\,i \in I$.
 	\end{Lemma}
 	\begin{proof}
@@ -596,8 +613,19 @@
 		\end{gather*}
 	\end{proof}
 
-	\section{Homework One}
-	
+	Some instructive exercises are:
+	\begin{gather*}
+		V \otimes W \cong V \otimes W \\
+		\pqty{U \otimes V} \otimes W \cong U \otimes \pqty{V \otimes W} \\
+		\pqty{U \oplus V} \otimes W \cong \pqty{U \otimes W} + \pqty{V \otimes W} 
+	\end{gather*}
+
+	If $A$ is a $\mathbb K$-algebra and $\mathbb K \subset \mathbb L$, then $A \otimes_{\mathbb K} \mathbb L$ is an $\mathbb L$-algebra.
+
+	\begin{Example*}
+		$\mathbb R[x] \otimes_{\mathbb R} \mathbb C$ is a $\mathbb C$-algebra.
+	\end{Example*}
+
 	\begin{Exercise}
 		Let $V$ and $W$ be $\mathbb{F}$-vector spaces. If $\qty{v_i \mid i \in I}$ is a basis for $V$ and $\qty{w_j \mid j \
 		\in J}$ is a basis for $W$, prove that $\qty{v_i \otimes w_j \mid i \in I, j \in J}$ is a basis for $V \otimes W$. Conclude that, if $\dim V$ and $\dim W$ are finite, then $\dim V \otimes W = \dim V \dim W$.
@@ -620,17 +648,17 @@
 		\end{align*}
 		The dimension of $V \otimes W$ is $\abs{\qty{\, v_i \otimes w_j \mid i \in I, j \in J \,}} = \abs{\qty{\, v_i \mid i \in I \,} } \cdot \abs{\qty{\, w_j \mid j \in J \,}} = \dim V \dim W$.
 	\end{Solution*}
-	
+
 	\begin{Exercise}
 		\begin{enumerate}[label=(\alph*)]
 			\item Prove that $\mathbb{F}[x] \otimes \mathbb{F}[x] \cong \mathbb{F}[x,y]$ as $\mathbb{F}$-algebras.
 			\item  If $A$ is an $\mathbb{F}$-algebra, let $M_{n \times n}(A)$ be the $\mathbb{F}$-algebra of $n \times n$ matrices with entries in $A$. Explain briefly why $M_{n\times n}(A)$ is an $\mathbb{F}$-algebra. Prove that $M_{n \times n}(A) \cong M_{n \times n}(\mathbb F) \otimes A$ as $\mathbb{F}$-algebras.
-			\item  Prove that $M_{n\times n}(\mathbb F) \otimes M_{n\times n}(\mathbb F) \cong M_{mn \times mn}(\mathbb F)$ as $\mathbb F$-algebras.
+			\item  Prove that $M_{m\times m}(\mathbb F) \otimes M_{n\times n}(\mathbb F) \cong M_{mn \times mn}(\mathbb F)$ as $\mathbb F$-algebras.
 		\end{enumerate}
 	\end{Exercise}
 	\begin{Solution*}
 		\begin{enumerate}[label=(\alph*)]
-			\item Since $\mathbb F[x] \otimes \mathbb F[x]$ has basis $\qty{\, x^i \otimes x^j \mid i, j \in \mathbb N_0 \,}$, and $\mathbb F[x, y]$ has basis $\qty{\, x^i y^j \mid i, j \in \mathbb N_0 \,}$, the mapping $x^i \otimes x^j \mapsto x^i y^j$ defines a linear transformation (by linear extension). This transformation is an algebra homomorphism, for
+			\item Since $\mathbb F[x] \otimes \mathbb F[x]$ has a basis $\qty{\, x^i \otimes x^j \mid i, j \in \mathbb N_0 \,}$, and $\mathbb F[x, y]$ has a basis $\qty{\, x^i y^j \mid i, j \in \mathbb N_0 \,}$, the mapping $x^i \otimes x^j \mapsto x^i y^j$ defines a linear transformation (by linear extension). This transformation is an algebra homomorphism, for
 			\begin{gather*}
 			(x^i \otimes x^j) (x^k \otimes x^l) = x^{i + k} \otimes x^{j + l} \mapsto x^{i + k} y^{j + l} = (x^i y^j) (x^k y^l).
 			\end{gather*}
@@ -649,6 +677,231 @@
 		\end{enumerate}
 	\end{Solution*}
 
+	\subsection{Graded Algebras}
+
+	\begin{Definition}[Graded algebras]
+		An algebra $A$ is \emph{graded} if there exists a decomposition
+		\begin{gather*}
+			A = A_0 \oplus A_1 \oplus A_2 \oplus \cdots
+		\end{gather*}
+		such that $A_i A_j \subseteq A_{i+j}, \forall i,j$, where $A_i$ stands for homogenous elements of degree $i$.
+	\end{Definition}
+
+	\begin{Example*}[Polynomial ring]
+		The polynomial ring has a decomposition:
+		\begin{gather*}
+			\mathbb K[x] = \bigoplus_{n=0}^{\infty} \mathbb K x^i
+		\end{gather*}
+	\end{Example*}
+
+	\begin{Example*}[Multivariate polynomial ring]
+		The multivariate polynomial ring has the following decomposition:
+		\begin{gather*}
+			\mathbb K[x_1,\ldots,x_n] = \bigoplus_{d=0}^{\infty} A_d
+		\end{gather*}
+		where $A_d = \mathbb K\qty{x_1^{a_1},\ldots, x_n^{a_n}\mid a_1 + \ldots + a_n = d, a_i \geq 0}$. The dimension $d$ is found by solving the problem of partitioning $d$ into $n$ multisets ignoring the relative positioning, which is $\binom{n+d-1}{d}$. This combinatorial problem's answer is explained later in the exercise of the \emph{symmetric algebra}.
+	\end{Example*}
+
+	\begin{Example*}[Permutation algebra]
+		The permutation algebra, denoted earlier as $\mathbb KP$, has the following decomposition:
+		\begin{gather*}
+			\mathbb KP = \bigoplus_{n=0}^{\infty} \mathbb KP_n
+		\end{gather*}
+		where $P_n$ is from the same investigation of the permutation algebra.
+	\end{Example*}
+
+	\begin{Note*}
+		An ideal $I$ is called \emph{homogeneous} if it is generated by homogeneous elements. If $A$ is a graded algebra, then $A/I$ is also a graded algebra if $I$ is homogeneous.
+	\end{Note*}
+
+	\begin{Definition}[Hilbert series]
+		The \emph{Hilbert series} of a graded algebra $A$ is a generating function:
+		\begin{gather*}
+			\Hilb(A; q) = \sum_{d=0}^{\infty} \dim\pqty{A_d} q^d
+		\end{gather*}
+		which generates the $d$\th dimension of the decomposition of a graded algebra as the $d$\th coefficient of a power series.
+	\end{Definition}
+
+	\begin{Example*}
+		The multivariate polynomial ring has the Hilbert series:
+		\begin{gather*}
+			\Hilb\pqty{\mathbb K[x_1,\ldots, x_n]; q} = \sum_{n=0}^{\infty} \binom{n + d - 1}{n} q^n
+		\end{gather*}
+	\end{Example*}
+
+	\begin{Exercise}
+		Let $V$ be a given $d$-dimensional $\mathbb F$-vector space for some $d \in \mathbb N$ and let $V^{\otimes k} = V \otimes \dots \otimes V$ (where there are $k$ copies of $V$) be the \emph{$k$\th tensor power of $V$}.
+		\begin{enumerate}[label=(\alph*)]
+			\item Find the Hilbert series of the \emph{tensor algebra}, defined as:
+			\begin{gather*}
+				T(V) = \bigoplus_{k=0}^{\infty} V^{\otimes k} = F \oplus V \oplus V^{\otimes 2} \oplus V^{\otimes 3} \oplus \cdots
+			\end{gather*}			
+
+			\item Find the Hilbert series of the \emph{symmetric algebra} of $V$, defined as:
+			\begin{gather*}
+			 	S(V) = T(V)/\langle u \otimes v - v \otimes u \mid u,v \in V \rangle
+			 \end{gather*} 
+
+			\item Find the Hilbert series of the \emph{exterior algebra} of $V$, defined as:
+			\begin{gather*}
+				\bigwedge(V) = T(V)/\langle v \otimes v \mid u,v \in V \rangle
+			\end{gather*}
+		\end{enumerate}
+	\end{Exercise}
+	\begin{Solution*}
+		\begin{enumerate}[label=(\alph*)]
+			\item The dimension of $V^{\otimes k}$ is $d^k$, so the Hilbert series is:
+			\begin{gather*}
+				\Hilb(T(V);q) = \sum_{k=0}^{\infty}d^k q^k = \frac{1}{1-dq}
+			\end{gather*}
+			
+			\item The quotient introduces commutativity of the tensor product as another condition into the free vector space. Extending this using the associativity of the tensor product, the cross terms are reduced by their symmetries in the $k$\th dimension. This analysis is done most easily by borrowing index notation of tensors, which is extensively used in general relativity.
+
+			Let a tensor $T$ of $k$\th dimension be denoted by using $k$ indices: $T_{\alpha\beta\gamma\dots}$, where $\alpha,\beta,\gamma \dots$ each range from $1$ to $d$, so the dimension of the tensor is $d^k$ when there are no symmetries. Symmetry between indices is denoted as equality upon interchange of the relative index placements. For example, $T_{\alpha\beta\gamma\mu} = T_{\alpha\mu\gamma\beta}$ denotes symmetry of the tensor in $\beta$ and $\mu$. Take a tensor with $k$ indices that is symmetric in all of them. The symmetric part is completely specified by the multisets of length $k$ with the entries ranging from $1$ to $d$. So the problem reduces to partitioning $k$ objects into $d$ sets ignoring the relative positioning. Since there are $d-1$ spaces and $k$ dividers, the number of ways of choosing $k$ places for the objects is $\binom{k+d-1}{k}$. These are the number of independent components of the symmetric tensor $T \in V^{\otimes k}$, and hence its dimension. Therefore, the Hilbert series is:
+			\begin{gather*}
+				\Hilb(S(V);q) = \sum_{k=0}^{\infty} \binom{k+d-1}{k} q^k = \dfrac 1 {(1 - q)^d}
+			\end{gather*}
+
+			\item In the quotient algebra, $v \otimes v = 0$. This also implies that $u \otimes v = - v \otimes u$, which is easily seen by using bilinearity to expand $(u + v) \otimes (u + v) = 0$ and rearranging the non-zero terms. Therefore, in the quotient of the $k$\th tensor power $V^{\otimes k}$, any product $v_1 \otimes v_2 \otimes \cdots \otimes v_k$ is zero if any two of its terms are equal ($v_i = v_j$, $i \ne j$). Two products $u_1 \otimes \cdots \otimes u_k$ and $v_1 \otimes \cdots \otimes v_k$ are equal up to a difference in sign if one is obtained from the other by any permutation of terms. Thus, if $\qty{v_1, v_2, \cdots, v_d}$ is a basis of $V$, then a basis for $V^{\otimes k}$ consists of elements of the form $v'_1 \otimes v'_2 \otimes \cdots \otimes v'_k$, where each $v'_i$ is some basis vector $v_j$, and all the $v'_i$ are distinct, with no two elements being equivalent under rearrangement of terms. In other words, every basis element of $V^{\otimes k}$ corresponds to a selection of $d$ distinct basis vectors from the $k$ basis vectors of $V$. Thus, the dimension is $\binom d k$. Therefore, the Hilbert series is:
+			\begin{gather*}
+				\Hilb\pqty{\bigwedge(V);q} = \sum_{k=0}^{\infty} \binom d k q^k = (1 + q)^d
+			\end{gather*}
+ 		\end{enumerate}
+	\end{Solution*}
+
+
+	\section{Coalgebras}
+
+	\begin{Definition}[Coalgebra]
+		A \emph{coalgebra} is a $\mathbb K$-vector space $C$ with linear maps
+		\begin{center}
+			\begin{tabular}{rl}
+		 		Comultiplication: & $\Delta \colon C \rightarrow C \otimes C$ \\
+		 		Counit: & $ \epsilon \colon \mathbb K \rightarrow C$ 
+		\end{tabular}
+		\end{center}
+		such that the following diagrams commute:
+		\begin{equation*}
+		\xymatrix{
+			C \otimes C \otimes C & C \otimes C \ar[l]_-{\id \otimes \Delta} \\
+			C \otimes C \ar[u]^-{\Delta \otimes \id} & C \ar[l]^-{\Delta} \ar[u]_-{\Delta}
+		} \;\;\;\;\;\;
+		\xymatrix{
+			\mathbb K \otimes C  & C \otimes C \ar[l]_-{\epsilon \otimes \id} \ar[r]^-{\id \otimes \epsilon} & C \otimes \mathbb K  \\
+			& C \ar[u]^-{\Delta} \ar[lu]^-{f^{-1}} \ar[ru]_-{g^{-1}} &	
+		}
+		\end{equation*}
+	\end{Definition}
+	\begin{Remark*}
+		These diagrams encode properties called \emph{coassociativity} and \emph{counitarity}.
+	\end{Remark*}
+	\begin{Example}[Set coalgebra]
+		Let $\mathbb K S$ be a vector space generated by the set $S$. Define the following maps:
+		\begin{gather*}
+			\Delta(s) = s\otimes s \\
+			\epsilon(s) = 1 
+		\end{gather*}
+		Checking coassociativity:
+		\begin{gather*}
+			\pqty{\Delta \otimes \id} \pqty{s \otimes s} = s \otimes s \otimes s \\
+			\pqty{\id \otimes \Delta} \pqty{s \otimes s} = s \otimes s \otimes s 
+		\end{gather*}
+		Checking counitarity:
+	\end{Example}
+
+	\begin{Example}[Incidence coalgebra]
+		Let $P$ be a poset. For $x \leq y$, the \emph{interval} is defined as $\bqty{x,y} = \qty{\, x \leq z \leq y \mid \, x,y,z \in P \,}$. Denote the set of all intervals in $P$ as $\mathrm{Int}(P) \coloneqq \qty{\, \bqty{x,y} \mid x \leq y \in P \,}$. The \emph{incidence coalgebra} is defined as $C \coloneqq \mathbb K \mathrm{Int}(P)$. Define the following:
+		\begin{gather*}
+			\Delta\bqty{x,y} = \sum_{z: x \leq z \leq y} \bqty{x,z} \otimes \bqty{z,y} \\
+			\epsilon{\bqty{x,y}} =
+			\begin{cases}
+				1, \; x = y \\
+				0, \; x < y
+			\end{cases}
+		\end{gather*}
+		Checking coassociativity:
+		\begin{gather*}
+			\pqty{\Delta \otimes \id}\pqty{\sum_{z: x \leq z \leq y} \bqty{x,z} \otimes \bqty{z,y}} = \sum_{z: x \leq z \leq y}\pqty{\sum_{z': x \leq z' \leq z} \bqty{x,z'} \otimes \bqty{z',z}} \otimes \bqty{z,y} \\
+			\pqty{\id \otimes \Delta}\pqty{\sum_{z: x \leq z \leq y} \bqty{x,z} \otimes \bqty{z,y}} = \sum_{z: x \leq z \leq y} \bqty{x,z} \otimes \pqty{\sum_{z': z \leq z' \leq y} \bqty{z,z'} \otimes \bqty{z',y}}
+		\end{gather*}
+		Checking counitarity:
+	\end{Example}
+
+	\subsection{Duality}
+
+	\begin{Definition}[Duality of vector spaces]
+		If $V$ is a $\mathbb K$-vector space, then the dual vector space is $V^* \coloneqq \Hom_{\mathbb K}(V, \mathbb K)$.
+	\end{Definition}
+
+	\begin{Remark*}
+		For a finite-dimensional vector space, $V\cong V^*$. By definition of duality, $(V^*)^* = V$. These definitions are extended to algebras and coalgebras:
+		If $C$ is a coalgebra, then $C^*$ is naturally an algebra. If $A$ is a \emph{finite-dimensional} algebra, then $A^*$ is a coalgebra.
+	\end{Remark*}
+
+	Dirac's bra-ket notation, which is used in quantum physics, will be used to denote elements of linear algebra. In this notation, vectors are denoted by `\emph{kets}' $\ket{v} \in V$, dual vectors are denoted by `\emph{bras}' $\bra{v} \in V^* $. The notation for tensors is denoted as follows: $\ket{v} \otimes \ket{w} \equiv \ket{v \otimes w} \in V \otimes W$.
+
+	The inner product of two vectors is defined as the bilinear map $\braket{-}{-}\colon V \times V \to \mathbb K$, such that $\braket{v_1}{v_2} \coloneqq v_1^*(v_2), \bra{v_1} \in V^*, \ket{v_2} \in V$. This is generalised to the tensor product of vector spaces in the following manner:
+
+	\begin{Definition}[Inner product of tensors]
+		The \emph{inner product of tensors} is defined as the map $\braket{- \otimes -}{- \otimes -}\colon \pqty{V \otimes W} \times \pqty{V \otimes W} \to \mathbb K$, such that $ \braket{v_1 \otimes w_1}{v_2 \otimes w_2} \coloneqq \braket{v_1}{v_2}\braket{w_1}{w_2}$.
+	\end{Definition} 
+
+	\begin{Remark*}
+		The definition of this map requires the construction of the following map $\rho\colon {V^* \otimes W^*} \to \pqty{V \otimes W}^*$, such that $\bra{v_1, w_1} \mapsto \bra{v_1 \otimes w_1}$. This is an injective map, which is bijective when $V$ and $W$ are finite-dimensional (NEEDS PROOF).
+ 	\end{Remark*}
+
+ 	\begin{Remark*}[\emph{Important}]
+ 		For any linear map $L\colon V \to W$, there exists a dual map $L^*\colon W^* \to V^*$, such that $\braket{L^*w}{v} = \braket{w}{Lv}$.
+ 	\end{Remark*}
+
+ 	To extend this concept to algebras and coalgebras, the following definition is required:
+ 	
+ 	\begin{Definition}[Dual of a coalgebra]
+ 		Let $C$ be a coalgebra with the comultiplication $\Delta\colon C \to C \otimes C$ and counit $\epsilon\colon C \to \mathbb K$. Let $C^*$ be the dual of $C$ with multiplication and unit defined by the following diagrams:
+ 		\begin{equation*}
+			\xymatrix{
+				C^* \otimes C^* \ar[rr]^-{m} \ar[rd]_-{\rho} & & C^* \\
+				& \pqty{C \otimes C}^* \ar[ru]_-{\Delta^*}
+			} \;\;\;\;\;\;
+			\xymatrix{
+				\mathbb K \ar[rr]^-{u} \ar[rd]_-{\cong_{\mathbb K}} & & C^* \\
+				& \mathbb K^* \ar[ru]_-{\epsilon^*}
+			}
+		\end{equation*}
+ 	\end{Definition}
+ 	Similarly, the dual of a \emph{finite-dimensional} algebra $\pqty{A, m, u}$, denoted as $A^*$ forms a coalgebra with the comultiplication $\Delta\colon A^* \to A^* \otimes A^*$ and counit $\epsilon\colon A^* \to \mathbb K$. \\
+ 	Now we prove a lemma.
+
+ 	\begin{Lemma}
+ 		The dual of a commutative diagram is also commutative.
+ 	\end{Lemma}
+ 	
+ 	\begin{Exercise}
+ 		Prove that $\pqty{C^*, m, u}$ forms an algebra.
+ 	\end{Exercise}
+ 	\begin{Solution*}
+ 		The duals of the comultiplication and counit commutative diagrams are:
+ 		\begin{equation*}
+		\xymatrix{
+			\pqty{C \otimes C \otimes C}^* \ar[r]^-{\pqty{\id \otimes \Delta}^*} \ar[d]^-{\pqty{\Delta \otimes \id}^*} & \pqty{C \otimes C}^*   \ar[d]^-{\Delta^*} \\
+			\pqty{C \otimes C}^* \ar[r]_-{\Delta^*} & C^*
+		} \;\;\;\;\;\;\;
+		\xymatrix{
+			\pqty{\mathbb K \otimes C}^* \ar[r]^-{\pqty{\epsilon \otimes \id}^*} \ar[rd]_-{\pqty{f^{-1}}^*} & \pqty{C \otimes C}^* \ar[d]^-{\Delta^*} & \pqty{C \otimes \mathbb K}^* \ar[l]_-{\pqty{\id \otimes \epsilon}^*} \ar[ld]^-{\pqty{g^{-1}}^*} \\
+			& C^* &	
+		}
+		\end{equation*}
+ 	\end{Solution*}
+
+ 	\begin{Example*}[Incidence algebra]
+ 		The \emph{incidence algebra} $C^*(P)$ is defined as the dual of the incidence coalgebra $C(P)$. The elements of this algebra are linear functionals $c^*\colon C(P) \to \mathbb K$ as functions of the form $c^*\colon \mathrm{Int}(P) \to \mathbb K$. The multiplication $m\colon C^* \otimes C^* \to C^* \equiv \Delta^* \rho$ (from the commutative diagram) is defined as $c^* \otimes d^* \mapsto c^* d^*$ such that:
+ 		\begin{gather*}
+ 			\braket{\Delta^*\pqty{c \otimes d}}{[x,y]} = \braket{c \otimes d}{\Delta[x,y]} \coloneqq \sum_{z: x \leq z \leq y} c^*\pqty{[x,z]}d^*\pqty{[z,y]}
+ 		\end{gather*}
+ 		The unit $u\colon K \to \mathbb C^* \equiv \epsilon^* \cong_{\mathbb K}$ is defined accordingly:
+
+ 	\end{Example*}
+	
 	\begin{Exercise}
 		In a coalgebra, we say the element $x$ is grouplike if $\Delta(x) = x \otimes x$. Prove that in the group ring $\mathbb F[G]$, $x$ is grouplike if and only if $x \in G$.
 	\end{Exercise}
@@ -706,48 +959,11 @@
 		\end{enumerate}
 	\end{Solution*}
 
-	\begin{Exercise}
-		Let $V$ be a given $d$-dimensional $\mathbb F$-vector space for some $d \in \mathbb N$ and let $V^{\otimes k} = V \otimes \dots \otimes V$ (where there are $k$ copies of $V$) be the \emph{$k$\th tensor power of $V$}.
-		\begin{enumerate}[label=(\alph*)]
-			\item Define the \emph{tensor algebra}:
-			\begin{gather*}
-				T(V) = \bigoplus_{k=0}^{\infty} V^{\otimes k} = F \oplus V \oplus V^{\otimes 2} \oplus V^{\otimes 3} \oplus \cdots
-			\end{gather*}
-			Find its \emph{Hilbert series}:
-			\begin{gather*}
-			 	\Hilb(T(V); q) = \sum_{k=0}^{\infty} \dim\pqty{V^{\otimes k}} q^k
-			\end{gather*}
-
-			\item Find the Hilbert series of the \emph{symmetric algebra} of $V$, defined as:
-			\begin{gather*}
-			 	S(V) = T(V)/\langle u \otimes v - v \otimes u \mid u,v \in V \rangle
-			 \end{gather*} 
-
-			\item Find the Hilbert series of the \emph{exterior algebra} of $V$, defined as:
-			\begin{gather*}
-				E(V) = T(V)/\langle v \otimes v \mid u,v \in V \rangle
-			\end{gather*}
-		\end{enumerate}
-	\end{Exercise}
-
-	\begin{Solution*}
-		\begin{enumerate}[label=(\alph*)]
-			\item The dimension of $V^{\otimes k}$ is $d^k$, so the Hilbert series is:
-			\begin{gather*}
-				\Hilb(T(V);q) = \sum_{k=0}^{\infty}d^k q^k = \frac{1}{1-dq}
-			\end{gather*}
-			
-			\item The quotient introduces commutativity of the tensor product as another condition into the free vector space. Extending this using the associativity of the tensor product, the cross terms are reduced by their symmetries in the $k$\th dimension. This analysis is done most easily by borrowing index notation of tensors, which is extensively used in general relativity.
-
-			Let a tensor $T$ of $k$\th dimension be denoted by using $k$ indices: $T_{\alpha\beta\gamma\dots}$, where $\alpha,\beta,\gamma \dots$ each range from $1$ to $d$, so the dimension of the tensor is $d^k$ when there are no symmetries. Symmetry between indices is denoted as equality upon interchange of the relative index placements. For example, $T_{\alpha\beta\gamma\mu} = T_{\alpha\mu\gamma\beta}$ denotes symmetry of the tensor in $\beta$ and $\mu$. Take a tensor with $k$ indices that is symmetric in all of them. The symmetric part is completely specified by the multisets of length $k$ with the entries ranging from $1$ to $d$. So the problem reduces to partitioning $k$ objects into $d$ sets ignoring the relative positioning. Since there are $d-1$ spaces and $k$ dividers, the number of ways of choosing $k$ places for the objects is $\binom{k+d-1}{k}$. These are the number of independent components of the symmetric tensor $T \in V^{\otimes k}$, and hence its dimension. Therefore, the Hilbert series is:
-			\begin{gather*}
-				\Hilb(S(V);q) = \sum_{k=0}^{\infty} \binom{k+d-1}{k} q^k = \dfrac 1 {(1 - q)^d}
-			\end{gather*}
-
-			\item In the quotient algebra, $v \otimes v = 0$. This also implies that $u \otimes v = - v \otimes u$, which is easily seen by using bilinearity to expand $(u + v) \otimes (u + v) = 0$ and rearranging the non-zero terms. Therefore, in the quotient of the $k$\th tensor power $V^{\otimes k}$, any product $v_1 \otimes v_2 \otimes \cdots \otimes v_k$ is zero if any two of its terms are equal ($v_i = v_j$, $i \ne j$). Two products $u_1 \otimes \cdots \otimes u_k$ and $v_1 \otimes \cdots \otimes v_k$ are equal up to a difference in sign if one is obtained from the other by any permutation of terms. Thus, if $\qty{v_1, v_2, \cdots, v_d}$ is a basis of $V$, then a basis for $V^{\otimes k}$ consists of elements of the form $v'_1 \otimes v'_2 \otimes \cdots \otimes v'_k$, where each $v'_i$ is some basis vector $v_j$, and all the $v'_i$ are distinct, with no two elements being equivalent under rearrangement of terms. In other words, every basis element of $V^{\otimes k}$ corresponds to a selection of $d$ distinct basis vectors from the $k$ basis vectors of $V$. Thus, the dimension is $\binom d k$. Therefore, the Hilbert series is:
-			\begin{gather*}
-				\Hilb(E(V);q) = \sum_{k=0}^{\infty} \binom d k q^k = (1 + q)^d
-			\end{gather*}
- 		\end{enumerate}
-	\end{Solution*}
+	\begin{equation*}
+		\xymatrix{
+			D^* \otimes D^* \ar[dd]_-{m_D} \ar[rd]_-{\rho_D} \ar[rrr]^-{f^* \otimes f^*} & & & C^* \otimes C^* \ar[ld]^-{\rho_C} \ar[dd]^-{m_C} \\
+			& \pqty{D \otimes D}^* \ar[r]^-{\pqty{f \otimes f}^*} \ar[ld]_-{\Delta^*_D} & \pqty{C \otimes C}^* \ar[rd]^-{\Delta^*_C} & \\
+			D^* \ar[rrr]_-{f^*} & & & C^*
+		}
+	\end{equation*}
 \end{document}
