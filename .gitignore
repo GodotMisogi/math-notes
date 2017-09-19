@@ -2,3 +2,10 @@
 *.log
 *.gz
 *.gz
+=======
+*.aux
+*.log
+*.gz
+*.toc
+>>>>>>> pr/7
+Hopf Algebra and Combinatorics/Hopf Algebra and Combinatorics.pdf
