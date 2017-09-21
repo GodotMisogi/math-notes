@@ -20,14 +20,11 @@
 \usepackage{charter}
 \usepackage[T1]{fontenc}
 
-<<<<<<< HEAD
-=======
 %MF mode dpdfezzz is for 8000dpi
 \pdfpkmode{dpdfezzz}
 \pdfpkresolution=8000
 
 
->>>>>>> pr/7
 % \usepackage{color}
 % \definecolor{mygrey}{gray}{0.1}
 % \color{mygrey}
@@ -47,11 +44,8 @@
 \theoremstyle{remark}
 \newtheorem*{Remark*}{Remark}
 \newtheorem*{Solution*}{Solution}
-<<<<<<< HEAD
-=======
 \newtheorem*{Note*}{Note}
 
->>>>>>> pr/7
 
 \newtheoremstyle{underline}% name
 {}        % Space above, empty = `usual value'
@@ -561,11 +555,8 @@
 		Because $\sum_{i=1}^m \lambda_i (v_i,w_i) - \sum_{j=1}^n \mu_j (x_j,y_j) \in I$.
 	\end{proof}
 
-<<<<<<< HEAD
-=======
 	So the definitions $f$ and $\tilde f$ determine each other. We can choose bases $\qty{v_i \mid i \in I}$ and $\qty{v_j \mid j \in J}$ of $U, V$. The procedure is defining the mappings of the basis elements and extending bilinearly.  
 
->>>>>>> pr/7
 	\subsection{Useful Examples}
 
 	\begin{Example*}[$A$-ring]
@@ -602,12 +593,8 @@
 		\end{gather*}
 		As an example, one can select $\alpha^*$ as projections of a basis $\qty{w_i \colon i \in I}$.
 	\end{Example*}
-<<<<<<< HEAD
-	\begin{Lemma}\label{lem:tensProdBasis}
-=======
 
 		\begin{Lemma}\label{lem:tensProdBasis}
->>>>>>> pr/7
 		If $\qty{w_j \mid j \in J}$ is a basis for $W$, and $ \sum\limits_{i=1}^n v_i \otimes w_{j_i} = 0 $	then $v_i = 0, \forall\,i \in I$.
 	\end{Lemma}
 	\begin{proof}
@@ -626,10 +613,6 @@
 		\end{gather*}
 	\end{proof}
 
-<<<<<<< HEAD
-	\section{Homework One}
-	
-=======
 	Some instructive exercises are:
 	\begin{gather*}
 		V \otimes W \cong V \otimes W \\
@@ -643,7 +626,6 @@
 		$\mathbb R[x] \otimes_{\mathbb R} \mathbb C$ is a $\mathbb C$-algebra.
 	\end{Example*}
 
->>>>>>> pr/7
 	\begin{Exercise}
 		Let $V$ and $W$ be $\mathbb{F}$-vector spaces. If $\qty{v_i \mid i \in I}$ is a basis for $V$ and $\qty{w_j \mid j \
 		\in J}$ is a basis for $W$, prove that $\qty{v_i \otimes w_j \mid i \in I, j \in J}$ is a basis for $V \otimes W$. Conclude that, if $\dim V$ and $\dim W$ are finite, then $\dim V \otimes W = \dim V \dim W$.
@@ -666,29 +648,17 @@
 		\end{align*}
 		The dimension of $V \otimes W$ is $\abs{\qty{\, v_i \otimes w_j \mid i \in I, j \in J \,}} = \abs{\qty{\, v_i \mid i \in I \,} } \cdot \abs{\qty{\, w_j \mid j \in J \,}} = \dim V \dim W$.
 	\end{Solution*}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> pr/7
 	\begin{Exercise}
 		\begin{enumerate}[label=(\alph*)]
 			\item Prove that $\mathbb{F}[x] \otimes \mathbb{F}[x] \cong \mathbb{F}[x,y]$ as $\mathbb{F}$-algebras.
 			\item  If $A$ is an $\mathbb{F}$-algebra, let $M_{n \times n}(A)$ be the $\mathbb{F}$-algebra of $n \times n$ matrices with entries in $A$. Explain briefly why $M_{n\times n}(A)$ is an $\mathbb{F}$-algebra. Prove that $M_{n \times n}(A) \cong M_{n \times n}(\mathbb F) \otimes A$ as $\mathbb{F}$-algebras.
-<<<<<<< HEAD
-			\item  Prove that $M_{n\times n}(\mathbb F) \otimes M_{n\times n}(\mathbb F) \cong M_{mn \times mn}(\mathbb F)$ as $\mathbb F$-algebras.
-=======
 			\item  Prove that $M_{m\times m}(\mathbb F) \otimes M_{n\times n}(\mathbb F) \cong M_{mn \times mn}(\mathbb F)$ as $\mathbb F$-algebras.
->>>>>>> pr/7
 		\end{enumerate}
 	\end{Exercise}
 	\begin{Solution*}
 		\begin{enumerate}[label=(\alph*)]
-<<<<<<< HEAD
-			\item Since $\mathbb F[x] \otimes \mathbb F[x]$ has basis $\qty{\, x^i \otimes x^j \mid i, j \in \mathbb N_0 \,}$, and $\mathbb F[x, y]$ has basis $\qty{\, x^i y^j \mid i, j \in \mathbb N_0 \,}$, the mapping $x^i \otimes x^j \mapsto x^i y^j$ defines a linear transformation (by linear extension). This transformation is an algebra homomorphism, for
-=======
 			\item Since $\mathbb F[x] \otimes \mathbb F[x]$ has a basis $\qty{\, x^i \otimes x^j \mid i, j \in \mathbb N_0 \,}$, and $\mathbb F[x, y]$ has a basis $\qty{\, x^i y^j \mid i, j \in \mathbb N_0 \,}$, the mapping $x^i \otimes x^j \mapsto x^i y^j$ defines a linear transformation (by linear extension). This transformation is an algebra homomorphism, for
->>>>>>> pr/7
 			\begin{gather*}
 			(x^i \otimes x^j) (x^k \otimes x^l) = x^{i + k} \otimes x^{j + l} \mapsto x^{i + k} y^{j + l} = (x^i y^j) (x^k y^l).
 			\end{gather*}
@@ -707,8 +677,6 @@
 		\end{enumerate}
 	\end{Solution*}
 
-<<<<<<< HEAD
-=======
 	\subsection{Graded Algebras}
 
 	\begin{Definition}[Graded algebras]
@@ -934,7 +902,6 @@
 
  	\end{Example*}
 	
->>>>>>> pr/7
 	\begin{Exercise}
 		In a coalgebra, we say the element $x$ is grouplike if $\Delta(x) = x \otimes x$. Prove that in the group ring $\mathbb F[G]$, $x$ is grouplike if and only if $x \in G$.
 	\end{Exercise}
@@ -992,53 +959,6 @@
 		\end{enumerate}
 	\end{Solution*}
 
-<<<<<<< HEAD
-	\begin{Exercise}
-		Let $V$ be a given $d$-dimensional $\mathbb F$-vector space for some $d \in \mathbb N$ and let $V^{\otimes k} = V \otimes \dots \otimes V$ (where there are $k$ copies of $V$) be the \emph{$k$\th tensor power of $V$}.
-		\begin{enumerate}[label=(\alph*)]
-			\item Define the \emph{tensor algebra}:
-			\begin{gather*}
-				T(V) = \bigoplus_{k=0}^{\infty} V^{\otimes k} = F \oplus V \oplus V^{\otimes 2} \oplus V^{\otimes 3} \oplus \cdots
-			\end{gather*}
-			Find its \emph{Hilbert series}:
-			\begin{gather*}
-			 	\Hilb(T(V); q) = \sum_{k=0}^{\infty} \dim\pqty{V^{\otimes k}} q^k
-			\end{gather*}
-
-			\item Find the Hilbert series of the \emph{symmetric algebra} of $V$, defined as:
-			\begin{gather*}
-			 	S(V) = T(V)/\langle u \otimes v - v \otimes u \mid u,v \in V \rangle
-			 \end{gather*} 
-
-			\item Find the Hilbert series of the \emph{exterior algebra} of $V$, defined as:
-			\begin{gather*}
-				E(V) = T(V)/\langle v \otimes v \mid u,v \in V \rangle
-			\end{gather*}
-		\end{enumerate}
-	\end{Exercise}
-
-	\begin{Solution*}
-		\begin{enumerate}[label=(\alph*)]
-			\item The dimension of $V^{\otimes k}$ is $d^k$, so the Hilbert series is:
-			\begin{gather*}
-				\Hilb(T(V);q) = \sum_{k=0}^{\infty}d^k q^k = \frac{1}{1-dq}
-			\end{gather*}
-			
-			\item The quotient introduces commutativity of the tensor product as another condition into the free vector space. Extending this using the associativity of the tensor product, the cross terms are reduced by their symmetries in the $k$\th dimension. This analysis is done most easily by borrowing index notation from general relativity.
-
-			Let a tensor $T$ of $k$\th dimension be denoted by using $k$ indices: $T_{\alpha\beta\gamma\dots}$, where $\alpha,\beta,\gamma \dots$ each range from $1$ to $d$, so the dimension of the tensor is $d^k$ when there are no symmetries. Symmetry between indices is denoted as equality upon interchange of the relative index placements. For example, $T_{\alpha\beta\gamma\mu} = T_{\alpha\mu\gamma\beta}$ denotes symmetry of the tensor in $\beta$ and $\mu$. Take a tensor with $k$ indices that is symmetric in all of them. The symmetric part is completely specified by the multisets of length $k$ with the entries ranging from $1$ to $d$. So the problem reduces to partitioning $k$ objects into $d$ sets ignoring the relative positioning. Since there are $d-1$ spaces and $k$ dividers, the number of ways of choosing $k$ places for the objects is $\binom{k+d-1}{k}$. These are the number of independent components of the symmetric tensor $T \in V^{\otimes k}$, and hence its dimension. Therefore, the Hilbert series is:
-			\begin{gather*}
-				\Hilb(S(V);q) = \sum_{k=0}^{\infty} \binom{k+d-1}{k} q^k = \dfrac 1 {(1 - q)^d}
-			\end{gather*}
-
-			\item In the quotient algebra, $v \otimes v = 0$. This also implies that $u \otimes v = - v \otimes u$, which is easily seen by using bilinearity to expand $(u + v) \otimes (u + v) = 0$ and rearranging the non-zero terms. Therefore, in the quotient of the $k$\th tensor power $V^{\otimes k}$, any product $v_1 \otimes v_2 \otimes \cdots \otimes v_k$ is zero if any two of its terms are equal ($v_i = v_j$, $i \ne j$). Two products $u_1 \otimes \cdots \otimes u_k$ and $v_1 \otimes \cdots \otimes v_k$ are equal up to a difference in sign if one is obtained from the other by any permutation of terms. Thus, if $\qty{v_1, v_2, \cdots, v_d}$ is a basis of $V$, then a basis for $V^{\otimes k}$ consists of elements of the form $v'_1 \otimes v'_2 \otimes \cdots \otimes v'_k$, where each $v'_i$ is some basis vector $v_j$, and all the $v'_i$ are distinct, with no two elements being equivalent under rearrangement of terms. In other words, every basis element of $V^{\otimes k}$ corresponds to a selection of $d$ distinct basis vectors from the $k$ basis vectors of $V$. Thus, the dimension is $\binom d k$. Therefore, the Hilbert series is:
-			\begin{gather*}
-				\Hilb(E(V);q) = \sum_{k=0}^{\infty} \binom d k q^k = (1 + q)^d
-			\end{gather*}
- 		\end{enumerate}
-	\end{Solution*}
-=======
-	\begin{equation*}
 	\subsection{Sweedler Notation}
 
 	In a coalgebra, the map $\Delta\colon C \to C \otimes C$ is defined in general as:
@@ -1085,7 +1005,5 @@
 			& \pqty{D \otimes D}^* \ar[r]^-{\pqty{f \otimes f}^*} \ar[ld]_-{\Delta^*_D} & \pqty{C \otimes C}^* \ar[rd]^-{\Delta^*_C} & \\
 			D^* \ar[rrr]_-{f^*} & & & C^*
 		}
-	\end{equation*}
->>>>>>> pr/7
 	\end{align*}
 \end{document}
