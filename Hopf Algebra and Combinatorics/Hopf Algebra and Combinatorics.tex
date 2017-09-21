@@ -1039,6 +1039,47 @@
 	\end{Solution*}
 =======
 	\begin{equation*}
+	\subsection{Sweedler Notation}
+
+	In a coalgebra, the map $\Delta\colon C \to C \otimes C$ is defined in general as:
+	\begin{gather*}
+		\Delta(c) = \sum_i c_{1_i} \otimes c_{2_i}	
+	\end{gather*}
+	To avoid the double subscripts, the following notation for the coproduct introduced by Sweedler is useful:
+	\begin{gather*}
+		\Delta(c) = \sum_{(c)} c_{(1)} \otimes c_{(2)}, \;\;\; c_{(1)}, c_{(2)} \in C
+	\end{gather*}
+	The index $(c)$ helps keep track of which `$c$' the coproduct will be taken of in further coproduct operations. This will be elucidated in the coassociativity property by comparison with the previous notation. Using the comultiplication commutative diagram:
+	\begin{gather*}
+		\pqty{\Delta \otimes \id}\Delta(c) = \pqty{\Delta \otimes \id}\pqty{\sum_{(c)} c_{(1)} \otimes c_{(2)}} = \sum_{(c)} \Delta c_{(1)} \otimes c_{(2)} = \sum_{(c)} c_{(1)} \otimes c_{(2)} \otimes c_{(3)} \\
+		\pqty{\id \otimes \Delta}\Delta(c) = \pqty{\id \otimes \Delta}\pqty{\sum_{(c)} c_{(1)} \otimes c_{(2)}} = \sum_{(c)} c_{(1)} \otimes \Delta c_{(2)} = \sum_{(c)} c_{(1)} \otimes c_{(2)} \otimes c_{(3)}
+	\end{gather*}
+	It is important to note that the double summation induced by the second coproduct is reduced to a single summation by relabeling the indices, since all the elements belong to $C$. Since $\Delta$ is coassociative, the following notation is used:
+	\begin{gather*}
+		\Delta_2(c) = \pqty{\Delta \otimes \id}\Delta(c) = \pqty{\id \otimes \Delta}\Delta(c) = \sum_{(c)} c_{(1)} \otimes c_{(2)} \otimes c_{(3)}
+	\end{gather*}
+	Using the multiple subscript notation, the following unreadable mess is obtained:
+	\begin{gather*}
+		\Delta_2(c) = \sum_j \sum_i c_{1_{i_j}} \otimes c_{2_{i_j}} \otimes c_{3_i}
+	\end{gather*}
+	The operation of multiple coproducts is easily generalised:
+	\begin{gather*}
+		\Delta_{n-1}(c) = \sum_{(c)} c_{(1)} \otimes c_{(2)} \otimes \dots \otimes c_{(n)} 
+	\end{gather*}
+	Using the universal property of the tensor product:
+	\begin{gather*}
+		\tilde{f} \Delta_{n-1}(c) = \sum_{(c)} f(c_1, c_2, \dots, c_n)
+	\end{gather*}
+	Coassociativity in Sweedler notation is written as:
+	\begin{gather*}
+		\sum_{(c)} \Delta c_{(1)} \otimes c_{(2)} = \sum_{(c)} c_{(1)} \otimes \Delta c_{(2)}
+	\end{gather*}
+	Using the counitary commutative diagram:
+	\begin{gather*}
+		\pqty{\epsilon \otimes \id}\Delta(c) = \pqty{\epsilon \otimes \id} \sum_{(c)} c_{(1)} \otimes c_{(2)} = \sum_{(c)} \epsilon\pqty{c_{(1)}} \otimes c_{(2)} \\
+		\pqty{\id \otimes \epsilon}\Delta(c) = \pqty{\id \otimes \epsilon} \sum_{(c)} c_{(1)} \otimes c_{(2)} = \sum_{(c)} c_{(1)} \otimes \epsilon\pqty{c_{(2)}} 
+	\end{gather*}
+	\begin{align*}
 		\xymatrix{
 			D^* \otimes D^* \ar[dd]_-{m_D} \ar[rd]_-{\rho_D} \ar[rrr]^-{f^* \otimes f^*} & & & C^* \otimes C^* \ar[ld]^-{\rho_C} \ar[dd]^-{m_C} \\
 			& \pqty{D \otimes D}^* \ar[r]^-{\pqty{f \otimes f}^*} \ar[ld]_-{\Delta^*_D} & \pqty{C \otimes C}^* \ar[rd]^-{\Delta^*_C} & \\
@@ -1046,4 +1087,5 @@
 		}
 	\end{equation*}
 >>>>>>> pr/7
+	\end{align*}
 \end{document}
