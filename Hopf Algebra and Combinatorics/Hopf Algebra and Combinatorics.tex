@@ -103,11 +103,11 @@
 		A \emph{Hopf algebra} $H$ is a $\mathbb{K}$-vector space with five operations:
 		\begin{center}
 			\begin{tabular}{rl}
-				Multiplication: &   $ m\colon H \otimes H \to H$\\
-				Unit: & $u\colon \mathbb{K} \to H $ \\
-				Comultiplication: & 	$ \Delta\colon H \to H \otimes H$\\
-				Counit: & $\epsilon\colon H \to \mathbb{K}$ \\
-				Antipode: &  $ S\colon H \to H $
+				Multiplication: &   $ m \colon H \otimes H \to H$\\
+				Unit: & $u \colon \mathbb{K} \to H $ \\
+				Comultiplication: & 	$ \Delta \colon H \to H \otimes H$\\
+				Counit: & $\epsilon \colon H \to \mathbb{K}$ \\
+				Antipode: &  $ S \colon H \to H $
 			\end{tabular}
 		\end{center}
 	\end{Definition}
@@ -144,14 +144,14 @@
 	\begin{Example*}[Dirac matrices]
 		The following anticommutation relations have a corresponding matrix representation called the Pauli matrices:
 		\begin{gather*}
-		\sigma_i^2 = I_2, \;\; \sigma_i \sigma_j + \sigma_j\sigma_i = 0, \; i \neq j \\
+		\sigma_i^2 = I_2, \quad \sigma_i \sigma_j + \sigma_j\sigma_i = 0, \; i \neq j \\
 		\sigma_1 = \mqty[0 & 1 \\ 1 & 0],\; \sigma_2 = \mqty[0 & -i \\ i & 0],\; \sigma_3 = \mqty[1 & 0 \\ 0 & -1]
 		\end{gather*}
 		To develop the relativistic theory of the electron, Dirac constructed $4 \times 4$ matrices $\gamma^\mu,\; \mu = 0,1,2,3$, out of the Pauli matrices using tensor products. The details are not relevant, so we will just display the results:
 		\begin{gather*}
 		\gamma \coloneqq \mqty[0 & 1 \\ -1 & 0] \\
 		\gamma^{0} = \sigma_3 \otimes I_2 = \mqty[I_2 & 0 \\ 0 & -I_2] = \mqty[1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -1] \\
-		\gamma^{i} = \gamma \otimes \sigma_i = \mqty[0 & \sigma_i \\ -\sigma_i & 0],\;\; i = 1,2,3
+		\gamma^{i} = \gamma \otimes \sigma_i = \mqty[0 & \sigma_i \\ -\sigma_i & 0],\quad i = 1,2,3
 		\end{gather*}
 		The Pauli and Dirac matrices form Clifford algebras respectively.
 	\end{Example*}
@@ -189,7 +189,7 @@
 		\begin{Multiplication*}
 			$m\pqty{X^i \otimes X^j} = X^{i+j}$. Extending this linearly:
 			\begin{gather*}
-			m\pqty{\sum_{i = 0}^n \alpha_i X^i \otimes \sum_{j = 0}^p \beta_j X^j} = \sum_{i = 0}^n \sum_{j = 0}^p \alpha_i \beta_j X^{i+j},\;\; \forall\,\alpha_i,\beta_j \in \mathbb K,\; \forall\,	n, p\in \mathbb N
+			m\pqty{\sum_{i = 0}^n \alpha_i X^i \otimes \sum_{j = 0}^p \beta_j X^j} = \sum_{i = 0}^n \sum_{j = 0}^p \alpha_i \beta_j X^{i+j}, \quad \forall\,\alpha_i,\beta_j \in \mathbb K,\; \forall\,	n, p\in \mathbb N
 			\end{gather*}
 		\end{Multiplication*}
 		
@@ -227,7 +227,7 @@
 	\begin{Example}[Graphs]
 		Let $[G]$ be the \emph{isomorphism class of the graph} $G = (V,E)$. The collection of all isomorphic graphs is denoted by $L = \qty{\, [G] \mid \; G \in \cal G \,}$, where $\cal G$ is the class of all graphs. Define the vector space $H = \mathbb KL$, in which the elements are linear combinations of graphs:
 		\begin{gather*}
-		H = \qty{\, \sum_i k_i[G_i]\,\bigg|\;k \in \mathbb K,\; G \in \cal G\,}	
+		H = \qty{\, \sum_{i = 1}^n k_i[G_i]\,\bigg|\;k_i \in \mathbb K,\; G_i \in \mathcal G,\; n \in \mathbb N_0 \,}	
 		\end{gather*}
 		
 		\begin{Multiplication*}
@@ -283,7 +283,7 @@
 			This is illustrated using the following example:
 			\begin{gather*}
 			\Delta
-			\mqty(\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			\mqty(\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 			{
 				\node (n4) at (5,0.6)	{};
 				\node (n5) at (5,0)	{};
@@ -293,7 +293,7 @@
 				\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n6, n5/n7, n6/n7, n4/n8, n6/n8}
 				\draw (\from) -- (\to);
 			}) = 
-			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
 					\node (n4) at (5,0.5)	{};
 					\node (n5) at (5,0)	{};
@@ -301,16 +301,16 @@
 					\foreach \from/\to in {n4/n5, n4/n6}
 					\draw (\from) -- (\to);
 			}}\otimes \;
-			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
 					\node (n4) at (5,1)	{};
 					\node (n5) at (5,0.3)	{};
 					\foreach \from/\to in {n4/n5}
 					\draw (\from) -- (\to);
 			}}) + 
-			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
-					[scale=1,auto=left,every node/.style={circle,fill=gray}]
+					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n4) at (5,1)	{};
 					\node (n5) at (5,0)	{};
 					\node (n6) at (6,1)	{};
@@ -318,22 +318,22 @@
 					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n6, n5/n7, n6/n7}
 					\draw (\from) -- (\to);
 			}} \otimes\;
-			\mqty{\tikz[scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
-					[scale=1,auto=left,every node/.style={circle,fill=gray}]
+					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n4) at (5,0)	{};
 			}})\; + 
-			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
-					[scale=1,auto=left,every node/.style={circle,fill=gray}]
+					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n5) at (5,0)	{};
 					\node (n6) at (5.5,0.5)	{};
 					\foreach \from/\to in {n5/n6}
 					\draw (\from) -- (\to);
 			}}\, \otimes
-			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=gray,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
 				{
-					[scale=1,auto=left,every node/.style={circle,fill=gray}]
+					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n5) at (5,0)	{};
 					\node (n6) at (6,1)	{};
 					\node (n7) at (6,0)	{};
@@ -372,17 +372,17 @@
 		Note that the coefficients do \emph{not} denote the number of times of application of their corresponding permutations; they just depict a formal linear extension in the vector space.
 		
 		\begin{Multiplication*}
-			An example is $(1 \, 2) \otimes (3 \, 2 \,1)$ using one-line notation (\emph{not} cycle notation):
+			An example is $12 \otimes 321$ using one-line notation:
 			\begin{align*}
-			m((1 \, 2) \otimes (3 \, 2 \, 1)) = & (1 \, 2 \, 5 \, 4 \, 3) + (1 \, 5 \, 2 \, 4 \, 3) + (1 \, 5 \, 4 \, 2 \, 3) + (1 \, 5 \, 4 \, 3 \, 2) + (5 \, 1 \, 2 \, 4 \, 3) + {}\\
-				& (5 \, 1 \, 4 \, 2 \, 3) +  (5 \, 1 \, 4 \, 3 \, 2) + (5 \, 4 \, 1 \, 2 \, 3) + (5 \, 4 \, 1 \, 3 \, 2) + (5 \, 4 \, 3 \, 1 \, 2)
+			m(12 \otimes 321) = & 12543 + 15243 + 15423 + 15432 + 51243 + {}\\
+				& 51423 +  51432 + 54123 + 54132 + 54312
 			\end{align*}
 			This shows that it respects the relative order of the elements within each argument as in a riffle shuffle of cards and generates only \emph{some} permutations in $P_5$ as a result. Also note how the elements $1, 2, 3$ in the second argument were relabelled $3, 4, 5$ respectively, to ensure that we get an element of $P_5$ after shuffling. This might be represented as given below, with $u_i$ denoting the $i$\th element in the permutation $U$:
 			\begin{gather*}
-			m\pqty{U \otimes V} = m\pqty{\pqty{u_1\ldots u_n} \otimes \pqty{v_1\ldots v_p}} \\
-			= \sum (w_1 \ldots w_{n + p})
+			m\pqty{U \otimes V} = m\pqty{u_1 \cdots u_n \otimes v_1 \cdots v_p} \\
+			= \sum w_1 \cdots w_{n + p}
 			\end{gather*}
-			Where $(w_1 \ldots w_{n + p})$ stands for every possible permutation of the resultant set with the values of $v_j$ right-shifted by $n$, under the rule that the relative orders of the elements of $U$ and $V$ respectively are not lost --- i.e., for any two $w_i$, $w_j$, $1 \le i < j \le n + p$, one of the following holds:
+			Where $w_1 \cdots w_{n + p}$ stands for every possible permutation of the resultant set with the values of $v_j$ right-shifted by $n$, under the rule that the relative orders of the elements of $U$ and $V$ respectively are not lost --- i.e., for any two $w_i$, $w_j$, $1 \le i < j \le n + p$, one of the following holds:
 			\begin{enumerate}
 				\item $w_i = u_k$ and $w_j = v_r + n$ 
 				\item $w_i = v_r + n$ and $w_j = u_k$
@@ -393,13 +393,13 @@
 		\end{Multiplication*}
 		
 		\begin{Comultiplication*}
-			Similar to graphs, the coproduct of permutations is obtained by cutting a line between the numbers (in one-line notation, e.g. $(1 \, 2 \mid 3\, 4\, 5)$), and writing the outer product with each piece as a component, then summing over all complementary combinations. 
+			Similar to graphs, the coproduct of permutations is obtained by cutting a line between the numbers (in one-line notation, e.g. $12 \mid 345$), and writing the outer product with each piece as a component, then summing over all complementary combinations. 
 			\begin{gather*}
-			\Delta\pqty{u_1 u_2 \ldots u_n} = \sum_{i=0}^n \pqty{u_1\ldots u_i} \otimes \pqty{v_1\ldots v_{n - i}}
+			\Delta\pqty{u_1 u_2 \cdots u_n} = \sum_{i=0}^n u_1 \cdots u_i \otimes v_1 \cdots v_{n - i}
 			\end{gather*}
 			where $v_1, \ldots, v_{n - i}$ are obtained by relabelling $u_{i + 1}, \ldots, u_n$ respectively in such a way that the resulting set $\qty{v_1, \ldots, v_{n - i}} = \mathbb N \Mod {(n - i)}$, but preserving the relative order of elements. An example using a permutation of $P_5$:
 			\begin{gather*}
-			\Delta\pqty{4 \, 2 \, 5 \, 3 \, 1} = \pqty{\varnothing \otimes 42531} + \pqty{1 \otimes 2431} + \pqty{21 \otimes 321} + \cdots
+			\Delta\pqty{42531} = \pqty{\varnothing \otimes 42531} + \pqty{1 \otimes 2431} + \pqty{21 \otimes 321} + \cdots
 			\end{gather*}
 		\end{Comultiplication*}
 		
@@ -448,7 +448,7 @@
 	\subsection{Algebra Homomorphism}
 	
 	\begin{Definition}
-		Let $A_1, A_2$ be $\mathbb K$-algebras. An \emph{algebra homomorphism} is $\phi\colon A_1 \to A_2$ which is a ring homomorphism and linear map simultaneously. 
+		Let $A_1, A_2$ be $\mathbb K$-algebras. An \emph{algebra homomorphism} is $\phi \colon A_1 \to A_2$ which is a ring homomorphism and linear map simultaneously. 
 	\end{Definition}
 	
 	\begin{Remark*}
@@ -465,20 +465,20 @@
 		A $\mathbb K$-algebra is a vector space $A$ over a field $\mathbb K$ equipped with linear maps 
 		\begin{center}
 			\begin{tabular}{rl}
-		 		Multiplication: & $m\colon C \otimes C \rightarrow C$ \\
+		 		Multiplication: & $m \colon C \otimes C \rightarrow C$ \\
 		 		Unit: & $ u \colon C \rightarrow \mathbb K$ 
 			\end{tabular}
 		\end{center} such that the following diagrams commute:
-		\begin{equation*}
+		\begin{align*}
 		\xymatrix{
 			A \otimes A \otimes A \ar[d]_-{\id \otimes m} \ar[r]^-{m \otimes \id} & A \otimes A \ar[d]^-{m} \\
 			A \otimes A \ar[r]_-{m} & A
-		} \;\;\;\;\;\;
+		} & &
 		\xymatrix{
 			\mathbb K \otimes A \ar[r]^-{u \otimes \id} \ar[dr]_-{f} & A \otimes A \ar[d]_-{m} & A \otimes \mathbb K \ar[l]_-{\id \otimes u} \ar[dl]^-{g} \\
 			& A &	
 		}
-		\end{equation*}
+		\end{align*}
 		where $f$ and $g$ are the natural isomorphisms $\mathbb K \otimes A \to A$, $\lambda \otimes x \mapsto \lambda x$ and $A \otimes \mathbb K \to A$, $x \otimes \lambda \mapsto \lambda x$ respectively.
 	\end{Definition}
 	
@@ -497,7 +497,7 @@
 	\end{Remark*}
 	
 	\begin{Remark*}
-		To show that the previous definition implies the current one, the only non-trivial construction required is $m$, which is defined as a multiplication under the previous definition: $m\colon A \otimes A \rightarrow A$ such that $ m(a \otimes b) \coloneqq ab $; this remark is a little troubling because we do not have a clear definition of the tensor product and its relations with other algebraic structures, which will be investigated now.
+		To show that the previous definition implies the current one, the only non-trivial construction required is $m$, which is defined as a multiplication under the previous definition: $m \colon A \otimes A \rightarrow A$ such that $ m(a \otimes b) \coloneqq ab $; this remark is a little troubling because we do not have a clear definition of the tensor product and its relations with other algebraic structures, which will be investigated now.
 	\end{Remark*}
 	
 	\section{Tensor Products}
@@ -523,7 +523,7 @@
 		The tensor $a \otimes b = \overline{(a,b)}$, an equivalence class, and $a' \otimes b'$ can be equal to $a \otimes b,\, a' \neq a, \, b' \neq b$.
 	\end{Remark*}
 	
-	To define a linear $m\colon V \otimes W \to W$, we would have to define an $n\colon F(V \times W) \to W$ such that $n(I) = 0$, which implies that $n$ is a bilinear map. 
+	To define a linear $m \colon V \otimes W \to W$, we would have to define an $n \colon F(V \times W) \to W$ such that $n(I) = 0$, which implies that $n$ is a bilinear map. 
 
 	\subsection{Universal Property}
 
@@ -583,7 +583,7 @@
 	\end{Example*}
 
 	\begin{Example*}
-		Does there exist a natural (linear!) map between vector spaces $V \otimes W \to V$? Try the map $f\colon V \times W \to V$, where $(v, w) \mapsto v$; however, this map is not bilinear. Try the mapping $(v,w) \mapsto [\alpha^*(w)]v$, where $\alpha^*$ is any linear functional that lives in the dual space $W^*$. The motivation for this selection is preservation of	bilinearity while deleting information of $w$. This is indeed bilinear by observing:
+		Does there exist a natural (linear!) map between vector spaces $V \otimes W \to V$? Try the map $f \colon V \times W \to V$, where $(v, w) \mapsto v$; however, this map is not bilinear. Try the mapping $(v,w) \mapsto [\alpha^*(w)]v$, where $\alpha^*$ is any linear functional that lives in the dual space $W^*$. The motivation for this selection is preservation of	bilinearity while deleting information of $w$. This is indeed bilinear by observing:
 		\begin{gather*}
 			f(v, w_1 + w_2) = \bqty{\alpha^*(w_1) + \alpha^*(w_2)}v
 		\end{gather*}
@@ -781,16 +781,16 @@
 		\end{tabular}
 		\end{center}
 		such that the following diagrams commute:
-		\begin{equation*}
+		\begin{align*}
 		\xymatrix{
 			C \otimes C \otimes C & C \otimes C \ar[l]_-{\id \otimes \Delta} \\
 			C \otimes C \ar[u]^-{\Delta \otimes \id} & C \ar[l]^-{\Delta} \ar[u]_-{\Delta}
-		} \;\;\;\;\;\;
+		} & &
 		\xymatrix{
 			\mathbb K \otimes C  & C \otimes C \ar[l]_-{\epsilon \otimes \id} \ar[r]^-{\id \otimes \epsilon} & C \otimes \mathbb K  \\
 			& C \ar[u]^-{\Delta} \ar[lu]^-{f^{-1}} \ar[ru]_-{g^{-1}} &	
 		}
-		\end{equation*}
+		\end{align*}
 	\end{Definition}
 	\begin{Remark*}
 		These diagrams encode properties called \emph{coassociativity} and \emph{counitarity}.
@@ -807,12 +807,16 @@
 			\pqty{\id \otimes \Delta} \pqty{s \otimes s} = s \otimes s \otimes s 
 		\end{gather*}
 		Checking counitarity:
+		\begin{gather*}
+			\pqty{\epsilon \otimes \id} \pqty{s \otimes s} = 1 \otimes s\\
+			\pqty{\id \otimes \epsilon} \pqty{s \otimes s} = s \otimes 1
+		\end{gather*}
 	\end{Example}
 
 	\begin{Example}[Incidence coalgebra]
-		Let $P$ be a poset. For $x \leq y$, the \emph{interval} is defined as $\bqty{x,y} = \qty{\, x \leq z \leq y \mid \, x,y,z \in P \,}$. Denote the set of all intervals in $P$ as $\mathrm{Int}(P) \coloneqq \qty{\, \bqty{x,y} \mid x \leq y \in P \,}$. The \emph{incidence coalgebra} is defined as $C \coloneqq \mathbb K \mathrm{Int}(P)$. Define the following:
+		Let $P$ be a poset. For $x \leq y$, the \emph{interval} is defined as $\bqty{x,y} = \qty{\, x \leq z \leq y \mid \, z \in P \,}$. Denote the set of all intervals in $P$ as $\mathrm{Int}(P) \coloneqq \qty{\, \bqty{x,y} \mid x \leq y \in P \,}$. The \emph{incidence coalgebra} is defined as $C \coloneqq \mathbb K \mathrm{Int}(P)$. Define the following:
 		\begin{gather*}
-			\Delta\bqty{x,y} = \sum_{z: x \leq z \leq y} \bqty{x,z} \otimes \bqty{z,y} \\
+			\Delta\bqty{x,y} = \sum_{z \in [x, y]} \bqty{x,z} \otimes \bqty{z,y} \\
 			\epsilon{\bqty{x,y}} =
 			\begin{cases}
 				1, \; x = y \\
@@ -821,10 +825,14 @@
 		\end{gather*}
 		Checking coassociativity:
 		\begin{gather*}
-			\pqty{\Delta \otimes \id}\pqty{\sum_{z: x \leq z \leq y} \bqty{x,z} \otimes \bqty{z,y}} = \sum_{z: x \leq z \leq y}\pqty{\sum_{z': x \leq z' \leq z} \bqty{x,z'} \otimes \bqty{z',z}} \otimes \bqty{z,y} \\
-			\pqty{\id \otimes \Delta}\pqty{\sum_{z: x \leq z \leq y} \bqty{x,z} \otimes \bqty{z,y}} = \sum_{z: x \leq z \leq y} \bqty{x,z} \otimes \pqty{\sum_{z': z \leq z' \leq y} \bqty{z,z'} \otimes \bqty{z',y}}
+			\pqty{\Delta \otimes \id}\pqty{\sum_{z \in [x, y]} \bqty{x,z} \otimes \bqty{z,y}} = \sum_{z \in [x, y]}\pqty{\sum_{z' \in [x, z]} \bqty{x,z'} \otimes \bqty{z',z}} \otimes \bqty{z,y} \\
+			\pqty{\id \otimes \Delta}\pqty{\sum_{z \in [x, y]} \bqty{x,z} \otimes \bqty{z,y}} = \sum_{z \in [x, y]} \bqty{x,z} \otimes \pqty{\sum_{z' \in [z, y]} \bqty{z,z'} \otimes \bqty{z',y}}
 		\end{gather*}
 		Checking counitarity:
+		\begin{gather*}
+		\pqty{\epsilon \otimes \id} \pqty{\sum_{z \in [x, y]} [x, z] \otimes [z, y]} = \sum_{z \in [x, y]} \epsilon [x, z] \otimes [z, y] = 1 \otimes [x, y]\\
+		\pqty{\id \otimes \epsilon} \pqty{\sum_{z \in [x, y]} [x, z] \otimes [z, y]} = \sum_{z \in [x, y]} [x, z] \otimes \epsilon [z, y] = [x, y] \otimes 1
+		\end{gather*}
 	\end{Example}
 
 	\subsection{Duality}
@@ -834,71 +842,77 @@
 	\end{Definition}
 
 	\begin{Remark*}
-		For a finite-dimensional vector space, $V\cong V^*$. By definition of duality, $(V^*)^* = V$. These definitions are extended to algebras and coalgebras:
+		A \emph{finite-dimensional} vector space $V$ is isomorphic to its dual space $V^*$, and \emph{naturally isomorphic} to its double dual $V^{**} \coloneqq (V^*)^*$. These definitions are extended to algebras and coalgebras:
+		
 		If $C$ is a coalgebra, then $C^*$ is naturally an algebra. If $A$ is a \emph{finite-dimensional} algebra, then $A^*$ is a coalgebra.
 	\end{Remark*}
 
 	Dirac's bra-ket notation, which is used in quantum physics, will be used to denote elements of linear algebra. In this notation, vectors are denoted by `\emph{kets}' $\ket{v} \in V$, dual vectors are denoted by `\emph{bras}' $\bra{v} \in V^* $. The notation for tensors is denoted as follows: $\ket{v} \otimes \ket{w} \equiv \ket{v \otimes w} \in V \otimes W$.
 
-	The inner product of two vectors is defined as the bilinear map $\braket{-}{-}\colon V \times V \to \mathbb K$, such that $\braket{v_1}{v_2} \coloneqq v_1^*(v_2), \bra{v_1} \in V^*, \ket{v_2} \in V$. This is generalised to the tensor product of vector spaces in the following manner:
+	The inner product of two vectors is defined as the bilinear map $\braket{-}{-} \colon V \times V \to \mathbb K$, such that $\braket{v_1}{v_2} \coloneqq v_1^*(v_2), \bra{v_1} \in V^*, \ket{v_2} \in V$. This is generalised to the tensor product of vector spaces in the following manner:
 
 	\begin{Definition}[Inner product of tensors]
-		The \emph{inner product of tensors} is defined as the map $\braket{- \otimes -}{- \otimes -}\colon \pqty{V \otimes W} \times \pqty{V \otimes W} \to \mathbb K$, such that $ \braket{v_1 \otimes w_1}{v_2 \otimes w_2} \coloneqq \braket{v_1}{v_2}\braket{w_1}{w_2}$.
+		The \emph{inner product of tensors} is defined as the map $\braket{- \otimes -}{- \otimes -} \colon \pqty{V \otimes W} \times \pqty{V \otimes W} \to \mathbb K$, such that $ \braket{v_1 \otimes w_1}{v_2 \otimes w_2} \coloneqq \braket{v_1}{v_2}\braket{w_1}{w_2}$.
 	\end{Definition} 
 
 	\begin{Remark*}
-		The definition of this map requires the construction of the following map $\rho\colon {V^* \otimes W^*} \to \pqty{V \otimes W}^*$, such that $\bra{v_1, w_1} \mapsto \bra{v_1 \otimes w_1}$. This is an injective map, which is bijective when $V$ and $W$ are finite-dimensional (NEEDS PROOF).
+		The definition of this map requires the construction of the following map $\rho \colon {V^* \otimes W^*} \to \pqty{V \otimes W}^*$, such that $\bra{v_1} \otimes \bra{w_1} \mapsto \bra{v_1 \otimes w_1}$. This is an injective map, which is bijective when $V$ and $W$ are finite-dimensional (NEEDS PROOF).
  	\end{Remark*}
 
  	\begin{Remark*}[\emph{Important}]
- 		For any linear map $L\colon V \to W$, there exists a dual map $L^*\colon W^* \to V^*$, such that $\braket{L^*w}{v} = \braket{w}{Lv}$.
+ 		For any linear map $f \colon V \to W$, there exists a dual map $f^* \colon W^* \to V^*$, such that $\braket{f^*(w)}{v} = \braket{w}{f(v)}$.
  	\end{Remark*}
 
  	To extend this concept to algebras and coalgebras, the following definition is required:
  	
  	\begin{Definition}[Dual of a coalgebra]
- 		Let $C$ be a coalgebra with the comultiplication $\Delta\colon C \to C \otimes C$ and counit $\epsilon\colon C \to \mathbb K$. Let $C^*$ be the dual of $C$ with multiplication and unit defined by the following diagrams:
- 		\begin{equation*}
+ 		Let $C$ be a coalgebra with the comultiplication $\Delta \colon C \to C \otimes C$ and counit $\epsilon \colon C \to \mathbb K$. Let $C^*$ be the dual of $C$ with multiplication and unit defined by the following diagrams:
+ 		\begin{align*}
 			\xymatrix{
 				C^* \otimes C^* \ar[rr]^-{m} \ar[rd]_-{\rho} & & C^* \\
 				& \pqty{C \otimes C}^* \ar[ru]_-{\Delta^*}
-			} \;\;\;\;\;\;
+			} & &
 			\xymatrix{
 				\mathbb K \ar[rr]^-{u} \ar[rd]_-{\cong_{\mathbb K}} & & C^* \\
 				& \mathbb K^* \ar[ru]_-{\epsilon^*}
 			}
-		\end{equation*}
+		\end{align*}
  	\end{Definition}
- 	Similarly, the dual of a \emph{finite-dimensional} algebra $\pqty{A, m, u}$, denoted as $A^*$ forms a coalgebra with the comultiplication $\Delta\colon A^* \to A^* \otimes A^*$ and counit $\epsilon\colon A^* \to \mathbb K$. \\
- 	Now we prove a lemma.
+ 	Similarly, the dual of a \emph{finite-dimensional} algebra $\pqty{A, m, u}$, denoted as $A^*$ forms a coalgebra with the comultiplication $\Delta \colon A^* \to A^* \otimes A^*$ and counit $\epsilon \colon A^* \to \mathbb K$.
+ 	
+ 	Compositions are ``reversed" by duals. For linear maps $\xymatrix{V \ar[r]^f & W \ar[r]^g & X}$, we have $\braket{x}{g(f(v))} = \braket{g^*(x)}{f(v)} = \braket{f^*(g^*(x))}{v}$, which shows that $(g \circ f)^* = f^* \circ g^*$. The following lemma is immediate from this observation.
 
  	\begin{Lemma}
  		The dual of a commutative diagram is also commutative.
  	\end{Lemma}
+ 
+ 	\begin{Remark*}
+ 		The \emph{dual} of a diagram is the one obtained by replacing every vector space by its dual space and every linear map by its dual map, which naturally involves reversing all arrows.
+ 	\end{Remark*}
  	
  	\begin{Exercise}
  		Prove that $\pqty{C^*, m, u}$ forms an algebra.
  	\end{Exercise}
  	\begin{Solution*}
  		The duals of the comultiplication and counit commutative diagrams are:
- 		\begin{equation*}
+ 		\begin{align*}
 		\xymatrix{
-			\pqty{C \otimes C \otimes C}^* \ar[r]^-{\pqty{\id \otimes \Delta}^*} \ar[d]^-{\pqty{\Delta \otimes \id}^*} & \pqty{C \otimes C}^*   \ar[d]^-{\Delta^*} \\
+			\pqty{C \otimes C \otimes C}^* \ar[r]^-{\pqty{\id \otimes \Delta}^*} \ar[d]_{\pqty{\Delta \otimes \id}^*} & \pqty{C \otimes C}^*   \ar[d]^-{\Delta^*} \\
 			\pqty{C \otimes C}^* \ar[r]_-{\Delta^*} & C^*
-		} \;\;\;\;\;\;\;
+		} & &
 		\xymatrix{
-			\pqty{\mathbb K \otimes C}^* \ar[r]^-{\pqty{\epsilon \otimes \id}^*} \ar[rd]_-{\pqty{f^{-1}}^*} & \pqty{C \otimes C}^* \ar[d]^-{\Delta^*} & \pqty{C \otimes \mathbb K}^* \ar[l]_-{\pqty{\id \otimes \epsilon}^*} \ar[ld]^-{\pqty{g^{-1}}^*} \\
+			\pqty{\mathbb K \otimes C}^* \ar[r]^-{\pqty{\epsilon \otimes \id}^*} \ar[rd]_{\pqty{f^{-1}}^*} & \pqty{C \otimes C}^* \ar[d]^{\Delta^*} & \pqty{C \otimes \mathbb K}^* \ar[l]_-{\pqty{\id \otimes \epsilon}^*} \ar[ld]^{\pqty{g^{-1}}^*} \\
 			& C^* &	
 		}
-		\end{equation*}
+		\end{align*}
  	\end{Solution*}
 
  	\begin{Example*}[Incidence algebra]
- 		The \emph{incidence algebra} $C^*(P)$ is defined as the dual of the incidence coalgebra $C(P)$. The elements of this algebra are linear functionals $c^*\colon C(P) \to \mathbb K$ as functions of the form $c^*\colon \mathrm{Int}(P) \to \mathbb K$. The multiplication $m\colon C^* \otimes C^* \to C^* \equiv \Delta^* \rho$ (from the commutative diagram) is defined as $c^* \otimes d^* \mapsto c^* d^*$ such that:
+ 		The \emph{incidence algebra} $C^*(P)$ is defined as the dual of the incidence coalgebra $C(P)$. The elements of this algebra are linear functionals $c^* \colon C(P) \to \mathbb K$ as functions of the form $c^* \colon \mathrm{Int}(P) \to \mathbb K$. The multiplication $m \colon C^* \otimes C^* \to C^* \equiv \Delta^* \rho$ (from the commutative diagram) is defined as $c^* \otimes d^* \mapsto c^* d^*$ such that:
  		\begin{gather*}
- 			\braket{\Delta^*\pqty{c \otimes d}}{[x,y]} = \braket{c \otimes d}{\Delta[x,y]} \coloneqq \sum_{z: x \leq z \leq y} c^*\pqty{[x,z]}d^*\pqty{[z,y]}
+ 			\braket{\Delta^*\pqty{c \otimes d}}{[x,y]} = \braket{c \otimes d}{\Delta[x,y]} \coloneqq \sum_{z \in [x,y]} c^*\pqty{[x,z]}d^*\pqty{[z,y]}
  		\end{gather*}
- 		The unit $u\colon K \to \mathbb C^* \equiv \epsilon^* \cong_{\mathbb K}$ is defined accordingly:
+ 		The unit $u \colon K \to \mathbb C^* \equiv \epsilon^* \cong_{\mathbb K}$ is defined accordingly:
 
  	\end{Example*}
 	
@@ -913,23 +927,25 @@
 		\end{align*}
 		Using linearity of the coproduct and bilinearity of the tensor product:
 		\begin{align*}
-			\sum_{i=1}^n \lambda_i \pqty{g_i \otimes g_i} = \pqty{\sum_{i=1}^n \lambda_i g_i} \otimes \pqty{\sum_{j=1}^n \lambda_j g_j}\\
-			\sum_{i=1}^n \pqty{g_i \otimes \lambda_i g_i} = \sum_{i=1}^n \pqty{g_i \otimes \lambda_i \sum_{j=1}^n \lambda_j g_j}\\
-			\sum_{i=1}^n  \pqty{ g_i \otimes \lambda_i g_i} - \sum_{i=1}^n  \pqty{ g_i \otimes \lambda_i \sum_{j=1}^n \lambda_j g_j} = 0 \\
-			\sum_{i=1}^n  \bqty{g_i \otimes \lambda_i\pqty{g_i - \sum_{j=1}^n \lambda_j g_j}} = 0
+			\sum_{i=1}^n \lambda_i \pqty{g_i \otimes g_i} & = \pqty{\sum_{i=1}^n \lambda_i g_i} \otimes \pqty{\sum_{j=1}^n \lambda_j g_j}\\
+			\sum_{i=1}^n \pqty{g_i \otimes \lambda_i g_i} & = \sum_{i=1}^n \pqty{g_i \otimes \lambda_i \sum_{j=1}^n \lambda_j g_j}
+		\end{align*}
+		\begin{align*}
+			& \sum_{i=1}^n  \pqty{ g_i \otimes \lambda_i g_i} - \sum_{i=1}^n  \pqty{ g_i \otimes \lambda_i \sum_{j=1}^n \lambda_j g_j} = 0 \\
+			& \sum_{i=1}^n  \bqty{g_i \otimes \lambda_i\pqty{g_i - \sum_{j=1}^n \lambda_j g_j}} = 0
 		\end{align*}
 		Since $g_i$ form the basis of the group ring, Lemma~\ref{lem:tensProdBasis} implies that for each $i$, the second argument of the tensor product is zero. Thus, for each $i = 1, \ldots, n$:
 		\begin{gather*}
 			\lambda_i = 0 \quad \text{or} \quad \sum_{j=1}^n \lambda_j g_j = g_i
 		\end{gather*}
-		This implies that if $\lambda_i \ne 0$ for some $i$, then, since $g_i$ are basis elements, $\lambda_j = 0$ for all $j \ne i$ and $\lambda_i = 1$. That is, $\lambda_i$ is non-zero for at most one $i$, in which case $\lambda_i = 1$. Thus, $x = \sum_{i = 1}^n \lambda_i g_i = g_i$ or $x = 0$.
+		This implies that if $\lambda_i \ne 0$ for some $i$, then, since $g_i$ are basis elements, $\lambda_j = 0$ for all $j \ne i$ and $\lambda_i = 1$. That is, $\lambda_i$ is non-zero for at most one $i$, in which case $\lambda_i = 1$. Thus, $x = \sum\limits_{i = 1}^n \lambda_i g_i = g_i$ or $x = 0$.
 	\end{Solution*}
 
 	\begin{Exercise}
 		Consider the $\mathbb F$-algebra $H_4$ generated by indeterminates $g$ and $x$ subject to the relations $g^2 = 1, x^2 = 0$ and $xg = -gx$.
 		\begin{enumerate}[label=(\alph*)]
 			\item Show that $1, g, x$ and $gx$ form a basis for $H_4$.
-			\item Express the product $(a_1 + b_1 g + c_1 x + d_1 gx)(a_2 + b_2 g + c_2 x + d_2 gx)$ in terms of this basis, where $a_i, b_i, c_i, d_i \in \mathbb F, \forall i$.
+			\item Express the product $(a_1 + b_1 g + c_1 x + d_1 gx)(a_2 + b_2 g + c_2 x + d_2 gx)$ in terms of this basis, where $a_i, b_i, c_i, d_i \in \mathbb F, i = 1, 2$.
 			\item Show that the coproduct $\Delta g = g \otimes g$ and $\Delta x = x \otimes 1 + g \otimes x$ and the counit given by $\epsilon(g) = 1$ and $\epsilon(x) = 0$ turn $H_4$ into a bialgebra.
 			\item Express the coproduct $\Delta(a + bg + cx + dgx)$ in terms of this basis.
 		\end{enumerate}
@@ -940,20 +956,33 @@
 
 			\item The product is $\pqty{a_1 a_2 + b_1 b_2} + \pqty{a_1 b_2 + a_2 b_1 + b_1 d_2 + b_2 d_1}g + \pqty{a_1 c_2 + a_2 c_1}x + \pqty{a_1 d_2 + a_2 d_1 + b_1 c_2 + b_2 c_1}gx $.
 
-			\item The coproduct of $1$ is defined as: $\Delta 1 = 1 \otimes 1$. Coassociativity holds:
-			\begin{gather*}
-			 	(\id \otimes \Delta) \Delta g = g \otimes g \otimes g = (\Delta \otimes \id) \Delta g \\
-			 	(\id \otimes \Delta) \Delta x = (\id \otimes \Delta) \bqty{x \otimes 1 + g \otimes x} = x \otimes 1 \otimes 1 + \pqty{g \otimes x \otimes 1 + g \otimes g \otimes x} \\
-			 	(\Delta \otimes \id) \Delta x = (\Delta \otimes \id)\bqty{x \otimes 1 + g \otimes x} =  \pqty{x \otimes 1 \otimes 1 + g \otimes x \otimes 1} + g \otimes g \otimes x 
-			\end{gather*}
-			Since $\Delta$ is an algebra homomorphism:
-			\begin{gather*}
-				\Delta(gx) = \Delta g \Delta x = \pqty{g \otimes g}\pqty{x \otimes 1 + g \otimes x} = gx \otimes g + 1 \otimes gx \\
-				(\id \otimes \Delta)\Delta (gx) = (\id \otimes \Delta)\pqty{gx \otimes g + 1 \otimes gx} \\
-				= gx \otimes g \otimes g + \pqty{1 \otimes gx \otimes g + 1 \otimes 1 \otimes gx} \\
-				(\Delta \otimes \id)\Delta (gx) = (\Delta \otimes \id)\pqty{gx \otimes g + 1 \otimes gx} \\
-				= \pqty{gx \otimes g \otimes g + 1 \otimes gx \otimes g} + 1 \otimes 1 \otimes gx
-			\end{gather*}
+			\item Since $\Delta$ and $\epsilon$ are algebra homomorphisms:
+			\begin{align*}
+			\Delta(gx) & = \Delta g \Delta x = \pqty{g \otimes g}\pqty{x \otimes 1 + g \otimes x} = gx \otimes g + 1 \otimes gx \\
+			\epsilon(gx) & = \epsilon(g) \epsilon(x) = 0\\
+			\Delta(1) & = 1 \otimes 1, \quad \epsilon(1) = 1
+			\end{align*}
+			Coassociativity holds:
+			\begin{align*}
+			 	(\id \otimes \Delta) \Delta g & = g \otimes g \otimes g = (\Delta \otimes \id) \Delta g \\
+			 	(\id \otimes \Delta) \Delta x & = (\id \otimes \Delta) \bqty{x \otimes 1 + g \otimes x} \\
+			 		& = x \otimes 1 \otimes 1 + \pqty{g \otimes x \otimes 1 + g \otimes g \otimes x} \\
+			 	(\Delta \otimes \id) \Delta x & = (\Delta \otimes \id)\bqty{x \otimes 1 + g \otimes x} \\
+				 	& =  \pqty{x \otimes 1 \otimes 1 + g \otimes x \otimes 1} + g \otimes g \otimes x \\
+				(\id \otimes \Delta)\Delta (gx) & = (\id \otimes \Delta)\pqty{gx \otimes g + 1 \otimes gx} \\
+					& = gx \otimes g \otimes g + \pqty{1 \otimes gx \otimes g + 1 \otimes 1 \otimes gx} \\
+				(\Delta \otimes \id)\Delta (gx) & = (\Delta \otimes \id)\pqty{gx \otimes g + 1 \otimes gx} \\
+					& = \pqty{gx \otimes g \otimes g + 1 \otimes gx \otimes g} + 1 \otimes 1 \otimes gx
+			\end{align*}
+			Similarly, counitarity holds:
+			\begin{align*}
+			(\epsilon \otimes \id) \Delta g & = \epsilon (g) \otimes g = 1 \otimes g\\
+			(\id \otimes \epsilon) \Delta g & = g \otimes \epsilon(g) = g \otimes 1\\
+			(\epsilon \otimes \id) \Delta x & = \epsilon(x) \otimes 1 + \epsilon(g) \otimes x = 1 \otimes x\\
+			(\id \otimes \epsilon) \Delta x & = x \otimes \epsilon(1) + g \otimes \epsilon(x) = x \otimes 1\\
+			(\epsilon \otimes \id) \Delta(gx) & = \epsilon(gx) \otimes g + \epsilon(1) \otimes gx = 1 \otimes gx\\
+			(\id \otimes \epsilon) \Delta(gx) & = gx \otimes \epsilon(g) _ 1 \otimes \epsilon(gx) = gx \otimes 1
+			\end{align*}
 
 			\item $\Delta(a + bg + cx + dgx) = a \otimes 1 + b(g \otimes g) + c(x \otimes 1 + g \otimes x) + d(gx \otimes g + 1 \otimes gx)$ 
 		\end{enumerate}
@@ -961,7 +990,7 @@
 
 	\subsection{Sweedler Notation}
 
-	In a coalgebra, the map $\Delta\colon C \to C \otimes C$ is defined in general as:
+	In a coalgebra, the map $\Delta \colon C \to C \otimes C$ is defined in general as:
 	\begin{gather*}
 		\Delta(c) = \sum_i c_{1_i} \otimes c_{2_i}	
 	\end{gather*}
