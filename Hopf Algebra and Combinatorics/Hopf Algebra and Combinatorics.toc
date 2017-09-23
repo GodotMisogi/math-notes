@@ -1,0 +1,12 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {subsection}{\numberline {1.1}Motivating Examples for Hopf Algebras}{3}
+\contentsline {section}{\numberline {2}Algebras Over a Field/Ring}{8}
+\contentsline {subsection}{\numberline {2.1}Algebra Homomorphism}{9}
+\contentsline {section}{\numberline {3}Tensor Products}{10}
+\contentsline {subsection}{\numberline {3.1}Universal Property}{11}
+\contentsline {subsection}{\numberline {3.2}Useful Examples}{11}
+\contentsline {subsection}{\numberline {3.3}Graded Algebras}{15}
+\contentsline {section}{\numberline {4}Coalgebras}{18}
+\contentsline {subsection}{\numberline {4.1}Duality}{19}
+\contentsline {subsection}{\numberline {4.2}Sweedler Notation}{23}
