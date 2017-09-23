@@ -1,0 +1,105 @@
+% The cycle polynomial of permutation groups
+
+\documentclass{article}
+\usepackage[paperwidth=6in, paperheight=8in, top = 20mm, bottom = 18mm, left=10mm, right = 10mm]{geometry}
+
+\usepackage{natbib}
+
+\usepackage{amsmath, amsthm, amssymb}
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{tikz}
+
+\usepackage{charter}
+\usepackage[T1]{fontenc}
+
+\usepackage{url}
+
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{Definition}{Definition}
+\newtheorem*{Definition*}{Definition}
+\newtheorem{Example}{Example}
+\newtheorem*{Example*}{Example}
+\newtheorem{Proposition}{Proposition}
+\newtheorem*{Proposition*}{Proposition}
+
+\theoremstyle{remark}
+\newtheorem*{Remark*}{Remark}
+
+\newtheoremstyle{underline}% name
+{}        % Space above, empty = `usual value'
+{}              % Space below
+{}              % Body font
+{}    % Indent amount (empty = no indent, \parindent = para indent)
+{}              % Thm head font
+{:}             % Punctuation after thm head
+{1.5mm}         % Space after thm head: \newline = linebreak
+{\underline{\thmname{#1}\thmnumber{ #2}\thmnote{(#3)}}}  % Thm head spec
+
+\theoremstyle{underline}
+\newtheorem*{Multiplication*}{Multiplication}
+
+\theoremstyle{underline}
+\newtheorem*{Comultiplication*}{Comultiplication}
+
+\DeclareMathOperator{\Mat}{Mat}
+\newcommand{\Mod}[1]{\ (\mathrm{mod}\ #1)}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\title{\textbf{The Cycle Polynomial of Permutation Groups}}
+
+\author{\small Arjit Seth and M. Vinay \\ \small Manipal Institute of Technology, Manipal University}
+\date{}
+\maketitle
+
+\renewcommand{\abstractname}{Context}
+\begin{abstract}
+These are notes created to develop an understanding of the cycle polynomial, conceptualised by Peter J. Cameron and Jason Semeraro.
+\end{abstract}
+
+\begingroup
+\let\clearpage\relax
+\tableofcontents
+\endgroup
+
+\medskip
+\medskip
+
+\section{Introduction}\label{sec:Intro}
+The cycle polynomial of a finite permutation group is an interesting construction.
+
+\begin{Definition}[Cycle polynomial]\label{def:CycPol}
+The \emph{cycle polynomial} of a permutation group $G$ acting on a set $\Omega$ of size $n$ is defined as:
+\begin{gather*}
+	F_{G}(x) = \sum_{g \in G} x^{c(g)}
+\end{gather*}
+where $c(g)$ is the number of cycles of $g$ on $\Omega$, including fixed points.
+\end{Definition}
+
+\begin{Example*}
+Consider the permutation group $\qty{e, (1 \, 2), (3 \, 4), (1 \, 2)(3 \, 4)} \cong V_4$ acting on the set $\qty{1, 2, 3, 4}$. Its cycle polynomial is:
+\begin{gather}
+	F_{V_4}(x) = x^4 + 2x^3 + x^2 
+\end{gather}
+\end{Example*}
+
+\begin{Remark*}
+The cycle polynomial will never have a constant term, since the minimum number of cycles of a permutation group can have is 1. It is obviously a polynomial of $n^{th}$ order because of the identity permutation.  
+\end{Remark*}
+
+\begin{Proposition}
+If $a$ is an integer, then $F_G(a)$ is a multiple of $|G|$.
+\end{Proposition}
+
+\begin{proof}
+
+\end{proof}
+
+\end{document}
