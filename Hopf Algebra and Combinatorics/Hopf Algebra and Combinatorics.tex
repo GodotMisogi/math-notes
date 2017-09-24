@@ -1056,9 +1056,15 @@
 %			\item $T \Delta(c) = T \pqty{c_{(1)} \otimes c_{(2)}} = c_{(2)} \otimes c_{(1)}$.
 %
 %			\item \begin{subquests}
-%				\item This is equivalent to proving that $\Delta = (\epsilon \otimes T) T \Delta$.
+%				\item This is equivalent to proving that $\Delta = (\epsilon \otimes \Delta) T \Delta$.
 %				\begin{align*}
-%				(\epsilon \otimes T) T \Delta & = 
+%				(\epsilon \otimes \Delta) T \Delta & = (\epsilon \otimes \id \otimes) (\id \otimes \Delta) T \Delta \\
+%					& = (\epsilon \otimes \id \otimes \id) T (\Delta \otimes \id) \Delta \\
+%					& = T (\id \otimes \epsilon \otimes \id) (\id \otimes \Delta) \Delta \\
+%					& = T (\id \otimes (1 \otimes -)) \Delta \\
+%					& \cong (1 \otimes - \otimes -) \Delta \\
+%					& = 1 \otimes \Delta \\
+%					& \cong \Delta
 %				\end{align*}
 %				\item We need to prove that $\Delta = (\id \otimes \epsilon \otimes \id) (\id \otimes T) \Delta_2$.
 %				\begin{align*}
