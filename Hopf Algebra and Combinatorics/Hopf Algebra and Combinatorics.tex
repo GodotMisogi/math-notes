@@ -14,22 +14,10 @@
 \usepackage{mathtools}
 \usepackage{xspace}
 \usepackage{enumitem}
-
-\usepackage[english]{babel}
-% \usepackage{tgtermes}
+	
+\usepackage{newpxmath}
 \usepackage{charter}
 \usepackage[T1]{fontenc}
-
-%MF mode dpdfezzz is for 8000dpi
-\pdfpkmode{dpdfezzz}
-\pdfpkresolution=8000
-
-
-% \usepackage{color}
-% \definecolor{mygrey}{gray}{0.1}
-% \color{mygrey}
-
-\usepackage{url}
 
 \newtheorem{Theorem}{Theorem}
 \newtheorem{Lemma}{Lemma}
@@ -229,7 +217,7 @@
 	\end{Example}
 	
 	\begin{Example}[Graphs]
-		Let $[G]$ be the \emph{isomorphism class of the graph} $G = (V,E)$. The collection of all isomorphic graphs is denoted by $L = \qty{\, [G] \mid \; G \in \cal G \,}$, where $\cal G$ is the class of all graphs. Define the vector space $H = \mathbb KL$, in which the elements are linear combinations of graphs:
+		Let $[G]$ be the \emph{isomorphism class of the graph} $G = (V,E)$. The collection of all isomorphic graphs is denoted by $L = \qty{\, [G] \mid \; G \in \mathcal G \,}$, where $\mathcal G$ is the class of all graphs. Define the vector space $H = \mathbb KL$, in which the elements are linear combinations of graphs:
 		\begin{gather*}
 		H = \qty{\, \sum_{i = 1}^n k_i[G_i]\,\bigg|\;k_i \in \mathbb K,\; G_i \in \mathcal G,\; n \in \mathbb N_0 \,}	
 		\end{gather*}
@@ -238,7 +226,7 @@
 			Defined most naturally as a disjoint union of the arguments as components of the graph, which is commutative:
 			\begin{equation}
 			m\mqty(\;
-			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					\node (n1) at (1,0)	{};
 					\node (n2) at (1.5,1)	{};
@@ -247,7 +235,7 @@
 					\draw (\from) -- (\to);
 			}}\,
 			\otimes\,
-			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n4) at (5,1)	{};
@@ -257,7 +245,7 @@
 					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n6, n5/n7, n6/n7}
 					\draw (\from) -- (\to);
 			}}\;)
-			= \mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			= \mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					\node (n1) at (1,0)	{};
 					\node (n2) at (1.5,1)	{};
@@ -265,7 +253,7 @@
 					\foreach \from/\to in {n3/n2, n2/n1}
 					\draw (\from) -- (\to);
 				}&
-				\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+				\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					[scale=1,auto=left,every node/.style={circle,fill=gray}]
 					\node (n4) at (5,1)	{};
@@ -287,7 +275,7 @@
 			This is illustrated using the following example:
 			\begin{gather*}
 			\Delta
-			\mqty(\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			\mqty(\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 			{
 				\node (n4) at (5,0.6)	{};
 				\node (n5) at (5,0)	{};
@@ -297,7 +285,7 @@
 				\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n6, n5/n7, n6/n7, n4/n8, n6/n8}
 				\draw (\from) -- (\to);
 			}) = 
-			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					\node (n4) at (5,0.5)	{};
 					\node (n5) at (5,0)	{};
@@ -305,14 +293,14 @@
 					\foreach \from/\to in {n4/n5, n4/n6}
 					\draw (\from) -- (\to);
 			}}\otimes \;
-			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					\node (n4) at (5,1)	{};
 					\node (n5) at (5,0.3)	{};
 					\foreach \from/\to in {n4/n5}
 					\draw (\from) -- (\to);
 			}}) + 
-			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n4) at (5,1)	{};
@@ -322,12 +310,12 @@
 					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n6, n5/n7, n6/n7}
 					\draw (\from) -- (\to);
 			}} \otimes\;
-			\mqty{\tikz[scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n4) at (5,0)	{};
 			}})\; + 
-			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			\mqty(\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n5) at (5,0)	{};
@@ -335,7 +323,7 @@
 					\foreach \from/\to in {n5/n6}
 					\draw (\from) -- (\to);
 			}}\, \otimes
-			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=2mm}]
+			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
 					[scale=1,auto=left,every node/.style={circle,fill=black}]
 					\node (n5) at (5,0)	{};
@@ -613,7 +601,7 @@
 		\begin{gather*}
 			\tilde f \pqty{\sum_{i=1}^n v_i \otimes w_{j_i}} = 0\\
 			\sum_{i=1}^n \tilde f\pqty{v_i \otimes w_{j_i}} = 0 \\
-			\sum_{i=1}^n \alpha^*\pqty{w_{j_i}} v_i = v_k = 0.
+			\sum_{i=1}^n \alpha^*\pqty{w_{j_i}} v_i = v_k = 0
 		\end{gather*}
 	\end{proof}
 
@@ -694,7 +682,7 @@
 	\begin{Example*}[Polynomial ring]
 		The polynomial ring has a decomposition:
 		\begin{gather*}
-			\mathbb K[x] = \bigoplus_{n=0}^{\infty} \mathbb K x^i
+			\mathbb K[x] = \bigoplus_{i=0}^{\infty} \mathbb K x^i
 		\end{gather*}
 	\end{Example*}
 
@@ -812,8 +800,8 @@
 		\end{gather*}
 		Checking counitarity:
 		\begin{gather*}
-			\pqty{\epsilon \otimes \id} \pqty{s \otimes s} = 1 \otimes s\\
-			\pqty{\id \otimes \epsilon} \pqty{s \otimes s} = s \otimes 1
+			\pqty{\epsilon \otimes \id} \pqty{s \otimes s} = 1 \otimes s \equiv s \\
+			\pqty{\id \otimes \epsilon} \pqty{s \otimes s} = s \otimes 1 \equiv s
 		\end{gather*}
 	\end{Example}
 
@@ -867,8 +855,16 @@
  		For any linear map $f \colon V \to W$, there exists a dual map $f^* \colon W^* \to V^*$, such that $\braket{f^*(w)}{v} = \braket{w}{f(v)}$.
  	\end{Remark*}
 
+ 	\begin{Theorem}[Categorical imperative]
+ 		Every proposition can be proved using commutative diagrams.	
+ 	\end{Theorem}
+
+ 	\begin{proof}
+ 		Ask Kant.
+ 	\end{proof}
+
  	To extend this concept to algebras and coalgebras, the following definition is required:
- 	
+ 
  	\begin{Definition}[Dual of a coalgebra]
  		Let $C$ be a coalgebra with the comultiplication $\Delta \colon C \to C \otimes C$ and counit $\epsilon \colon C \to \mathbb K$. Let $C^*$ be the dual of $C$ with multiplication and unit defined by the following diagrams:
  		\begin{align*}
