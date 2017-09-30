@@ -14,7 +14,8 @@
 \usepackage{mathtools}
 \usepackage{xspace}
 \usepackage{enumitem}
-	
+\usepackage{hyperref}
+
 \usepackage{newpxmath}
 \usepackage{charter}
 \usepackage[T1]{fontenc}
@@ -59,6 +60,7 @@
 \DeclareMathOperator{\Im}{Im}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Iso}{\mathrm{Iso}}
 \renewcommand{\th}{\textsuperscript{th}\xspace}
 
 \newlist{subquests}{enumerate}{2}
@@ -439,7 +441,7 @@
 	
 	\subsection{Algebra Homomorphism}
 	
-	\begin{Definition}
+	\begin{Definition}\label{def:alghom}
 		Let $A_1, A_2$ be $\mathbb K$-algebras. An \emph{algebra homomorphism} is $\phi \colon A_1 \to A_2$ which is a ring homomorphism and linear map simultaneously. 
 	\end{Definition}
 	
@@ -592,10 +594,11 @@
 	\begin{proof}
 		Let $\tilde f \colon V \otimes W \to W$, using the linear map the previous example with the following linear functional:
 		\begin{gather*}
-			\alpha^*(w_j) \equiv \begin{cases}
-        1, \; j = j_k \\
-        0, \; j \neq j_k 
-        \end{cases}
+			\alpha^*(w_j) \equiv 
+			\begin{cases}
+		        1, & j = j_k \\
+		        0, & j \neq j_k 
+	        \end{cases}
 		\end{gather*}
 		for any $k = 1, \ldots, n$. Therefore:
 		\begin{gather*}
@@ -780,7 +783,7 @@
 		} & &
 		\xymatrix{
 			\mathbb K \otimes C  & C \otimes C \ar[l]_-{\epsilon \otimes \id} \ar[r]^-{\id \otimes \epsilon} & C \otimes \mathbb K  \\
-			& C \ar[u]^-{\Delta} \ar[lu]^-{f^{-1}} \ar[ru]_-{g^{-1}} &	
+			& C \ar[u]^-{\Delta} \ar[lu]^-{\pqty{1 \otimes -}} \ar[ru]_-{\pqty{- \otimes 1}} &	
 		}
 		\end{align*}
 	\end{Definition}
@@ -811,8 +814,8 @@
 			\Delta\bqty{x,y} = \sum_{z \in [x, y]} \bqty{x,z} \otimes \bqty{z,y} \\
 			\epsilon{\bqty{x,y}} =
 			\begin{cases}
-				1, \; x = y \\
-				0, \; x < y
+				1, & x = y \\
+				0, & x < y
 			\end{cases}
 		\end{gather*}
 		Checking coassociativity:
@@ -855,6 +858,8 @@
  		For any linear map $f \colon V \to W$, there exists a dual map $f^* \colon W^* \to V^*$, such that $\braket{f^*(w)}{v} = \braket{w}{f(v)}$.
  	\end{Remark*}
 
+ 	To extend this concept to algebras and coalgebras, we introduce duals of algebras. But first, we discuss important tools that will be handy in the future.
+
  	\begin{Theorem}[Categorical imperative]
  		Every proposition can be proved using commutative diagrams.	
  	\end{Theorem}
@@ -862,8 +867,6 @@
  	\begin{proof}
  		Ask Kant.
  	\end{proof}
-
- 	To extend this concept to algebras and coalgebras, the following definition is required:
  
  	\begin{Definition}[Dual of a coalgebra]
  		Let $C$ be a coalgebra with the comultiplication $\Delta \colon C \to C \otimes C$ and counit $\epsilon \colon C \to \mathbb K$. Let $C^*$ be the dual of $C$ with multiplication and unit defined by the following diagrams:
@@ -881,6 +884,21 @@
  	Similarly, the dual of a \emph{finite-dimensional} algebra $\pqty{A, m, u}$, denoted as $A^*$ forms a coalgebra with the comultiplication $\Delta \colon A^* \to A^* \otimes A^*$ and counit $\epsilon \colon A^* \to \mathbb K$.
  	
  	Compositions are ``reversed" by duals. For linear maps $\xymatrix{V \ar[r]^f & W \ar[r]^g & X}$, we have $\braket{x}{g(f(v))} = \braket{g^*(x)}{f(v)} = \braket{f^*(g^*(x))}{v}$, which shows that $(g \circ f)^* = f^* \circ g^*$. The following lemma is immediate from this observation.
+
+ 	\begin{Example*}[Incidence algebra]
+ 		The \emph{incidence algebra} $C^*(P)$ is defined as the dual of the incidence coalgebra $C(P)$. The elements of this algebra are linear functionals $c^* \colon C(P) \to \mathbb K$ as functions of the form $c^* \colon \mathrm{Int}(P) \to \mathbb K$. The multiplication $m \colon C^* \otimes C^* \to C^* \equiv \Delta^* \rho$ (from the commutative diagram) is defined as $c^* \otimes d^* \mapsto c^* d^*$ such that:
+ 		\begin{gather*}
+ 			\braket{\Delta^*\pqty{c \otimes d}}{[x,y]} = \braket{c \otimes d}{\Delta[x,y]} \coloneqq \sum_{z \in [x,y]} c^*\pqty{[x,z]}d^*\pqty{[z,y]}
+ 		\end{gather*}
+ 		The unit $u \colon K \to \mathbb C^* \equiv \bqty{\epsilon^* \cdot \cong_{\mathbb K}}$ is defined accordingly:
+ 		\begin{gather*}
+ 			\braket{u(1)}{[x,y]} = \braket{\epsilon^*(1)}{[x,y]} = \braket{1}{\epsilon[x,y]} =
+ 			\begin{cases}
+ 				1, & x = y \\
+ 				0, & x < y
+ 			\end{cases}
+ 		\end{gather*}
+ 	\end{Example*}
 
  	\begin{Lemma}
  		The dual of a commutative diagram is also commutative.
@@ -901,20 +919,11 @@
 			\pqty{C \otimes C}^* \ar[r]_-{\Delta^*} & C^*
 		} & &
 		\xymatrix{
-			\pqty{\mathbb K \otimes C}^* \ar[r]^-{\pqty{\epsilon \otimes \id}^*} \ar[rd]_{\pqty{f^{-1}}^*} & \pqty{C \otimes C}^* \ar[d]^{\Delta^*} & \pqty{C \otimes \mathbb K}^* \ar[l]_-{\pqty{\id \otimes \epsilon}^*} \ar[ld]^{\pqty{g^{-1}}^*} \\
+			\pqty{\mathbb K \otimes C}^* \ar[r]^-{\pqty{\epsilon \otimes \id}^*} \ar[rd]_{\pqty{1 \otimes -}^*} & \pqty{C \otimes C}^* \ar[d]^{\Delta^*} & \pqty{C \otimes \mathbb K}^* \ar[l]_-{\pqty{\id \otimes \epsilon}^*} \ar[ld]^{\pqty{-\otimes 1}^*} \\
 			& C^* &	
 		}
 		\end{align*}
  	\end{Solution*}
-
- 	\begin{Example*}[Incidence algebra]
- 		The \emph{incidence algebra} $C^*(P)$ is defined as the dual of the incidence coalgebra $C(P)$. The elements of this algebra are linear functionals $c^* \colon C(P) \to \mathbb K$ as functions of the form $c^* \colon \mathrm{Int}(P) \to \mathbb K$. The multiplication $m \colon C^* \otimes C^* \to C^* \equiv \Delta^* \rho$ (from the commutative diagram) is defined as $c^* \otimes d^* \mapsto c^* d^*$ such that:
- 		\begin{gather*}
- 			\braket{\Delta^*\pqty{c \otimes d}}{[x,y]} = \braket{c \otimes d}{\Delta[x,y]} \coloneqq \sum_{z \in [x,y]} c^*\pqty{[x,z]}d^*\pqty{[z,y]}
- 		\end{gather*}
- 		The unit $u \colon K \to \mathbb C^* \equiv \epsilon^* \cong_{\mathbb K}$ is defined accordingly:
-
- 	\end{Example*}
 	
 	\begin{Exercise}
 		In a coalgebra, we say the element $x$ is grouplike if $\Delta(x) = x \otimes x$. Prove that in the group ring $\mathbb F[G]$, $x$ is grouplike if and only if $x \in G$.
@@ -983,6 +992,7 @@
 			(\epsilon \otimes \id) \Delta(gx) & = \epsilon(gx) \otimes g + \epsilon(1) \otimes gx = 1 \otimes gx\\
 			(\id \otimes \epsilon) \Delta(gx) & = gx \otimes \epsilon(g) _ 1 \otimes \epsilon(gx) = gx \otimes 1
 			\end{align*}
+			These form a bialgebra by definition of $\Delta$ and $\epsilon$ as algebra homomorphisms.
 
 			\item $\Delta(a + bg + cx + dgx) = a \otimes 1 + b(g \otimes g) + c(x \otimes 1 + g \otimes x) + d(gx \otimes g + 1 \otimes gx)$ 
 		\end{subquests}
@@ -1028,57 +1038,130 @@
 		\pqty{\epsilon \otimes \id}\Delta(c) = \pqty{\epsilon \otimes \id} \sum_{(c)} c_{(1)} \otimes c_{(2)} = \sum_{(c)} \epsilon\pqty{c_{(1)}} \otimes c_{(2)} \\
 		\pqty{\id \otimes \epsilon}\Delta(c) = \pqty{\id \otimes \epsilon} \sum_{(c)} c_{(1)} \otimes c_{(2)} = \sum_{(c)} c_{(1)} \otimes \epsilon\pqty{c_{(2)}} 
 	\end{gather*}
-	\begin{align*}
+
+	% \begin{Exercise}[Practice with Sweedler notation]
+	% 	\begin{subquests}
+	% 		\item Let $T \colon C \otimes C \to C \otimes C$ be the \emph{twist} map given by $T(c \otimes d) = d \otimes c$ for $c, d \in C$. Write $T \Delta(c)$ in Sweedler notation.
+	% 		\item Prove the following identities:
+	% 		\begin{subquests}
+	% 			\item $\Delta(c) = \epsilon\pqty{c_{(2)}} \otimes \Delta\pqty{c_{(1)}}$
+	% 			\item $\Delta(c) = c_{(1)} \otimes \epsilon\pqty{c_{(3)}} \otimes c_{(2)}$
+	% 			\item $c = \epsilon\pqty{c_{(1)}} \otimes \epsilon\pqty{c_{(3)}} \otimes c_{(2)}$
+	% 		\end{subquests}
+	% 	\end{subquests}
+	% \end{Exercise}
+	% \begin{Solution*}
+	% 	\begin{subquests}
+	% 		\item $T \Delta(c) = T \pqty{c_{(1)} \otimes c_{(2)}} = c_{(2)} \otimes c_{(1)}$.
+
+	% 		\item \begin{subquests}
+	% 			\item This is equivalent to proving that $\Delta = (\epsilon \otimes \Delta) T \Delta$.
+	% 			\begin{align*}
+	% 			(\epsilon \otimes \Delta) T \Delta & = (\epsilon \otimes \id \otimes \id) (\id \otimes \Delta) T \Delta \\
+	% 				& = (\epsilon \otimes \id \otimes \id) T (\Delta \otimes \id) \Delta \\
+	% 				& = T (\id \otimes \epsilon \otimes \id) (\id \otimes \Delta) \Delta \\
+	% 				& = T (\id \otimes (1 \otimes -)) \Delta \\
+	% 				& \cong (1 \otimes - \otimes -) \Delta \\
+	% 				& = 1 \otimes \Delta \\
+	% 				& \cong \Delta
+	% 			\end{align*}
+	% 			\item We need to prove that $\Delta = (\id \otimes \epsilon \otimes \id) (\id \otimes T) \Delta_2$.
+	% 			\begin{align*}
+	% 			(\id \otimes \epsilon \otimes \id) (\id \otimes T) \Delta_2 & = (\id \otimes T) (\id \otimes \id \otimes \epsilon) (\Delta \otimes \id) \Delta \\
+	% 				& = (\id \otimes T_{\mathbb K \otimes C}) (\id \otimes (1 \otimes -)) \Delta \\
+	% 				& = (\id \otimes (- \otimes 1)) \Delta \\
+	% 				& \cong \Delta
+	% 			\end{align*}
+	% 			\item The right hand side is the result of application of:
+	% 			\begin{align*}
+	% 			(\epsilon \otimes \epsilon \otimes \id) (\id \otimes T) \Delta_2 & = (\id \otimes T) (\epsilon \otimes \id \otimes \epsilon) (\id \otimes \Delta) \Delta \\
+	% 			& = (\id \otimes T) (\epsilon \otimes (- \otimes 1)) \Delta \\
+	% 			& = (\epsilon \otimes (1 \otimes -)) \Delta \\
+	% 			& \cong (\epsilon \otimes \id) \Delta \\
+	% 			& = 1 \otimes - \\
+	% 			& \cong \id
+	% 			\end{align*}
+	% 		\end{subquests}
+	% 	\end{subquests}	
+	% \end{Solution*}
+
+	\subsection{Homomorphisms}
+	Like the reworking of Definition \ref{def:k-Alg-1} into commutative diagrams, we will rework Definition \ref{def:alghom}, the algebra homomorphism, into a commutative diagram as well.
+
+	\begin{Definition}
+		The linear map $f\colon A \to B$, where $A$ and $B$ are algebras, is a $\mathbb K$-\emph{algebra homomorphism} if and only if the following diagrams commute:
+		\begin{align*}
+			\xymatrix{
+				A \otimes A \ar[r]^-{f \otimes f} \ar[d]_-{m_A} & B \otimes B \ar[d]^-{m_B}  \\
+				A  \ar[r]_-{f} & B
+			} & & 
+			\xymatrix{
+				A \ar[rr]^-{f} & & B \\
+				& \mathbb K \ar[lu]^-{u_{A}} \ar[ru]_-{u_B} & 
+			}
+		\end{align*}
+		$f$ is a vector space homomorphism by definition; the diagrams encode the properties of a ring. The first diagram encodes the property $f(a_1 a_2) = f(a_1)f(a_2)$. This is easily shown:
+		\begin{align*}
+			 \bqty{f\cdot m_A}\pqty{a_1 \otimes a_2} & = \bqty{m_b\cdot(f \otimes f)}\pqty{a_1 \otimes a_2} \\
+			 f\pqty{a_1 a_2} & = m_b\pqty{f(a_1) \otimes f(a_2)} \\
+			 f\pqty{a_1 a_2} & = f(a_1)f(a_2) 
+		\end{align*}
+		The second diagram encodes unitarity $\bqty{f\cdot u_A} \equiv u_B$.
+	\end{Definition}
+	
+	\begin{Definition}[Subalgebras]
+		Let $B$ be a $\mathbb K$-algebra and $A \subseteq B$. Then $A$ is a \emph{subalgebra} if $m(A \otimes A) \subseteq A$ and $1_{B} \subset A$.
+	\end{Definition}
+	More generally, $A$ is a \emph{two-sided ideal} if $m(A \otimes B) \subset A$ and $m(B \otimes A) \subset A$. 
+
+	\begin{Definition}[Coalgebra homomorphism]
+		Using duality, a linear map $g\colon C \to D$ is a \emph{coalgebra homomorphism} if the following diagrams commute:
+		\begin{align*}
+			\xymatrix{
+				C \otimes C \ar[r]^-{g \otimes g} & D \otimes D \\
+				C \ar[u]^-{\Delta_C} \ar[r]_-{g} & D \ar[u]_-{\Delta_D} 
+			} & &
+			\xymatrix{
+				C \ar[rr]^-{g} \ar[rd]_-{\epsilon_C} & & D \ar[ld]^-{\epsilon_D} \\
+				& \mathbb K & 
+			}
+		\end{align*}
+		The diagrams encode $\bqty{(g \otimes g)\cdot \Delta_C} \equiv \Delta_D\cdot g$ and $\epsilon_D \cdot g \equiv \epsilon_C$. Using Sweedler notation:
+		\begin{align*}
+			\bqty{(g \otimes g)\cdot \Delta_C}(c) & = \Delta_D\cdot g(c) \\
+			\pqty{g \otimes g} \pqty{\sum_{(c)} c_{(1)} \otimes c_{(2)}} & = \sum_{g(c)} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
+			\sum_{(c)} g(c_{(1)}) \otimes g(c_{(2)}) & = \sum_{g(c)} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
+			\epsilon_C(c) & = \epsilon_D[g(c)]
+		\end{align*}
+	\end{Definition}
+
+	\begin{Definition}[Subcoalgebras]
+		Let $D$ be a coalgebra and $C \subseteq D$. Then $C$ is a \emph{subcoalgebra} if $\Delta_C(C) \subseteq C$.
+	\end{Definition}
+	More generally, $C$ is a \emph{two-sided coideal} if $\Delta_C(C) \subset C \otimes D + D \otimes C$.
+
+	\subsubsection{Duality of Homomorphisms}
+
+	\begin{Theorem}
+		If $f\colon C \to D$ is a coalgebra homomorphism, then the dual map $f^*\colon C^* \to D^*$ is an algebra homomorphism.
+	\end{Theorem}
+	\begin{proof}
+		Dualising the coalgebra homomorphism diagrams and inserting the multiplication and unitary duality commutative diagrams:
+		\begin{align*}
 		\xymatrix{
 			D^* \otimes D^* \ar[dd]_-{m_D} \ar[rd]_-{\rho_D} \ar[rrr]^-{f^* \otimes f^*} & & & C^* \otimes C^* \ar[ld]^-{\rho_C} \ar[dd]^-{m_C} \\
 			& \pqty{D \otimes D}^* \ar[r]^-{\pqty{f \otimes f}^*} \ar[ld]_-{\Delta^*_D} & \pqty{C \otimes C}^* \ar[rd]^-{\Delta^*_C} & \\
 			D^* \ar[rrr]_-{f^*} & & & C^*
 		}
-	\end{align*}
-	
-%	\begin{Exercise}
-%		\begin{subquests}
-%			\item Let $T \colon C \otimes C \to C \otimes C$ be the \emph{twist} map given by $T(c \otimes d) = d \otimes c$ for $c, d \in C$. Write $T \Delta(c)$ in Sweedler notation.
-%			\item Prove the following identities:
-%			\begin{subquests}
-%				\item $\Delta(c) = \epsilon\pqty{c_{(2)}} \otimes \Delta\pqty{c_{(1)}}$
-%				\item $\Delta(c) = c_{(1)} \otimes \epsilon\pqty{c_{(3)}} \otimes c_{(2)}$
-%				\item $c = \epsilon\pqty{c_{(1)}} \otimes \epsilon\pqty{c_{(3)}} \otimes c_{(2)}$
-%			\end{subquests}
-%		\end{subquests}
-%	\end{Exercise}
-%	\begin{Solution*}
-%		\begin{subquests}
-%			\item $T \Delta(c) = T \pqty{c_{(1)} \otimes c_{(2)}} = c_{(2)} \otimes c_{(1)}$.
-%
-%			\item \begin{subquests}
-%				\item This is equivalent to proving that $\Delta = (\epsilon \otimes \Delta) T \Delta$.
-%				\begin{align*}
-%				(\epsilon \otimes \Delta) T \Delta & = (\epsilon \otimes \id \otimes) (\id \otimes \Delta) T \Delta \\
-%					& = (\epsilon \otimes \id \otimes \id) T (\Delta \otimes \id) \Delta \\
-%					& = T (\id \otimes \epsilon \otimes \id) (\id \otimes \Delta) \Delta \\
-%					& = T (\id \otimes (1 \otimes -)) \Delta \\
-%					& \cong (1 \otimes - \otimes -) \Delta \\
-%					& = 1 \otimes \Delta \\
-%					& \cong \Delta
-%				\end{align*}
-%				\item We need to prove that $\Delta = (\id \otimes \epsilon \otimes \id) (\id \otimes T) \Delta_2$.
-%				\begin{align*}
-%				(\id \otimes \epsilon \otimes \id) (\id \otimes T) \Delta_2 & = (\id \otimes T) (\id \otimes \id \otimes \epsilon) (\Delta \otimes \id) \Delta \\
-%					& = (\id \otimes T) (\id \otimes (1 \otimes -)) \Delta \\
-%					& = (\id \otimes (- \otimes 1)) \Delta \\
-%					& \cong \Delta
-%				\end{align*}
-%				\item The right hand side is the result of application of:
-%				\begin{align*}
-%				(\epsilon \otimes \epsilon \otimes \id) (\id \otimes T) \Delta_2 & = (\id \otimes T) (\epsilon \otimes \id \otimes \epsilon) (\id \otimes \Delta) \Delta \\
-%				& = (\id \otimes T) (\epsilon \otimes (- \otimes 1)) \Delta \\
-%				& = (\epsilon \otimes (1 \otimes -)) \Delta \\
-%				& \cong (\epsilon \otimes \id) \Delta \\
-%				& = 1 \otimes - \\
-%				& \cong \id
-%				\end{align*}
-%			\end{subquests}
-%		\end{subquests}	
-%	\end{Solution*}
+		\end{align*}
+		\begin{align*}
+			\xymatrix{
+			D^* \ar[rrrr]^-{g^*} & & & & C^*  \\
+			& & \mathbb K^* \ar[llu]_-{\epsilon^*_D} \ar[d]^-{\cong_{\mathbb K}} \ar[rru]^-{\epsilon^*_C} & & \\
+			& & \mathbb K \ar[lluu]^-{u_{D^*}} \ar[rruu]_-{u_{C^*}} & & 
+		}
+		\end{align*}
+		For the first diagram, the bottom, left and right diagrams commute as seen before. The top diagram indicates $(f \otimes f)^* \cdot \rho_D \equiv \rho_c \cdot f^* \otimes f^*$, which can be checked using inner product notation. The second diagram can also be checked similarly.
+	\end{proof}
+	Similarly, if the map $f\colon A \to B$, where $A$ and $B$ are \emph{finite-dimensional algebras}, is an algebra homomorphism, then $f^* \colon B^* \to A^*$ is a coalgebra homomorphism. 
 \end{document}
