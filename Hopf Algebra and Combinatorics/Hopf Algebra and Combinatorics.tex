@@ -923,6 +923,16 @@
 			& C^* &	
 		}
 		\end{align*}
+		Using the multiplication commutative diagram for $C^*$ in the first diagram:
+		\begin{align*}
+		\xymatrix{
+			& & C^* \otimes C^* \ar[rd]^-{\rho} & &  \\
+			& \pqty{C \otimes C}^* \otimes C^* \ar[rd]^-{\rho_{(1)2}} \ar[ru]^-{\Delta^* \otimes \id} & & \pqty{C \otimes C}^* \ar[rd]^-{\Delta^*} & \\
+			{C^* \otimes C^* \otimes C^*} \ar[ru]^-{\rho \otimes \id} \ar[rd]_-{\id \otimes \rho} & & \pqty{C \otimes C \otimes C}^* \ar[ru]^-{\pqty{\Delta \otimes \id}^*} \ar[rd]_-{\pqty{\id \otimes \Delta}^*} & & C^*\\
+			& C^* \otimes \pqty{C \otimes C}^* \ar[ru]_-{\rho_{1(2)}} \ar[rd]_-{\id \otimes \Delta^*} & & \pqty{C \otimes C}^* \ar[ru]_-{\Delta^*} & \\  
+			& & C^* \otimes C^* \ar[ru]_-{\rho} & & 
+			}
+		\end{align*}
  	\end{Solution*}
 	
 	\begin{Exercise}
