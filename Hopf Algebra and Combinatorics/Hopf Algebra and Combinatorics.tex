@@ -877,7 +877,7 @@
 			
 			\item The product is $\pqty{a_1 a_2 + b_1 b_2} + \pqty{a_1 b_2 + a_2 b_1 + b_1 d_2 + b_2 d_1}g + \pqty{a_1 c_2 + a_2 c_1}x + \pqty{a_1 d_2 + a_2 d_1 + b_1 c_2 + b_2 c_1}gx $.
 			
-			\item Since $\Delta$ and $\epsilon$ are algebra homomorphisms:
+			\item Since $\Delta$ and $\epsilon$ are assumed to be algebra homomorphisms:
 			\begin{align*}
 			\Delta(gx) & = \Delta g \Delta x = \pqty{g \otimes g}\pqty{x \otimes 1 + g \otimes x} = gx \otimes g + 1 \otimes gx \\
 			\epsilon(gx) & = \epsilon(g) \epsilon(x) = 0\\
@@ -904,7 +904,7 @@
 			(\epsilon \otimes \id) \Delta(gx) & = \epsilon(gx) \otimes g + \epsilon(1) \otimes gx = 1 \otimes gx\\
 			(\id \otimes \epsilon) \Delta(gx) & = gx \otimes \epsilon(g) _ 1 \otimes \epsilon(gx) = gx \otimes 1
 			\end{align*}
-			These form a bialgebra by definition of $\Delta$ and $\epsilon$ as algebra homomorphisms.
+			These form a bialgebra by assumption of $\Delta$ and $\epsilon$ as algebra homomorphisms.
 			
 			\item $\Delta(a + bg + cx + dgx) = a \otimes 1 + b(g \otimes g) + c(x \otimes 1 + g \otimes x) + d(gx \otimes g + 1 \otimes gx)$ 
 		\end{subquests}
@@ -1181,4 +1181,35 @@
 		For the first diagram, the bottom, left and right diagrams commute as seen before. The top diagram indicates $(f \otimes f)^* \cdot \rho_D \equiv \rho_c \cdot f^* \otimes f^*$, which can be checked using inner product notation. The second diagram can also be checked similarly.
 	\end{proof}
 	Similarly, if the map $f\colon A \to B$, where $A$ and $B$ are \emph{finite-dimensional algebras}, is an algebra homomorphism, then $f^* \colon B^* \to A^*$ is a coalgebra homomorphism. 
+
+	\section{Quotients}
+
+	Let $V$ be a vector space and $V^*$ its dual space. Given $S \subset V$ and $T^* \subset V^* $, let their orthgonal complements be defined as:
+	\begin{gather*}
+		S^{\perp} \coloneqq \qty{\, v \in V \mid \braket{v}{S} = 0 \,} \subset V^* \\
+		\pqty{T^*}^{\perp} \coloneqq \qty{\, v \in V \mid \braket{T}{v} = 0 \,} \subset V
+	\end{gather*}
+
+	\begin{Theorem}
+		Let $C$ be a coalgebra and $C^*$ its dual algebra. Let $D \subset C$, then $D$ is a coalgebra of $C$ if and only if $D^{\perp}$ is an ideal of $C^*$.
+	\end{Theorem}
+	% \begin{align*}
+	% 	\xymatrix@u{
+	% 		C \ar[rd]_-{f} \ar[ddd]_-{\Delta_C} \ar[rr]^-{\iota} &  & D \ar[ddd]^-{\Delta_D} \\
+	% 		& D \ar[ru]_-{\cong_D} \ar[d]_-{\Delta_D} & \\
+	% 		& D \otimes D \ar[rd]^-{\cong_D \otimes \cong_D} & \\
+	% 		C \otimes C \ar[ru]^-{f \otimes f} \ar[rr]_-{\iota \otimes \iota} &  & D \otimes D
+	% 	} 
+	% \end{align*}
+
+	% \begin{align*}
+	   %  \xymatrix{
+	   %  [x,y] \otimes [u,v] \ar[r]^-{m} \ar[d]_-{\Delta \otimes \Delta} & \prod\limits_{z\mid x\leq u \leq y \leq v} [x,v] \ar[r]^-{\Delta} & \sum\limits_{z \mid x\leq u \leq y \leq v} [x,z] \otimes [z,v] \\
+	   %  \sum\limits_{zw}  [x,z] \otimes [z,y] \otimes [u,w] \otimes [w,v] \ar[rr]^-{\id \otimes T \otimes \id} &  & \sum\limits_{zw} [x,z] \otimes [u,w] \otimes [z,y] \otimes [w,v] \ar[u]_-{m \otimes m}
+	   %  }
+    % \end{align*}
+    % \begin{gather*}
+	   %  \pqty{m \otimes m} \sum_{zw} [x,z] \otimes [u,w] \otimes [z,y] \otimes [w,v] = \sum_{zw}\prod\limits_{\pqty{x\leq u \leq z \leq w}}\prod\limits_{\pqty{z \leq w \leq y \leq v}}[x,w] \otimes [z,v] \\
+	   %  = \sum_z \prod\limits_{x\leq u \leq y \leq v} [x,z] \otimes [z,v]   
+    % \end{gather*}
 \end{document}
