@@ -233,7 +233,7 @@
 		
 		\begin{Multiplication*}
 			Defined most naturally as a disjoint union of the arguments as components of the graph, which is commutative:
-			\begin{equation}
+			\begin{equation*}
 			m\mqty(\;
 			\mqty{\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,fill=black,inner sep=0pt,minimum size=1.8mm}]
 				{
@@ -272,7 +272,7 @@
 					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n6, n5/n7, n6/n7}
 					\draw (\from) -- (\to);
 			}}
-			\end{equation}
+			\end{equation*}
 		\end{Multiplication*}
 		
 		\begin{Comultiplication*}
@@ -1146,8 +1146,8 @@
 		The diagrams encode $\bqty{(g \otimes g) \circ \Delta_C} \equiv \Delta_D \circ g$ and $\epsilon_D \circ g \equiv \epsilon_C$. Using Sweedler notation:
 		\begin{align*}
 			\bqty{(g \otimes g) \circ \Delta_C}(c) & = \Delta_D \circ g(c) \\
-			\pqty{g \otimes g} \pqty{\sum_{(c)} c_{(1)} \otimes c_{(2)}} & = \sum_\pqty{g(c)} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
-			\sum_{(c)} g(c_{(1)}) \otimes g(c_{(2)}) & = \sum_\pqty{g(c)} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
+			\pqty{g \otimes g} \pqty{\sum_{(c)} c_{(1)} \otimes c_{(2)}} & = \sum_{\pqty{g(c)}} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
+			\sum_{(c)} g(c_{(1)}) \otimes g(c_{(2)}) & = \sum_{\pqty{g(c)}} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
 			\epsilon_C(c) & = \epsilon_D[g(c)]
 		\end{align*}
 	\end{Definition}

@@ -14,12 +14,14 @@
 \usepackage{mathtools}
 \usepackage{xspace}
 \usepackage{enumitem}
+\usepackage{url}
+\usepackage{hyperref}
 
 \usepackage{tocloft}
 \renewcommand{\cftdot}{}
 
 \usepackage{hyperref}
-\hypersetup{colorlinks, linkcolor = [RGB]{66, 128, 128}, urlcolor = red, linktocpage = true}
+\hypersetup{colorlinks, linkcolor = [RGB]{66, 128, 128}, urlcolor = darkgray, linktocpage = true}
 
 
 \usepackage{newpxmath}
@@ -87,7 +89,7 @@
 	
 	\renewcommand{\abstractname}{Context}
 	\begin{abstract}
-	\noindent These are notes created based on a talk presented by Dr. K. N. Raghavan from The Institute of Mathematical Sciences, Chennai at Computer Applications based on Modern Algebra Conference at Manipal Institute of Technology, Manipal University. The talk covers an introduction to the chromatic polynomial and its relation to acyclic orientations, Stanley's theorem and an informal introduction to heaps.  
+	\noindent These are notes created based on a talk presented by Dr. K. N. Raghavan from The Institute of Mathematical Sciences (IMSc), Chennai at the \emph{Computer Applications based on Modern Algebra} conference at Manipal Institute of Technology. The talk was mostly for publicity of Xavier Viennot's \href{http://www.xavierviennot.org/coursIMSc2017/contents.html}{lectures} at IMSc, uploaded on the \href{https://www.youtube.com/watch?v=vRTdLDnpIt0&list=PLhkiT_RYTEU2HhH2ljHjA-M6v2FMcLytO}{\texttt{matscience}} YouTube channel. The talk covers an introduction to the chromatic polynomial and its relation to acyclic orientations, Stanley's theorem and an informal introduction to heaps.  
 	\end{abstract}
 	
 	\begingroup
@@ -96,81 +98,168 @@
 	\endgroup
 
 	\section{Chromatic Polynomial}
-	George David Birkhoff attacked the four color problem by constructing a polynomial which characterises the number of vertex colourings, called the \emph{chromatic polynomial}. The motivation is provided by example:
+	George David Birkhoff attacked the four color problem by constructing a polynomial which characterises the number of vertex colourings for a variable number of colours, called the \emph{chromatic polynomial}. The motivation is provided by example:
 	\begin{Example*}
 		Let $G$ be the following graph:
 		\begin{gather*}
-			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thin,inner sep=0pt,minimum size=2mm}]
-				{
-					\node (n4) at (5,1)	{};
-					\node (n5) at (5,0)	{};
-					\node (n6) at (6,1)	{};
-					\node (n7) at (6,0)	{};
-					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n7, n6/n7}
-					\draw (\from) -- (\to);
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thick,inner sep=0pt,minimum size=2mm}]
+			{
+				\node (n1) at (0,1)	{};
+				\node (n2) at (0,0)	{};
+				\node (n3) at (1,1)	{};
+				\node (n4) at (1,0)	{};
+				\foreach \from/\to in {n1/n2, n1/n3, n1/n4, n2/n4, n3/n4}
+				\draw[thick] (\from) -- (\to);
 			}
 		\end{gather*}
-		The minimum number of colours required to colour this graph is 3 because of the adjacency of two diagonal vertices. There are 6 ways of colouring this graph with 3 colours:
+		The minimum number of colours required to colour this graph is 3 because of the two diagonally adjacent vertices. There are 6 ways of colouring this graph with 3 colours:
 		\begin{gather*}
 			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,inner sep=0pt,minimum size=2mm}]
-				{
-					\node[fill=red] (n4) at (5,1)	{};
-					\node[fill=blue] (n5) at (5,0)	{};
-					\node[fill=blue] (n6) at (6,1)	{};
-					\node[fill=green] (n7) at (6,0)	{};
-					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n7, n6/n7}
-					\draw (\from) -- (\to);
+			{
+				\node[fill=red!80] (n1) at (0,1)	{};
+				\node[fill=blue!80] (n2) at (0,0)	{};
+				\node[fill=blue!80] (n3) at (1,1)	{};
+				\node[fill=green!80] (n4) at (1,0)	{};
+				\foreach \from/\to in {n1/n2, n1/n3, n1/n4, n2/n4, n3/n4}
+				\draw[thick] (\from) -- (\to);
 			} \hspace{12pt} 
-			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thin,inner sep=0pt,minimum size=2mm}]
-				{
-					\node (n4) at (5,1)	{};
-					\node (n5) at (5,0)	{};
-					\node (n6) at (6,1)	{};
-					\node (n7) at (6,0)	{};
-					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n7, n6/n7}
-					\draw (\from) -- (\to);
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,inner sep=0pt,minimum size=2mm}]
+			{
+				\node[fill=blue!80] (n1) at (0,1)	{};
+				\node[fill=green!80] (n2) at (0,0)	{};
+				\node[fill=green!80] (n3) at (1,1)	{};
+				\node[fill=red!80] (n4) at (1,0)	{};
+				\foreach \from/\to in {n1/n2, n1/n3, n1/n4, n2/n4, n3/n4}
+				\draw[thick] (\from) -- (\to);
 			} \hspace{12pt}
-			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thin,inner sep=0pt,minimum size=2mm}]
-				{
-					\node (n4) at (5,1)	{};
-					\node (n5) at (5,0)	{};
-					\node (n6) at (6,1)	{};
-					\node (n7) at (6,0)	{};
-					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n7, n6/n7}
-					\draw (\from) -- (\to);
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,inner sep=0pt,minimum size=2mm}]
+			{
+				\node[fill=green!80] (n1) at (0,1)	{};
+				\node[fill=blue!80] (n2) at (0,0)	{};
+				\node[fill=blue!80] (n3) at (1,1)	{};
+				\node[fill=red!80] (n4) at (1,0)	{};
+				\foreach \from/\to in {n1/n2, n1/n3, n1/n4, n2/n4, n3/n4}
+				\draw[thick] (\from) -- (\to);
 			} \hspace{12pt}
-			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thin,inner sep=0pt,minimum size=2mm}]
-				{
-					\node (n4) at (5,1)	{};
-					\node (n5) at (5,0)	{};
-					\node (n6) at (6,1)	{};
-					\node (n7) at (6,0)	{};
-					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n7, n6/n7}
-					\draw (\from) -- (\to);
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,inner sep=0pt,minimum size=2mm}]
+			{
+				\node[fill=red!80] (n1) at (0,1)	{};
+				\node[fill=green!80] (n2) at (0,0)	{};
+				\node[fill=green!80] (n3) at (1,1)	{};
+				\node[fill=blue!80] (n4) at (1,0)	{};
+				\foreach \from/\to in {n1/n2, n1/n3, n1/n4, n2/n4, n3/n4}
+				\draw[thick] (\from) -- (\to);
 			} \hspace{12pt} 
-			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thin,inner sep=0pt,minimum size=2mm}]
-				{
-					\node (n4) at (5,1)	{};
-					\node (n5) at (5,0)	{};
-					\node (n6) at (6,1)	{};
-					\node (n7) at (6,0)	{};
-					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n7, n6/n7}
-					\draw (\from) -- (\to);
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,inner sep=0pt,minimum size=2mm}]
+			{
+				\node[fill=blue!80] (n1) at (0,1)	{};
+				\node[fill=red!80] (n2) at (0,0)	{};
+				\node[fill=red!80] (n3) at (1,1)	{};
+				\node[fill=green!80] (n4) at (1,0)	{};
+				\foreach \from/\to in {n1/n2, n1/n3, n1/n4, n2/n4, n3/n4}
+				\draw[thick] (\from) -- (\to);
 			} \hspace{12pt}
-			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thin,inner sep=0pt,minimum size=2mm}]
-				{
-					\node (n4) at (5,1)	{};
-					\node (n5) at (5,0)	{};
-					\node (n6) at (6,1)	{};
-					\node (n7) at (6,0)	{};
-					\foreach \from/\to in {n4/n5, n4/n6, n4/n7, n5/n7, n6/n7}
-					\draw (\from) -- (\to);
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,inner sep=0pt,minimum size=2mm}]
+			{
+				\node[fill=green!80] (n1) at (0,1)	{};
+				\node[fill=red!80] (n2) at (0,0)	{};
+				\node[fill=red!80] (n3) at (1,1)	{};
+				\node[fill=blue!80] (n4) at (1,0)	{};
+				\foreach \from/\to in {n1/n2, n1/n3, n1/n4, n2/n4, n3/n4}
+				\draw[thick] (\from) -- (\to);
+			}
+		\end{gather*}
+		An exact colouring requires use of all $\lambda$ colours in the graph, called a $\lambda$-colouring. There are obviously 4! exact 4-colourings, since each vertex is coloured differently. To obtain a general formula for $\lambda$-colourings, consider the following argument: There are $\lambda$ colours one can use for the top left vertex and $\lambda - 1$ colours for the bottom right vertex; these conditions immediately determine that the other two vertices must be of the same colour with $\lambda - 2$ colours for them. Therefore, the general number of $\lambda$-colourings for this graph is given by the polynomial:
+		\begin{gather*}
+			\lambda\pqty{\lambda -1}\pqty{\lambda-2}^2
+		\end{gather*}
+		This is the chromatic polynomial of the graph, which will be defined shortly. Using this formula, the total number of 4-colourings (including ways of colouring the graph using 3 colours) is 48.
+	\end{Example*}
+	\begin{Definition}[Chromatic Polynomial]
+		The \emph{chromatic polynomial} $\gamma_G(\lambda)$ of a graph $G$ counts the number of its proper vertex colourings with $\lambda$ colours. Its general formula is given by:
+		\begin{gather*}
+			\gamma_G\pqty{\lambda} = \sum_{k \geq 1} \gamma'_{G}\pqty{k}\binom{\lambda}{k}
+		\end{gather*}
+		where $\gamma'_{G}\pqty{k}$ denotes the number of exact k-colourings of $G$.
+	\end{Definition}
+	\begin{Remark*}
+		Note that the number of vertices $n$ of the graph need not be mentioned since $\gamma'_{G}\pqty{k} = 0$ if $k > n$, obviously.
+	\end{Remark*}
+	As is customary in any investigation, inserting `forbidden' values into the polynomial, such as negative integers, is good experimentation. Let's try this for the previous graph:
+	\begin{gather*}
+		\gamma_G\pqty{-1} = 6 \times \binom{-1}{3} + 24 \times \binom{-1}{4} = 18 
+	\end{gather*}
+	Surprisingly enough, this the number of different acyclic orientations of the graph!
+
+	\section{Acyclic Orientations}
+
+	\begin{Definition}[Acyclic Orientation]
+		An orientation of each edge of a graph $G$ such that no cycle in the graph is a cycle in the resulting directed graph.
+	\end{Definition}
+	\begin{Example*}
+		Three different acyclic orientations of the previous graph are:
+		\begin{gather*}
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thick,inner sep=0pt,minimum size=2mm}]
+			{
+				\node (n1) at (0,1)	{};
+				\node (n2) at (0,0)	{};
+				\node (n3) at (1,1)	{};
+				\node (n4) at (1,0)	{};
+				\foreach \from/\to in {n1/n2, n3/n1, n4/n1, n4/n2, n4/n3}
+				\draw[->,thick] (\from) -- (\to);
+			} \hspace{20pt}
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thick,inner sep=0pt,minimum size=2mm}]
+			{
+				\node (n1) at (0,1)	{};
+				\node (n2) at (0,0)	{};
+				\node (n3) at (1,1)	{};
+				\node (n4) at (1,0)	{};
+				\foreach \from/\to in {n2/n1, n3/n1, n4/n1, n4/n2, n4/n3}
+				\draw[->,thick] (\from) -- (\to);
+			} \hspace{20pt}
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thick,inner sep=0pt,minimum size=2mm}]
+			{
+				\node (n1) at (0,1)	{};
+				\node (n2) at (0,0)	{};
+				\node (n3) at (1,1)	{};
+				\node (n4) at (1,0)	{};
+				\foreach \from/\to in {n2/n1, n3/n1, n4/n1, n2/n4, n3/n4}
+				\draw[->,thick] (\from) -- (\to);
 			}
 		\end{gather*}
 	\end{Example*}
-	\begin{Definition}[Chromatic Polynomial]
-		The \emph{chromatic polynomial} $\gamma_G(\lambda)$ of a graph $G$ counts the number of its proper vertex colourings.
-	\end{Definition}
-
-
+	\begin{Example*}
+		Let $T$ be the following \emph{tree}:
+		\begin{gather*}
+			\tikz[baseline=(current bounding box.center),scale=1,auto=left,every node/.style={circle,draw=black,thick,inner sep=0pt,minimum size=2mm}]
+			{
+				\node (n1) at (0,0) {};
+				\node (n2) at (1,0)	{};
+				\node (n3) at (1,1)	{};
+				\node (n4) at (2,0)	{};
+				\node (n5) at (2,-1) {};
+				\node (n6) at (3,0) {};
+				\foreach \from/\to in {n1/n2, n2/n3, n2/n4, n4/n5, n4/n6}
+				\draw[thick] (\from) -- (\to);
+			} 	
+		\end{gather*}
+		$\lambda$ colours can be used to colour the first vertex, and $\lambda - 1$ colours can be used for the rest of them. Therefore, the chromatic polynomial of $T$ and the number of its acyclic orientations are:
+		\begin{gather*}
+			\gamma_{T}\pqty{\lambda} = \lambda\pqty{\lambda - 1}^{n-1} \\
+			\gamma_{T}\pqty{-1} = \pqty{-1}^n \pqty{2}^{n-1}
+		\end{gather*}
+	\end{Example*}
+	\begin{Example*}
+		Let $K_n$ denote the \emph{complete graph} with $n$ vertices. Since every vertex is adjacent to every other vertex, the number of colours one can use for the rest of the vertices reduces by 1 after colouring each vertex. Therefore, its chromatic polynomial and number of acyclic orientations are:
+		\begin{gather*}
+			\gamma_{K_n}\pqty{\lambda} = \lambda\pqty{\lambda - 1}\dots\pqty{\lambda - n + 1} \\
+			\gamma_{K_n}\pqty{-1} = \pqty{-1}^n n!
+		\end{gather*} 
+	\end{Example*}
+	\begin{Theorem}[Stanley's Theorem]
+		The chromatic polynomial of a graph $G$ with $n$ vertices has the following property:
+		\begin{gather*}
+			\gamma_{G}\pqty{-1} = \sum_{k \geq 1}^n \gamma'_G(k) \pqty{-1}^k = \pqty{-1}^n \bqty{\mathrm{\#\;of\;acyclic \;orientations\;of\;} G}
+		\end{gather*}
+	\end{Theorem}
 \end{document}
