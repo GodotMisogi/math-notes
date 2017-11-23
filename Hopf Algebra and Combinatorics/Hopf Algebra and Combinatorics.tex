@@ -471,11 +471,11 @@
 			\end{tabular}
 		\end{center} such that the following diagrams commute:
 		\begin{align*}
-		\xymatrix{
+		\xymatrix@!C{
 			A \otimes A \otimes A \ar[d]_-{\id \otimes m} \ar[r]^-{m \otimes \id} & A \otimes A \ar[d]^-{m} \\
 			A \otimes A \ar[r]_-{m} & A
 		} & &
-		\xymatrix{
+		\xymatrix@!C{
 			\mathbb K \otimes A \ar[r]^-{u \otimes \id} \ar[dr]_-{f} & A \otimes A \ar[d]_-{m} & A \otimes \mathbb K \ar[l]_-{\id \otimes u} \ar[dl]^-{g} \\
 			& A &	
 		}
@@ -529,7 +529,7 @@
 	\subsection{Universal Property}
 
 	\begin{Theorem}[Universal property of tensor products]
-		Let $\phi \colon V \times W \to V \otimes W$ be a bilinear map. If $f \colon V \times W \to L$ is a bilinear map, then there exists a unique linear map $\tilde f \colon V \otimes W \to L$ such that $f = \tilde f \cdot \phi $, which satisfied the commutative diagram:
+		Let $\phi \colon V \times W \to V \otimes W$ be a bilinear map. If $f \colon V \times W \to L$ is a bilinear map, then there exists a unique linear map $\tilde f \colon V \otimes W \to L$ such that $f = \tilde f \circ \phi $, which satisfied the commutative diagram:
 		\begin{gather*}
 		\xymatrix{
 		V \times W \ar[r]^{\phi} \ar[rd]_{f} & V \otimes W \ar[d]^{\tilde f} \\
@@ -784,11 +784,11 @@
 		\end{center}
 		such that the following diagrams commute:
 		\begin{align*}
-		\xymatrix{
+		\xymatrix@!C{
 			C \otimes C \otimes C & C \otimes C \ar[l]_-{\id \otimes \Delta} \\
 			C \otimes C \ar[u]^-{\Delta \otimes \id} & C \ar[l]^-{\Delta} \ar[u]_-{\Delta}
 		} & &
-		\xymatrix{
+		\xymatrix@!C{
 			\mathbb K \otimes C  & C \otimes C \ar[l]_-{\epsilon \otimes \id} \ar[r]^-{\id \otimes \epsilon} & C \otimes \mathbb K  \\
 			& C \ar[u]^-{\Delta} \ar[lu]^-{\pqty{1 \otimes -}} \ar[ru]_-{\pqty{- \otimes 1}} &	
 		}
@@ -951,11 +951,11 @@
  	\begin{Definition}[Dual of a coalgebra]
  		Let $C$ be a coalgebra with the comultiplication $\Delta \colon C \to C \otimes C$ and counit $\epsilon \colon C \to \mathbb K$. Let $C^*$ be the dual of $C$ with multiplication and unit defined by the following diagrams:
  		\begin{align*}
-			\xymatrix{
-				C^* \otimes C^* \ar[rr]^-{m} \ar[rd]_-{\rho} & & C^* \\
+			\xymatrix@!C{
+				C^* \otimes C^* \ar[rr]^{m} \ar[rd]_-{\rho} & & C^* \\
 				& \pqty{C \otimes C}^* \ar[ru]_-{\Delta^*}
 			} & &
-			\xymatrix{
+			\xymatrix@!C{
 				\mathbb K \ar[rr]^-{u} \ar[rd]_-{\cong_{\mathbb K}} & & C^* \\
 				& \mathbb K^* \ar[ru]_-{\epsilon^*}
 			}
@@ -978,7 +978,7 @@
  		\begin{gather*}
  			\braket{\Delta^*\pqty{c \otimes d}}{[x,y]} = \braket{c \otimes d}{\Delta[x,y]} \coloneqq \sum_{z \in [x,y]} c^*\pqty{[x,z]}d^*\pqty{[z,y]}
  		\end{gather*}
- 		The unit $u \colon K \to \mathbb C^* \equiv \bqty{\epsilon^* \cdot \cong_{\mathbb K}}$ is defined accordingly:
+ 		The unit $u \colon K \to \mathbb C^* \equiv \bqty{\epsilon^* \circ \cong_{\mathbb K}}$ is defined accordingly:
  		\begin{gather*}
  			\braket{u(1)}{[x,y]} = \braket{\epsilon^*(1)}{[x,y]} = \braket{1}{\epsilon[x,y]} =
  			\begin{cases}
@@ -994,18 +994,18 @@
  	\begin{Solution*}
  		The duals of the comultiplication and counit commutative diagrams are:
  		\begin{align*}
-		\xymatrix{
+		\xymatrix@!C{
 			\pqty{C \otimes C \otimes C}^* \ar[r]^-{\pqty{\id \otimes \Delta}^*} \ar[d]_{\pqty{\Delta \otimes \id}^*} & \pqty{C \otimes C}^*   \ar[d]^-{\Delta^*} \\
 			\pqty{C \otimes C}^* \ar[r]_-{\Delta^*} & C^*
 		} & &
-		\xymatrix{
+		\xymatrix@!C{
 			\pqty{\mathbb K \otimes C}^* \ar[r]^-{\pqty{\epsilon \otimes \id}^*} \ar[rd]_{\pqty{1 \otimes -}^*} & \pqty{C \otimes C}^* \ar[d]^{\Delta^*} & \pqty{C \otimes \mathbb K}^* \ar[l]_-{\pqty{\id \otimes \epsilon}^*} \ar[ld]^{\pqty{-\otimes 1}^*} \\
 			& C^* &	
 		}
 		\end{align*}
 		Using the multiplication commutative diagram for $C^*$ in the first diagram:
 		\begin{align*}
-		\xymatrix{
+		\xymatrix@!C @C-2pc{
 			& & C^* \otimes C^* \ar[rd]^-{\rho} & &  \\
 			& \pqty{C \otimes C}^* \otimes C^* \ar[rd]^-{\rho_{(1)2}} \ar[ru]^-{\Delta^* \otimes \id} & & \pqty{C \otimes C}^* \ar[rd]^-{\Delta^*} & \\
 			{C^* \otimes C^* \otimes C^*} \ar[ru]^-{\rho \otimes \id} \ar[rd]_-{\id \otimes \rho} & & \pqty{C \otimes C \otimes C}^* \ar[ru]^-{\pqty{\Delta \otimes \id}^*} \ar[rd]_-{\pqty{\id \otimes \Delta}^*} & & C^*\\
@@ -1119,11 +1119,11 @@
 		\end{align*}
 		$f$ is a vector space homomorphism by definition; the diagrams encode the properties of a ring. The first diagram encodes the property $f(a_1 a_2) = f(a_1)f(a_2)$. This is easily shown:
 		\begin{align*}
-			 \bqty{f\cdot m_A}\pqty{a_1 \otimes a_2} & = \bqty{m_b\cdot(f \otimes f)}\pqty{a_1 \otimes a_2} \\
+			 \bqty{f\circ m_A}\pqty{a_1 \otimes a_2} & = \bqty{m_b \circ (f \otimes f)}\pqty{a_1 \otimes a_2} \\
 			 f\pqty{a_1 a_2} & = m_b\pqty{f(a_1) \otimes f(a_2)} \\
 			 f\pqty{a_1 a_2} & = f(a_1)f(a_2) 
 		\end{align*}
-		The second diagram encodes unitarity $\bqty{f\cdot u_A} \equiv u_B$.
+		The second diagram encodes unitarity $f \circ u_A \equiv u_B$.
 	\end{Definition}
 	
 	\begin{Definition}[Subalgebras]
@@ -1143,11 +1143,11 @@
 				& \mathbb K & 
 			}
 		\end{align*}
-		The diagrams encode $\bqty{(g \otimes g)\cdot \Delta_C} \equiv \Delta_D\cdot g$ and $\epsilon_D \cdot g \equiv \epsilon_C$. Using Sweedler notation:
+		The diagrams encode $\bqty{(g \otimes g) \circ \Delta_C} \equiv \Delta_D \circ g$ and $\epsilon_D \circ g \equiv \epsilon_C$. Using Sweedler notation:
 		\begin{align*}
-			\bqty{(g \otimes g)\cdot \Delta_C}(c) & = \Delta_D\cdot g(c) \\
-			\pqty{g \otimes g} \pqty{\sum_{(c)} c_{(1)} \otimes c_{(2)}} & = \sum_{g(c)} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
-			\sum_{(c)} g(c_{(1)}) \otimes g(c_{(2)}) & = \sum_{g(c)} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
+			\bqty{(g \otimes g) \circ \Delta_C}(c) & = \Delta_D \circ g(c) \\
+			\pqty{g \otimes g} \pqty{\sum_{(c)} c_{(1)} \otimes c_{(2)}} & = \sum_\pqty{g(c)} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
+			\sum_{(c)} g(c_{(1)}) \otimes g(c_{(2)}) & = \sum_\pqty{g(c)} [g(c)]_{(1)} \otimes [g(c)]_{(2)} \\
 			\epsilon_C(c) & = \epsilon_D[g(c)]
 		\end{align*}
 	\end{Definition}
@@ -1178,7 +1178,7 @@
 			& & \mathbb K \ar[lluu]^-{u_{D^*}} \ar[rruu]_-{u_{C^*}} & & 
 		}
 		\end{align*}
-		For the first diagram, the bottom, left and right diagrams commute as seen before. The top diagram indicates $(f \otimes f)^* \cdot \rho_D \equiv \rho_c \cdot f^* \otimes f^*$, which can be checked using inner product notation. The second diagram can also be checked similarly.
+		For the first diagram, the bottom, left and right diagrams commute as seen before. The top diagram indicates $(f \otimes f)^* \circ \rho_D \equiv \rho_c \circ f^* \otimes f^*$, which can be checked using inner product notation. The second diagram can also be checked similarly.
 	\end{proof}
 	Similarly, if the map $f\colon A \to B$, where $A$ and $B$ are \emph{finite-dimensional algebras}, is an algebra homomorphism, then $f^* \colon B^* \to A^*$ is a coalgebra homomorphism. 
 
@@ -1191,8 +1191,21 @@
 	\end{gather*}
 
 	\begin{Theorem}
-		Let $C$ be a coalgebra and $C^*$ its dual algebra. Let $D \subset C$, then $D$ is a coalgebra of $C$ if and only if $D^{\perp}$ is an ideal of $C^*$.
+		Let $C$ be a coalgebra and $C^*$ its dual algebra. Then $D \subset C$ is a coalgebra of $C$ if and only if $D^{\perp} \subset C^*$ is an ideal of $C^*$.
 	\end{Theorem}
+
+	\begin{Theorem}
+		Let $C$ be a coalgebra and $C^*$ its dual algebra. Then $D \subset C$ is a coideal of $C$ if and only if $D^\perp \subset C^*$ is a subalgebra.
+	\end{Theorem}
+
+	\begin{Lemma}
+		Let $f \colon V \to V'$ and $g \colon W \to W'$ be linear. Then $f \otimes g \colon V \otimes W \to V' \otimes W'$ is linear and satisfies:
+		\begin{enumerate}
+			\item $\Im(f \otimes g) = \Im f \otimes \Im g$
+			\item $\ker(f \otimes g) = \ker f \otimes W + V \otimes \ker g$.
+		\end{enumerate}
+	\end{Lemma}
+
 	% \begin{align*}
 	% 	\xymatrix@u{
 	% 		C \ar[rd]_-{f} \ar[ddd]_-{\Delta_C} \ar[rr]^-{\iota} &  & D \ar[ddd]^-{\Delta_D} \\
