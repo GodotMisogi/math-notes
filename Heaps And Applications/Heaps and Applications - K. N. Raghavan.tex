@@ -169,7 +169,7 @@
 				\draw[thick] (\from) -- (\to);
 			}
 		\end{gather*}
-		An exact colouring requires use of all $\lambda$ colours in the graph, called a $\lambda$-colouring. There are obviously 4! exact 4-colourings, since each vertex is coloured differently. To obtain a general formula for $\lambda$-colourings, consider the following argument: There are $\lambda$ colours one can use for the top left vertex and $\lambda - 1$ colours for the bottom right vertex; these conditions immediately determine that the other two vertices must be of the same colour with $\lambda - 2$ colours for them. Therefore, the general number of $\lambda$-colourings for this graph is given by the polynomial:
+		An exact colouring requires use of all $\lambda$ colours in the graph, called a $\lambda$-colouring. There are obviously 4! exact 4-colourings, since each vertex is coloured differently. To obtain a general formula for $\lambda$-colourings, consider the following argument: There are $\lambda$ colours one can use for the top left vertex and $\lambda - 1$ colours for the bottom right vertex; these conditions immediately determine that the other two vertices can only be coloured with $\lambda - 2$ colours. Therefore, the general number of $\lambda$-colourings for this graph is given by the polynomial:
 		\begin{gather*}
 			\lambda\pqty{\lambda -1}\pqty{\lambda-2}^2
 		\end{gather*}
@@ -250,7 +250,7 @@
 		\end{gather*}
 	\end{Example*}
 	\begin{Example*}
-		Let $K_n$ denote the \emph{complete graph} with $n$ vertices. Since every vertex is adjacent to every other vertex, the number of colours one can use for the rest of the vertices reduces by 1 after colouring each vertex. Therefore, its chromatic polynomial and number of acyclic orientations are:
+		Let $K_n$ denote the \emph{complete graph} with $n$ vertices. Since every vertex is adjacent to all other vertices, the number of colours one can use for the rest of the vertices reduces by 1 after colouring each vertex. Therefore, its chromatic polynomial and number of acyclic orientations are:
 		\begin{gather*}
 			\gamma_{K_n}\pqty{\lambda} = \lambda\pqty{\lambda - 1}\dots\pqty{\lambda - n + 1} \\
 			\gamma_{K_n}\pqty{-1} = \pqty{-1}^n n!
