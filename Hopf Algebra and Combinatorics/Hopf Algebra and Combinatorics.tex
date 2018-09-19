@@ -597,7 +597,7 @@
 		If $\qty{w_j \mid j \in J}$ is a basis for $W$, and $ \sum\limits_{i=1}^n v_i \otimes w_{j_i} = 0 $	then $v_i = 0, \forall\,i \in I$.
 	\end{Lemma}
 	\begin{proof}
-		Let $\tilde f \colon V \otimes W \to W$, using the linear map the previous example with the following linear functional:
+		Let $\tilde f \colon V \otimes W \to W$, using the linear map from the previous example with the following linear functional:
 		\begin{gather*}
 			\alpha^*(w_j) \equiv 
 			\begin{cases}
@@ -615,7 +615,7 @@
 
 	Some instructive exercises are:
 	\begin{gather*}
-		V \otimes W \cong V \otimes W \\
+		V \otimes W \cong W \otimes V \\
 		\pqty{U \otimes V} \otimes W \cong U \otimes \pqty{V \otimes W} \\
 		\pqty{U \oplus V} \otimes W \cong \pqty{U \otimes W} + \pqty{V \otimes W} 
 	\end{gather*}
@@ -1158,7 +1158,7 @@
 	\subsubsection{Duality of Homomorphisms}
 
 	\begin{Theorem}
-		If $f\colon C \to D$ is a coalgebra homomorphism, then the dual map $f^*\colon C^* \to D^*$ is an algebra homomorphism.
+		If $f\colon C \to D$ is a coalgebra homomorphism, then the dual map $f^*\colon D^* \to C^*$ is an algebra homomorphism.
 	\end{Theorem}
 	\begin{proof}
 		Dualising the coalgebra homomorphism diagrams and inserting the multiplication and unitary duality commutative diagrams:
@@ -1171,7 +1171,7 @@
 		\end{align*}
 		\begin{align*}
 			\xymatrix{
-			D^* \ar[rrrr]^-{g^*} & & & & C^*  \\
+			D^* \ar[rrrr]^-{f^*} & & & & C^*  \\
 			& & \mathbb K^* \ar[llu]_-{\epsilon^*_D} \ar[d]^-{\cong_{\mathbb K}} \ar[rru]^-{\epsilon^*_C} & & \\
 			& & \mathbb K \ar[lluu]^-{u_{D^*}} \ar[rruu]_-{u_{C^*}} & & 
 		}
