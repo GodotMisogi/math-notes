@@ -1,0 +1,180 @@
+% Hopf Algebras and Combinatorics
+
+\documentclass[svgnames]{article}
+\usepackage[paperwidth=6in, paperheight=8in, top = 20mm, bottom = 18mm, left=10mm, right = 10mm]{geometry}
+
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\setcounter{tocdepth}{3}
+\usepackage[all]{xy}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{xspace}
+\usepackage{enumitem}
+
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{colorlinks, linkcolor = [RGB]{66, 128, 128}, urlcolor = darkgray, linktocpage = true}
+
+\usepackage{newpxmath}
+\usepackage{charter}
+\usepackage[T1]{fontenc}
+
+\usepackage{parskip}
+
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{Conjecture}[Theorem]{Conjecture}
+\newtheorem{Corollary}[Theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{Definition}[Theorem]{Definition}
+\newtheorem*{Definition*}{Definition}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem*{Example*}{Example}
+
+\theoremstyle{remark}
+\newtheorem{Question}{Question}
+\newtheorem{Observation}{Observation}
+\newtheorem*{Note*}{Note}
+
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Sp}{Sp}
+\renewcommand{\th}{\textsuperscript{th}\xspace}
+
+\begin{document}
+\title{\textbf{The Spread of a Finite Group}}
+\author{\small Vinay Madhusudanan}
+\date{\scriptsize November 5, 2020}
+\maketitle
+
+\begin{abstract}
+Notes of Scott Harper's talk on the spread of a finite group: ``Many interesting and surprising results have arisen from studying generating sets for groups. For example, every finite simple group has a generating pair, and moreover Guralnick and Kantor proved that in a finite simple group every nontrivial element is contained in a generating pair. This talk will focus on recent work with Burness and Guralnick, that completely classifies the finite groups where every nontrivial element is contained in a generating pair and thus settles a 2008 conjecture of Breuer, Guralnick and Kantor. I will also give a graph theoretic interpretation of the topic, highlight how our work answers a 1975 question of Brenner and Wiegold and discuss what is known for infinite groups.''
+\end{abstract}
+
+\begingroup
+\let\clearpage\relax
+\tableofcontents
+\endgroup
+
+\section{Basics}
+\begin{Definition}
+The \emph{spread} $S(G)$ of a group $G$ is the greatest integer $k$ such that $\forall x_1, \ldots, x_k \in G$, $\exists g \in G \setminus 1$ satisfying
+\begin{equation*}
+	\langle x_1, g \rangle = \cdots = \langle x_k, g \rangle = G.
+\end{equation*}
+\end{Definition}
+
+\begin{Lemma}
+If $S(G) \ge 1$ then $G/N$ is cyclic for all $1 \ne N \unlhd G$.
+\end{Lemma}
+\begin{proof}
+Let $1 \ne N \unlhd G$, and let $1 \ne n \in N$. Then $\exists g \in G$ such that $\langle n, g \rangle = G$.
+Thus, $G/N = \langle nN, gN \rangle = \langle gN \rangle$ is cyclic.
+\end{proof}
+
+\begin{Conjecture}
+Let $G$ be finite. Then $S(G) \ge 1$ iff $G/N$ is cyclic for all $1 \ne N \unlhd G$.
+\end{Conjecture}
+
+\begin{Theorem}
+Let $G$ be a finite simple group. Then $S(G) \ge 2$.
+\end{Theorem}
+
+\begin{Theorem}
+Let $G$ be a finite soluble group. Then $S(G) \ge 2$ iff $S(G) \ge 1$ iff $G/N$ is cyclic for all $1 \ne N \unlhd G$.
+\end{Theorem}
+
+\begin{Question}
+When is $S(G) = 1$? Are there finitely many such $G$?
+\end{Question}
+
+\begin{Question}
+$S(\operatorname{PSL_2(q)}) = ?$, where $q \equiv 3 \mod 4$.
+\end{Question}
+
+\subsection{Generating graphs}
+The \emph{generating graph} $\Gamma(G)$ of a group $G$ has vertex set $G\setminus1$ and edges $(g, h)$ for each pair $g, h \in G$ such that $\langle g, h \rangle = G$.
+\begin{Example}$\Gamma(D_8)$
+\begin{equation*}
+\xymatrix{
+	b \ar@{-}[dd] \ar@{-}[rd] \ar@{-}[rrrd] \ar@{-}[rrrr] 
+		&&&& ab \ar@{-}[llld] \ar@{-}[ld] \ar@{-}[dd]\\
+	& a & \phantom{a}a^2 & a^3 & \\
+	a^3b \ar@{-}[u] \ar@{-}[ru] \ar@{-}[rrru] \ar@{-}[rrrr]
+		&&&& a^2b \ar@{-}[lllu] \ar@{-}[lu] \ar@{-}[u]	
+}
+\end{equation*}
+\end{Example}
+
+\section{Results}
+\begin{Theorem}[Burness, Guralnick, Harper]
+Let $G$ be finite. Then $S(G) \ge 2$ iff $S(G) \ge 1$ iff $G/N$ is cyclic for all $1 \ne N \unlhd G$.
+\end{Theorem}
+\begin{Corollary}
+There is no finite group of spread $1$.
+\end{Corollary}
+
+\subsection{Infinite groups}
+In general, $G/N$ is cyclic for all $1 \ne N \unlhd G$ does not imply that $S(G) \ge 1$.
+
+\begin{Observation}
+Let $G$ be an infinite soluble group. Then $G/N$ is cyclic for all $1 \ne N \unlhd G$ $\implies$ $G$ is cyclic $\implies$ $S(G) = \infty$.
+\end{Observation}
+
+\begin{Theorem}
+$S(V) \ge 1$, where $V$ is the Thompson group (a finitely presented infinite simple group).
+\end{Theorem}
+
+\subsection{Proof outline of Theorem (BGH)}
+\begin{enumerate}
+\item Reduction.
+
+Let $G$ be a finite insoluble group such that $G/N$ is cyclic for all $1 \ne N \unlhd G$.
+
+Then $G = \langle T_1 \times \cdots \times T_k, x \rangle$, where
+\begin{align*}
+	T_i \cong T\, \text{a non-Abelian simple group} \\
+	x = (y, 1, \ldots, 1)(1, \ldots, k) \\
+	y \in \Aut T.
+\end{align*}
+
+??? $A = \langle T, y \rangle \le \Aut T$ is an almost simple group.
+
+\begin{Theorem}[Half of BGH]
+$S(A) \ge 2 \implies S(G) \ge 2$.
+\end{Theorem}
+
+\item Almost simple groups.
+\begin{enumerate}[label=(\alph*)]
+	\item How to show $S(G) \ge k$.
+	\item How to do this for finite simple groups of Lie type.
+	\item How to go from simple to almost simple.
+\end{enumerate}
+\begin{enumerate}[label=(\alph*)]
+	\item $G = S_n$, $n = 2m + 1$.
+	
+	$s = (1, \ldots, m)(m + 1, \ldots, 2m + 1)$.
+	
+	$H = S_m \times S_{m + 1}$ is the unique maximal subgroup of $G$ containing $s$.
+	
+	$\langle x, s^g \rangle = G \iff x \notin H^g$ ???$\implies$??? $S(G) \ge 1$.
+	
+	More complicated. Probabilistic method.
+	
+	\item $G = \Sp_n(q)$, $q = 2^b$.
+	
+	$s = \begin{pmatrix}
+		A &\\ & B
+	\end{pmatrix}$
+	where $A$ is $m \times m$ and $B$ is $(n - m) \times (n - m)$.
+	
+	Choose $m$ well so that the only maximal subgroups of$G$ that contains $s$ are $H = \Sp_m(a) \times \Sp_{n-m}(a)$ and $K = O_n^*(q)$.
+	
+	???
+	
+	``Shintani descent''
+	
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
